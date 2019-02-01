@@ -6,16 +6,16 @@
     {
       "type": "npm",
       "script": "build",
-      "problemMatcher": [
-        "$eslint-compact"
-      ]
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$eslint-compact"]
     },
     {
       "type": "npm",
       "script": "watch",
-      "problemMatcher": [
-        "$eslint-compact"
-      ],
+      "problemMatcher": ["$eslint-compact"],
       "isBackground": true,
       "runOptions": {
         "runOn": "folderOpen"
