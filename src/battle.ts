@@ -1,5 +1,5 @@
 import { findImageInScreen } from '@/image-util';
-import { enemyLegend, transformGageFull } from '@/images';
+import { enemyLegend, transformGaugeFull } from '@/images';
 
 export function hasEnemy(): boolean {
   try {
@@ -21,7 +21,7 @@ export function waitForEnemy(max: number = 3): void {
   }
 }
 export function transform2dragon(): void {
-  const pos = findImageInScreen(transformGageFull);
+  const pos = findImageInScreen(transformGaugeFull);
   waitForEnemy();
   toast('龙化');
   click(pos.x + 100, pos.y);
