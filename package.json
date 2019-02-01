@@ -4,7 +4,7 @@
   "private": true,
   "main": "main.ts",
   "repository": "https://git.dev.tencent.com/pansx/autoJs.git",
-  "author": "pansx",
+  "author": "NateScarlet <NateScarlet@Gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "webpack --mode=production",
