@@ -22,7 +22,11 @@ export function tryClickImage(image: Image): void {
 
 export function clickTransformationButton(): void {
   const pos = findImageInScreen(transformGageFull);
+  toast('龙化');
   click(pos.x + 100, pos.y);
+  sleep(3000);
+  toast('使用龙技能');
+  click(pos.x + 360, pos.y + 300);
 }
 
 export function tryClickTransformationButton(): void {
