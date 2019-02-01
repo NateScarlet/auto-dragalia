@@ -1,0 +1,22 @@
+{
+  "name": "auto-dragalia",
+  "$schema": "./node_modules/autojs-dev/template/schema.json",
+  "project": {
+    "name": ""
+  },
+  "generate": {
+    "language": "typescript",
+    "dir": "./src"
+  },
+  "screencap": {
+    "dir": "./captures"
+  },
+  "images": {
+    "dir": "./images",
+    "port": 3400
+  },
+  "compile": {
+    "src": "./src",
+    "output": "./output"
+  }
+}

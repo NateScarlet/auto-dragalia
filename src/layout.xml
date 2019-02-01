@@ -1,0 +1,3 @@
+<frame gravity="center">
+    <spinner id="taskSpinner" entries="停止|重复战斗" spinnerMode="dialog" bg="#77ffffff" />
+</frame>

@@ -1,0 +1,26 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "build",
+      "problemMatcher": ["$eslint-compact"]
+    },
+    {
+      "type": "npm",
+      "script": "watch",
+      "problemMatcher": ["$eslint-compact"],
+      "isBackground": true,
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "type": "npm",
+      "script": "capture",
+      "problemMatcher": []
+    }
+  ]
+}
