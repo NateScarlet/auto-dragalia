@@ -4,14 +4,14 @@ function toCamelCase(str) {
   return str.replace(/[-\.](.)/g, match => match[1].toUpperCase());
 }
 (function() {
-  fs.readdir('src/assets', (err, files) => {
+  fs.readdir('src/assets/images', (err, files) => {
     /** @type {string[]} */
     const importLines = [];
     /** @type {string[]} */
     const exportLines = [];
     for (const i of files) {
       const importName = toCamelCase(i);
-      importLines.push(`import ${importName} from "@/assets/${i}"`);
+      importLines.push(`import ${importName} from "@/assets/images/${i}"`);
       exportLines.push(
         `export const ${importName.replace(
           /Png$/,
