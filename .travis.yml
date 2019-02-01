@@ -6,7 +6,7 @@ cache:
   - npm
 script:
   - npm run build
-after_script:
+before_deploy:
   - zip -j auto-draglia-${TRAVIS_TAG:-${TRAVIS_COMMIT}}.zip dist/*
 deploy:
   provider: releases
