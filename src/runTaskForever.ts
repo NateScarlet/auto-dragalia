@@ -1,5 +1,5 @@
 import { store } from '@/store';
-import { taskRegistry } from '@/task-registry';
+import { taskRegistry } from '@/taskRegistry';
 
 export function runTaskForever(): void {
   if (store.currentTask === undefined) {
