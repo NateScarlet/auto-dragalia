@@ -11,7 +11,7 @@ function toCamelCase(str) {
     const exportLines = [];
     for (const i of files) {
       const importName = toCamelCase(i);
-      importLines.push(`import ${importName} from "@/src/assets/${i}"`);
+      importLines.push(`import ${importName} from "@/assets/${i}"`);
       exportLines.push(
         `export const ${importName.replace(
           /Png$/,
