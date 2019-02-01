@@ -1,5 +1,5 @@
 // This file is auto generated
-// Use `npm run code-gen:images` to update this file
+// Use `npm run code-generate:images` to update this file
 import autoBattleSwitchOffPng from "@/assets/images/auto-battle-switch-off.png"
 import closeButtonPng from "@/assets/images/close-button.png"
 import enemyLegendPng from "@/assets/images/enemy-legend.png"

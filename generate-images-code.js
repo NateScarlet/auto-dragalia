@@ -23,7 +23,7 @@ function toCamelCase(str) {
       'src/images.ts',
       [
         '// This file is auto generated',
-        '// Use `npm run code-gen:images` to update this file',
+        '// Use `npm run code-generate:images` to update this file',
         ...importLines,
         '',
         ...exportLines
