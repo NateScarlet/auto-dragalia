@@ -7,7 +7,7 @@ cache:
 script:
   - npm run build
 before_deploy:
-  - zip -j auto-draglia-${TRAVIS_TAG:-${TRAVIS_COMMIT}}.zip dist/*
+  - zip -j auto-draglia-${TRAVIS_TAG:-${TRAVIS_COMMIT}}.zip dist/*.js
 deploy:
   provider: releases
   api_key: ${GITHUB_API_KEY}
