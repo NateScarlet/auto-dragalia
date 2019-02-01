@@ -1,12 +1,12 @@
-import store from '@/store';
+import { store } from '@/store';
 import { taskRegistry } from '@/task-registry';
 
 export function runTaskForever(): void {
-  if (store.currentTask === null) {
+  if (store.currentTask === undefined) {
     sleep(1000);
   } else {
-    const taskName = store.currentTask;
-    const handler = taskRegistry[taskName];
+    const taskName: string = store.currentTask;
+    const handler: (() => void) | undefined = taskRegistry[taskName];
     if (!handler) {
       throw new Error(`Unknown task: ${taskName}`);
     }

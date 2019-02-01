@@ -1,7 +1,7 @@
-import { runTaskForever } from '@/run-task-forever';
+import { runTaskForever } from '@/runTaskForever';
+import { setupUI } from '@/setupUI';
 import { setupTaskRegistry } from '@/task-registry';
 import { name, version } from 'package.json';
-import { setupUI } from './ui';
 
 function main(): void {
   console.log(`${name}: ${version}`);

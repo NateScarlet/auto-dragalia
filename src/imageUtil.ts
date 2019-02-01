@@ -2,21 +2,28 @@ export function findImageInScreen(
   image: Image,
   options?: images.FindImageOptions
 ): Point {
-  const ret = images.findImage(images.captureScreen(), image, options);
+  const ret: Point | null = images.findImage(
+    images.captureScreen(),
+    image,
+    options
+  );
   if (ret === null) {
     throw new Error(`未找到图像`);
   }
   console.verbose(`Find image at: ${ret}`);
+
   return ret;
 }
 
 export function clickImage(image: Image): void {
-  const pos = findImageInScreen(image);
+  const pos: Point = findImageInScreen(image);
   click(pos.x, pos.y);
 }
 
 export function tryClickImage(image: Image): void {
   try {
     clickImage(image);
-  } catch {}
+  } catch (err) {
+    console.verbose(err);
+  }
 }

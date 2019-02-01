@@ -2,12 +2,8 @@
   "extends": ["tslint-microsoft-contrib"],
   "rulesDirectory": ["node_modules/tslint-microsoft-contrib"],
   "rules": {
-    "no-relative-imports": false,
-    "no-backbone-get-set-outside-model": false,
     "no-console": false,
-    "no-implicit-dependencies": false,
-    "no-submodule-imports": false,
-    "no-literal-require": false,
-    "no-require-imports": false
+    "no-implicit-dependencies": [true, ["@", "package.json"]],
+    "no-submodule-imports": false
   }
 }

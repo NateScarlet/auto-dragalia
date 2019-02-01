@@ -11,12 +11,12 @@ function toCamelCase(str) {
     const exportLines = [];
     for (const i of files) {
       const importName = toCamelCase(i);
-      importLines.push(`import ${importName} from "@/assets/images/${i}"`);
+      importLines.push(`import ${importName} from '@/assets/images/${i}';`);
       exportLines.push(
         `export const ${importName.replace(
           /Png$/,
           ''
-        )} = images.fromBase64(${importName})`
+        )}: Image = images.fromBase64(${importName});`
       );
     }
     fs.writeFile(
@@ -26,7 +26,8 @@ function toCamelCase(str) {
         '// Use `npm run code-generate:images` to update this file',
         ...importLines,
         '',
-        ...exportLines
+        ...exportLines,
+        ''
       ].join('\n'),
       () => {}
     );

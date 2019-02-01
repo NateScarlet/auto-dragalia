@@ -1,5 +1,5 @@
-import layout from '@/layout.xml';
-import store from '@/store';
+import layoutXml from '@/layout.xml';
+import { store } from '@/store';
 
 interface IButton {
   click(callback: () => void): void;
@@ -37,24 +37,25 @@ export function setupUI(): floaty.FloatyWindow {
     taskSpinner: ISpinner;
   };
 
-  const window: Window = <Window>floaty.window(layout);
+  const window: Window = <Window>floaty.window(layoutXml);
   window.setAdjustEnabled(true);
   window.exitOnClose();
 
   window.taskSpinner.setOnItemSelectedListener({
-    onItemSelected(parent, view, position, id) {
-      const taskName = window.taskSpinner.getSelectedItem();
+    onItemSelected(): void {
+      const taskName: string = window.taskSpinner.getSelectedItem();
 
       toast(taskName);
       if (taskName === '停止') {
-        store.currentTask = null;
+        store.currentTask = undefined;
       } else {
         store.currentTask = taskName;
       }
     },
-    onNothingSelected() {
+    onNothingSelected(): void {
       throw new Error('This should never happen');
     }
   });
+
   return window;
 }

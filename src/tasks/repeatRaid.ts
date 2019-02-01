@@ -1,5 +1,4 @@
 import { tryTransform2dragon } from '@/battle';
-import { clickImage, tryClickImage } from '@/image-util';
 import {
   autoBattleSwitchOff,
   closeButton,
@@ -10,8 +9,9 @@ import {
   retryButton,
   startBattleButton
 } from '@/images';
+import { clickImage, tryClickImage } from '@/imageUtil';
 
-export async function repeatRaid() {
+export function repeatRaid(): void {
   tryClickImage(startBattleButton);
   tryClickImage(autoBattleSwitchOff);
   tryClickImage(retryButton);
@@ -25,6 +25,8 @@ export async function repeatRaid() {
     clickImage(repeatWithStaminaButton);
     sleep(500);
     clickImage(okButton);
-  } catch {}
+  } catch {
+    console.verbose('Repeat button not visible');
+  }
   sleep(1000);
 }

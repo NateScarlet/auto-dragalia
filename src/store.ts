@@ -1,7 +1,6 @@
 interface IStore {
-  currentTask: string | null;
+  currentTask: string | undefined;
 }
-const store: IStore = {
-  currentTask: null
+export const store: IStore = {
+  currentTask: undefined
 };
-export default store;
