@@ -1,8 +1,5 @@
-import {
-  clickImage,
-  tryClickImage,
-  tryClickTransformationButton
-} from '@/image-util';
+import { tryTransform2dragon } from '@/battle';
+import { clickImage, tryClickImage } from '@/image-util';
 import {
   autoBattleSwitchOff,
   closeButton,
@@ -21,7 +18,7 @@ export async function repeatRaid() {
   tryClickImage(okButton);
   tryClickImage(closeButton);
   tryClickImage(giveUpButton);
-  tryClickTransformationButton();
+  tryTransform2dragon();
   try {
     clickImage(repeatBattleButton);
     sleep(500);
