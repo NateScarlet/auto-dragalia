@@ -1,15 +1,11 @@
+import store from '@/store';
 import { taskRegistry } from '@/task-registry';
 
-export const STORAGE: Storage & {
-  get(key: 'task'): string | undefined;
-  put(key: 'task', value: string): void;
-} = storages.create('net.pansx.auto-dragalia');
-
 export function runTaskForever(): void {
-  const taskName: string | undefined = STORAGE.get('task');
-  if (taskName === undefined) {
+  if (store.currentTask === null) {
     sleep(1000);
   } else {
+    const taskName = store.currentTask;
     const handler = taskRegistry[taskName];
     if (!handler) {
       throw new Error(`Unknown task: ${taskName}`);

@@ -1,5 +1,5 @@
 import layout from '@/layout.xml';
-import { STORAGE } from '@/run-task-forever';
+import store from '@/store';
 
 interface IButton {
   click(callback: () => void): void;
@@ -47,9 +47,9 @@ export function setupUI(): floaty.FloatyWindow {
 
       toast(taskName);
       if (taskName === '停止') {
-        STORAGE.remove('task');
+        store.currentTask = null;
       } else {
-        STORAGE.put('task', taskName);
+        store.currentTask = taskName;
       }
     },
     onNothingSelected() {
