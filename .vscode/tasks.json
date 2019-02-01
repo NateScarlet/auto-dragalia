@@ -6,12 +6,16 @@
     {
       "type": "npm",
       "script": "build",
-      "problemMatcher": ["$eslint-compact"]
+      "problemMatcher": [
+        "$eslint-compact"
+      ]
     },
     {
       "type": "npm",
       "script": "watch",
-      "problemMatcher": ["$eslint-compact"],
+      "problemMatcher": [
+        "$eslint-compact"
+      ],
       "isBackground": true,
       "runOptions": {
         "runOn": "folderOpen"
@@ -20,6 +24,11 @@
     {
       "type": "npm",
       "script": "capture",
+      "problemMatcher": []
+    },
+    {
+      "type": "npm",
+      "script": "code-generate:images",
       "problemMatcher": []
     }
   ]

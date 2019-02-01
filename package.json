@@ -9,7 +9,8 @@
   "scripts": {
     "build": "webpack --mode=production",
     "watch": "webpack --watch",
-    "capture": "autojs cap"
+    "capture": "autojs cap",
+    "code-generate:images": "node generate-images-code.js"
   },
   "dependencies": {},
   "devDependencies": {
