@@ -1,5 +1,6 @@
 import { clickImage, tryClickImage } from '@/image-util';
 import {
+  autoBattleSwitchOff,
   closeButton,
   okButton,
   repeatBattleButton,
@@ -10,6 +11,7 @@ import {
 
 export async function repeatRaid() {
   tryClickImage(startBattleButton);
+  tryClickImage(autoBattleSwitchOff);
   tryClickImage(retryButton);
   tryClickImage(okButton);
   tryClickImage(closeButton);
