@@ -2,6 +2,7 @@
 // Use `npm run code-gen:images` to update this file
 import autoBattleSwitchOffPng from "@/assets/auto-battle-switch-off.png"
 import closeButtonPng from "@/assets/close-button.png"
+import enemyLegendPng from "@/assets/enemy-legend.png"
 import giveUpButtonPng from "@/assets/give-up-button.png"
 import okButtonPng from "@/assets/ok-button.png"
 import repeatBattleButtonPng from "@/assets/repeat-battle-button.png"
@@ -12,6 +13,7 @@ import transformGageFullPng from "@/assets/transform-gage-full.png"
 
 export const autoBattleSwitchOff = images.fromBase64(autoBattleSwitchOffPng)
 export const closeButton = images.fromBase64(closeButtonPng)
+export const enemyLegend = images.fromBase64(enemyLegendPng)
 export const giveUpButton = images.fromBase64(giveUpButtonPng)
 export const okButton = images.fromBase64(okButtonPng)
 export const repeatBattleButton = images.fromBase64(repeatBattleButtonPng)

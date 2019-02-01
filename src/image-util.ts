@@ -1,5 +1,8 @@
-export function findImageInScreen(image: Image): Point {
-  const ret = images.findImage(images.captureScreen(), image);
+export function findImageInScreen(
+  image: Image,
+  options?: images.FindImageOptions
+): Point {
+  const ret = images.findImage(images.captureScreen(), image, options);
   if (ret === null) {
     throw new Error(`未找到图像`);
   }
