@@ -1,4 +1,4 @@
-# auto-dragalia
+# auto-dragalia ![](https://travis-ci.org/NateScarlet/auto-dragalia.svg?branch=master)
 
 《失落的龙约》 [Auto.js] 辅助脚本
 

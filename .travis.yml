@@ -1,0 +1,17 @@
+node_js:
+  - 'node'
+install:
+  - npm i
+cache:
+  - npm
+script:
+  - npm run build
+after_script:
+  - zip -j auto-draglia-${TRAVIS_TAG:-${TRAVIS_COMMIT}}.zip dist/*
+deploy:
+  provider: releases
+  api_key: ${GITHUB_API_KEY}
+  file: auto-draglia-${TRAVIS_TAG:-${TRAVIS_COMMIT}}.zip
+  skip_cleanup: true
+  on:
+    tags: true
