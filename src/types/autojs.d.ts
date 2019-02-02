@@ -31,3 +31,23 @@ declare namespace images {
     sortBy(cmp: (a: IMatch, b: IMatch) => number | string): IMatchingResult;
   }
 }
+/** https://hyb1996.github.io/AutoJs-Docs/#/timers?id=settimeoutcallback-delay-args */
+declare function setTimeout(
+  callback: () => any,
+  delay: number,
+  ...args: any[]
+): number;
+/** https://hyb1996.github.io/AutoJs-Docs/#/timers?id=setintervalcallback-delay-args */
+declare function setInterval(
+  callback: () => any,
+  delay: number,
+  ...args: any[]
+): number;
+/** https://hyb1996.github.io/AutoJs-Docs/#/timers?id=setimmediatecallback-args */
+declare function setImmediate(callback: () => any, ...args: any[]): number;
+/** https://hyb1996.github.io/AutoJs-Docs/#/timers?id=clearintervalid */
+declare function clearInterval(id: number): void;
+/** https://hyb1996.github.io/AutoJs-Docs/#/timers?id=cleartimeoutid */
+declare function clearTimeout(id: number): void;
+/** https://hyb1996.github.io/AutoJs-Docs/#/timers?id=clearimmediateid */
+declare function clearImmediate(id: number): void;

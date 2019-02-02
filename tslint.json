@@ -4,6 +4,8 @@
   "rules": {
     "no-console": false,
     "no-implicit-dependencies": [true, ["@", "package.json"]],
-    "no-submodule-imports": false
+    "no-submodule-imports": false,
+    "newline-per-chained-call": false,
+    "align": false
   }
 }
