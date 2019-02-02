@@ -32,23 +32,23 @@ export function feedDragon(): void {
     try {
       const pos: Point = findImageInScreen(i);
       swipe(pos.x, pos.y, pos.x, pos.y - 300, 300);
-      sleep(500);
     } catch {
       break;
     }
   }
   const startTime: number = new Date().getTime();
   const waitWindow: number = 1e4;
+  let isCloseClicked: boolean = false;
   while (new Date().getTime() - startTime <= waitWindow) {
     try {
       clickImage(closeButton);
-
-      return;
+      isCloseClicked = true;
+      sleep(500);
     } catch {
       sleep(1000);
     }
   }
-  if (new Date().getTime() - startTime > waitWindow) {
+  if (!isCloseClicked) {
     throw new Error('无可用礼物');
   }
 }
