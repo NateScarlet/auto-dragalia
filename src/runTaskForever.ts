@@ -1,5 +1,5 @@
 import { store } from '@/store';
-import { taskRegistry } from '@/taskRegistry';
+import { taskRegistry } from '@/tasks';
 
 export function runTaskForever(): void {
   if (store.currentTask !== undefined) {
@@ -9,7 +9,13 @@ export function runTaskForever(): void {
       throw new Error(`Unknown task: ${taskName}`);
     }
     console.log(`运行任务: ${taskName}`);
-    handler();
+    try {
+      handler();
+    } catch (err) {
+      toast(err);
+      sleep(3000);
+      store.currentTask = undefined;
+    }
   }
   sleep(1000);
   runTaskForever();

@@ -1,6 +1,6 @@
 import { runTaskForever } from '@/runTaskForever';
 import { setupUI } from '@/setupUI';
-import { setupTaskRegistry } from '@/taskRegistry';
+import { setupTaskRegistry } from '@/tasks';
 import { name, version } from 'package.json';
 
 function main(): void {

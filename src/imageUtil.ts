@@ -15,8 +15,11 @@ export function findImageInScreen(
   return ret;
 }
 
-export function clickImage(image: Image): void {
-  const pos: Point = findImageInScreen(image);
+export function clickImage(
+  image: Image,
+  options?: images.FindImageOptions
+): void {
+  const pos: Point = findImageInScreen(image, options);
   click(pos.x, pos.y);
 }
 

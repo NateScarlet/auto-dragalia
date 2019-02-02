@@ -1,6 +1,6 @@
 import layoutTemplateXml from '@/layoutTemplate.xml';
 import { store } from '@/store';
-import { taskRegistry } from '@/taskRegistry';
+import { taskRegistry } from '@/tasks';
 
 interface IButton {
   click(callback: () => void): void;
