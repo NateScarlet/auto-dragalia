@@ -22,6 +22,7 @@ interface ISpinner {
     onNothingSelected(parent: object): void;
   }): void;
   getSelectedItem(): string;
+  setSelection(pos: number): void;
 }
 interface ITouchEvent {
   ACTION_UP: object;
@@ -32,6 +33,7 @@ interface ITouchEvent {
   getRawY(): number;
 }
 
+const spinnerItems: string[] = ['停止', '重复战斗'];
 export function setupUI(): floaty.FloatyWindow {
   type Window = floaty.FloatyWindow & {
     taskSpinner: ISpinner;
@@ -41,6 +43,7 @@ export function setupUI(): floaty.FloatyWindow {
   window.setAdjustEnabled(true);
   window.exitOnClose();
 
+  // Setup spinner
   window.taskSpinner.setOnItemSelectedListener({
     onItemSelected(): void {
       const taskName: string = window.taskSpinner.getSelectedItem();
@@ -55,6 +58,11 @@ export function setupUI(): floaty.FloatyWindow {
     onNothingSelected(): void {
       throw new Error('This should never happen');
     }
+  });
+  store.onTaskChangeListeners.push((newValue?: string) => {
+    ui.run(() => {
+      window.taskSpinner.setSelection(spinnerItems.indexOf(newValue || '停止'));
+    });
   });
 
   return window;

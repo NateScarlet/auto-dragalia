@@ -2,7 +2,8 @@ import { tryTransform2dragon } from '@/battle';
 import {
   autoBattleSwitchOff,
   closeButton,
-  giveUpButton,
+  giveUpButtonBlue,
+  giveUpButtonWhite,
   okButton,
   repeatBattleButton,
   repeatWithStaminaButton,
@@ -10,6 +11,7 @@ import {
   startBattleButton
 } from '@/images';
 import { clickImage, tryClickImage } from '@/imageUtil';
+import { store } from '@/store';
 
 export function repeatRaid(): void {
   tryClickImage(startBattleButton);
@@ -17,16 +19,25 @@ export function repeatRaid(): void {
   tryClickImage(retryButton);
   tryClickImage(okButton);
   tryClickImage(closeButton);
-  tryClickImage(giveUpButton);
-  tryTransform2dragon();
+  try {
+    clickImage(giveUpButtonWhite);
+    sleep(500);
+    clickImage(giveUpButtonBlue);
+  } catch {
+    console.verbose('Give up button not visible');
+  }
   try {
     clickImage(repeatBattleButton);
     sleep(500);
     clickImage(repeatWithStaminaButton);
     sleep(500);
     clickImage(okButton);
+    store.currentTask = undefined;
+
+    return;
   } catch {
     console.verbose('Repeat button not visible');
   }
+  tryTransform2dragon();
   sleep(1000);
 }
