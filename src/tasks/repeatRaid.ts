@@ -40,5 +40,4 @@ export function repeatRaid(): void {
   }
   tryTransform2dragon();
   tryCastSupportSkill();
-  sleep(1000);
 }
