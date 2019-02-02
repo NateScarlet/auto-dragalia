@@ -21,8 +21,6 @@
 
 - [ ] 自动喂龙
 
-- [ ] 重复匹配多人游戏
-
 ## 下载
 
 [发布页面](https://github.com/NateScarlet/auto-dragalia/releases)
