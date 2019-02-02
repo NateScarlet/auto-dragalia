@@ -1,5 +1,6 @@
-import layoutXml from '@/layout.xml';
+import layoutTemplateXml from '@/layoutTemplate.xml';
 import { store } from '@/store';
+import { taskRegistry } from '@/taskRegistry';
 
 interface IButton {
   click(callback: () => void): void;
@@ -32,14 +33,21 @@ interface ITouchEvent {
   getRawX(): number;
   getRawY(): number;
 }
+type IWindow = floaty.FloatyWindow & {
+  taskSpinner: ISpinner;
+};
 
-const spinnerItems: string[] = ['停止', '重复战斗'];
-export function setupUI(): floaty.FloatyWindow {
-  type Window = floaty.FloatyWindow & {
-    taskSpinner: ISpinner;
-  };
-
-  const window: Window = <Window>floaty.window(layoutXml);
+const idleText: string = '停止';
+export function setupUI(): {
+  window: IWindow;
+  spinnerItems: string[];
+} {
+  const spinnerItems: string[] = [idleText, ...Object.keys(taskRegistry)];
+  const layout: string = layoutTemplateXml.replace(
+    /\${entries}/g,
+    spinnerItems.join('|')
+  );
+  const window: IWindow = <IWindow>floaty.window(layout);
   window.setAdjustEnabled(true);
   window.exitOnClose();
 
@@ -49,7 +57,7 @@ export function setupUI(): floaty.FloatyWindow {
       const taskName: string = window.taskSpinner.getSelectedItem();
 
       toast(taskName);
-      if (taskName === '停止') {
+      if (taskName === idleText) {
         store.currentTask = undefined;
       } else {
         store.currentTask = taskName;
@@ -61,9 +69,11 @@ export function setupUI(): floaty.FloatyWindow {
   });
   store.onTaskChangeListeners.push((newValue?: string) => {
     ui.run(() => {
-      window.taskSpinner.setSelection(spinnerItems.indexOf(newValue || '停止'));
+      window.taskSpinner.setSelection(
+        spinnerItems.indexOf(newValue || idleText)
+      );
     });
   });
 
-  return window;
+  return { window, spinnerItems };
 }

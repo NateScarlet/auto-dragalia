@@ -1,0 +1,3 @@
+<frame gravity="center">
+    <spinner id="taskSpinner" entries="${entries}" spinnerMode="dialog" bg="#77ffffff" />
+</frame>
