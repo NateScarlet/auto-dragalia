@@ -10,6 +10,7 @@ import repeatBattleButtonPng from '@/assets/images/repeat-battle-button.png';
 import repeatWithStaminaButtonPng from '@/assets/images/repeat-with-stamina-button.png';
 import retryButtonPng from '@/assets/images/retry-button.png';
 import startBattleButtonPng from '@/assets/images/start-battle-button.png';
+import supportSkillAvailablePng from '@/assets/images/support-skill-available.png';
 import transformGaugeFullPng from '@/assets/images/transform-gauge-full.png';
 
 export const autoBattleSwitchOff: Image = images.fromBase64(autoBattleSwitchOffPng);
@@ -22,4 +23,5 @@ export const repeatBattleButton: Image = images.fromBase64(repeatBattleButtonPng
 export const repeatWithStaminaButton: Image = images.fromBase64(repeatWithStaminaButtonPng);
 export const retryButton: Image = images.fromBase64(retryButtonPng);
 export const startBattleButton: Image = images.fromBase64(startBattleButtonPng);
+export const supportSkillAvailable: Image = images.fromBase64(supportSkillAvailablePng);
 export const transformGaugeFull: Image = images.fromBase64(transformGaugeFullPng);

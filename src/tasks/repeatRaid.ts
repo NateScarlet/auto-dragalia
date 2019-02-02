@@ -1,4 +1,4 @@
-import { tryTransform2dragon } from '@/battle';
+import { tryCastSupportSkill, tryTransform2dragon } from '@/battle';
 import {
   autoBattleSwitchOff,
   closeButton,
@@ -23,6 +23,7 @@ export function repeatRaid(): void {
     clickImage(giveUpButtonWhite);
     sleep(500);
     clickImage(giveUpButtonBlue);
+    store.currentTask = undefined;
   } catch {
     console.verbose('Give up button not visible');
   }
@@ -32,12 +33,12 @@ export function repeatRaid(): void {
     clickImage(repeatWithStaminaButton);
     sleep(500);
     clickImage(okButton);
-    store.currentTask = undefined;
 
     return;
   } catch {
     console.verbose('Repeat button not visible');
   }
   tryTransform2dragon();
+  tryCastSupportSkill();
   sleep(1000);
 }

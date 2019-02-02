@@ -1,4 +1,8 @@
-import { enemyLegend, transformGaugeFull } from '@/images';
+import {
+  enemyLegend,
+  supportSkillAvailable,
+  transformGaugeFull
+} from '@/images';
 import { findImageInScreen } from '@/imageUtil';
 
 export function hasEnemy(): boolean {
@@ -46,5 +50,31 @@ export function tryTransform2dragon(): void {
     transform2dragon();
   } catch {
     console.verbose('Can not transform to dragon');
+  }
+}
+
+export function castSupportSkill(): void {
+  const pos: Point = images.findImageInRegion(
+    images.captureScreen(),
+    supportSkillAvailable,
+    device.width / 3,
+    device.height / 4
+  );
+  if (pos === null) {
+    console.verbose(`支援技能不可用`);
+
+    return;
+  }
+  waitForEnemy();
+  toast('使用支援技能');
+  console.verbose(`支援技能位置: ${pos}`);
+  click(pos.x, pos.y - 80);
+}
+
+export function tryCastSupportSkill(): void {
+  try {
+    castSupportSkill();
+  } catch {
+    console.verbose('Can not cast support skill');
   }
 }
