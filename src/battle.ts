@@ -3,7 +3,15 @@ import { findImageInScreen } from '@/imageUtil';
 
 export function hasEnemy(): boolean {
   try {
-    findImageInScreen(enemyLegend, { threshold: 0.7 });
+    images.findImageInRegion(
+      images.captureScreen(),
+      enemyLegend,
+      0,
+      0,
+      device.width,
+      device.height / 2,
+      0.7
+    );
 
     return true;
   } catch {
