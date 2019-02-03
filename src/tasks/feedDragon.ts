@@ -36,13 +36,13 @@ export function feedDragon(): void {
       break;
     }
   }
-  const startTime: number = new Date().getTime();
-  const waitWindow: number = 1e4;
+  let waitEndTime: number = new Date().getTime() + 2e4;
   let isCloseClicked: boolean = false;
-  while (new Date().getTime() - startTime <= waitWindow) {
+  while (new Date().getTime() > waitEndTime) {
     try {
       clickImage(closeButton);
       isCloseClicked = true;
+      waitEndTime = new Date().getTime() + 1e4;
       sleep(500);
     } catch {
       sleep(1000);
