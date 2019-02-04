@@ -1,6 +1,6 @@
 {
   "name": "auto-dragalia",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": true,
   "main": "main.ts",
   "repository": "https://git.dev.tencent.com/pansx/autoJs.git",
