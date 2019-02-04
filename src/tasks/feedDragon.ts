@@ -38,7 +38,7 @@ export function feedDragon(): void {
   }
   let waitEndTime: number = new Date().getTime() + 2e4;
   let isCloseClicked: boolean = false;
-  while (new Date().getTime() > waitEndTime) {
+  while (new Date().getTime() <= waitEndTime) {
     try {
       clickImage(closeButton);
       isCloseClicked = true;
