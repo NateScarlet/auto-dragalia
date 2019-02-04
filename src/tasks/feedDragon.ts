@@ -36,7 +36,7 @@ export function feedDragon(): void {
       break;
     }
   }
-  let waitEndTime: number = new Date().getTime() + 2e4;
+  let waitEndTime: number = new Date().getTime() + 1e4;
   let isCloseClicked: boolean = false;
   while (new Date().getTime() <= waitEndTime) {
     try {
