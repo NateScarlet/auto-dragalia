@@ -42,7 +42,7 @@ export function feedDragon(): void {
     try {
       clickImage(closeButton);
       isCloseClicked = true;
-      waitEndTime = new Date().getTime() + 1e4;
+      waitEndTime = new Date().getTime() + 5e3;
       sleep(500);
     } catch {
       sleep(1000);
