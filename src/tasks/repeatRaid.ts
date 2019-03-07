@@ -2,6 +2,7 @@ import { tryCastSupportSkill, tryTransform2dragon } from '@/battle';
 import {
   autoBattleSwitchOff,
   closeButton,
+  continueButton,
   giveUpButtonBlue,
   giveUpButtonWhite,
   okButton,
@@ -10,7 +11,7 @@ import {
   retryButton,
   startBattleButton
 } from '@/images';
-import { clickImage, tryClickImage } from '@/imageUtil';
+import { clickImage, findImageInScreen, tryClickImage } from '@/imageUtil';
 import { store } from '@/store';
 
 export function repeatRaid(): void {
@@ -28,13 +29,20 @@ export function repeatRaid(): void {
     console.verbose('Give up button not visible');
   }
   try {
-    clickImage(repeatBattleButton);
-    sleep(500);
-    clickImage(repeatWithStaminaButton);
-    sleep(500);
-    clickImage(okButton);
+    findImageInScreen(continueButton);
+    try {
+      clickImage(repeatBattleButton);
+      sleep(500);
+      clickImage(repeatWithStaminaButton);
+      sleep(500);
+      clickImage(okButton);
 
-    return;
+      return;
+    } catch {
+      clickImage(continueButton);
+
+      return;
+    }
   } catch {
     console.verbose('Repeat button not visible');
   }
