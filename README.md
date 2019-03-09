@@ -1,6 +1,8 @@
-# auto-dragalia [![Build Status](https://travis-ci.org/NateScarlet/auto-dragalia.svg?branch=master)](https://travis-ci.org/NateScarlet/auto-dragalia) [![Auto.js 4.x](https://img.shields.io/badge/Auto.js-4.x-009688.svg)](https://github.com/hyb1996/Auto.js) ![Android 7.x](https://img.shields.io/badge/Android-7.x-a4c639.svg?logo=android)
+# auto-dragalia [![Build Status](https://travis-ci.org/NateScarlet/auto-dragalia.svg?branch=master)](https://travis-ci.org/NateScarlet/auto-dragalia) [![Release](https://img.shields.io/github/release/NateScarlet/auto-dragalia.svg)](https://github.com/NateScarlet/auto-dragalia/releases/latest) [![Auto.js 4.x](https://img.shields.io/badge/Auto.js-4.x-009688.svg)](https://github.com/hyb1996/Auto.js) ![Android 7.x](https://img.shields.io/badge/Android-7+-a4c639.svg?logo=android)
 
 《失落的龙约》 [Auto.js] 辅助脚本
+
+[发布页面](https://github.com/NateScarlet/auto-dragalia/releases)
 
 ## 功能
 
@@ -19,9 +21,5 @@
 - [x] 自动喂龙
 
 - [ ] 重复多人战斗
-
-## 下载
-
-[发布页面](https://github.com/NateScarlet/auto-dragalia/releases)
 
 [auto.js]: https://github.com/hyb1996/Auto.js
