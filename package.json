@@ -2,8 +2,8 @@
   "name": "auto-dragalia",
   "version": "0.5.4",
   "private": true,
-  "main": "main.ts",
-  "repository": "https://git.dev.tencent.com/pansx/autoJs.git",
+  "main": "src/main.ts",
+  "repository": "https://github.com/NateScarlet/auto-dragalia.git",
   "author": "NateScarlet <NateScarlet@Gmail.com>",
   "license": "MIT",
   "scripts": {
