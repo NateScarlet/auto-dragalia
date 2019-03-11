@@ -30,6 +30,11 @@
       "type": "npm",
       "script": "code-generate:images",
       "problemMatcher": []
+    },
+    {
+      "type": "npm",
+      "script": "adb:push",
+      "problemMatcher": []
     }
   ]
 }

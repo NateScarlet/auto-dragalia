@@ -10,7 +10,8 @@
     "build": "webpack --mode=production",
     "watch": "webpack --watch",
     "capture": "autojs cap",
-    "code-generate:images": "node generate-images-code.js"
+    "code-generate:images": "node generate-images-code.js",
+    "adb:push": "node push.js"
   },
   "dependencies": {},
   "devDependencies": {
