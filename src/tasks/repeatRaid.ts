@@ -1,10 +1,12 @@
 import { tryCastSupportSkill, tryTransform2dragon } from '@/battle';
 import {
   autoBattleSwitchOff,
+  cancelButton,
   closeButton,
   continueButton,
   giveUpButtonBlue,
   giveUpButtonWhite,
+  nextText,
   okButton,
   repeatBattleButton,
   repeatWithStaminaButton,
@@ -21,7 +23,9 @@ export function repeatRaid(): void {
   tryClickImage(retryButton);
   tryClickImage(okButton);
   tryClickImage(closeButton);
+  tryClickImage(cancelButton);
   tryClickImage(tapButton);
+  tryClickImage(nextText);
   try {
     clickImage(giveUpButtonWhite);
     sleep(500);

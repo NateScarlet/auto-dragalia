@@ -1,11 +1,13 @@
 // This file is auto generated
 // Use `npm run code-generate:images` to update this file
 import autoBattleSwitchOffPng from '@/assets/images/auto-battle-switch-off.png';
+import cancelButtonPng from '@/assets/images/cancel-button.png';
 import closeButtonPng from '@/assets/images/close-button.png';
 import continueButtonPng from '@/assets/images/continue-button.png';
 import enemyLegendPng from '@/assets/images/enemy-legend.png';
 import giveUpButtonBluePng from '@/assets/images/give-up-button-blue.png';
 import giveUpButtonWhitePng from '@/assets/images/give-up-button-white.png';
+import nextTextPng from '@/assets/images/next-text.png';
 import okButtonPng from '@/assets/images/ok-button.png';
 import presentButtonPng from '@/assets/images/present-button.png';
 import presentPrice0Png from '@/assets/images/present-price-0.png';
@@ -22,11 +24,13 @@ import tapButtonPng from '@/assets/images/tap-button.png';
 import transformGaugeFullPng from '@/assets/images/transform-gauge-full.png';
 
 export const autoBattleSwitchOff: Image = images.fromBase64(autoBattleSwitchOffPng);
+export const cancelButton: Image = images.fromBase64(cancelButtonPng);
 export const closeButton: Image = images.fromBase64(closeButtonPng);
 export const continueButton: Image = images.fromBase64(continueButtonPng);
 export const enemyLegend: Image = images.fromBase64(enemyLegendPng);
 export const giveUpButtonBlue: Image = images.fromBase64(giveUpButtonBluePng);
 export const giveUpButtonWhite: Image = images.fromBase64(giveUpButtonWhitePng);
+export const nextText: Image = images.fromBase64(nextTextPng);
 export const okButton: Image = images.fromBase64(okButtonPng);
 export const presentButton: Image = images.fromBase64(presentButtonPng);
 export const presentPrice0: Image = images.fromBase64(presentPrice0Png);
