@@ -37,11 +37,7 @@ export function repeatRaid(): void {
   try {
     findImageInScreen(continueButton);
     try {
-      clickImage(repeatBattleButton);
-      sleep(500);
-      clickImage(repeatWithStaminaButton);
-      sleep(500);
-      clickImage(okButton);
+      repeatWithStamina();
 
       return;
     } catch {
@@ -50,8 +46,21 @@ export function repeatRaid(): void {
       return;
     }
   } catch {
+    console.verbose('Continue button not visible');
+  }
+  try {
+    repeatWithStamina();
+  } catch {
     console.verbose('Repeat button not visible');
   }
   tryTransform2dragon();
   tryCastSupportSkill();
+}
+
+function repeatWithStamina(): void {
+  clickImage(repeatBattleButton);
+  sleep(500);
+  clickImage(repeatWithStaminaButton);
+  sleep(500);
+  clickImage(okButton);
 }
