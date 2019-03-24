@@ -10,11 +10,11 @@ export function hasEnemy(): boolean {
     images.findImageInRegion(
       images.captureScreen(),
       enemyLegend,
+      device.width / 4,
       0,
-      0,
-      device.width,
+      (device.width / 4) * 3,
       device.height / 2,
-      0.7
+      0.8
     );
 
     return true;
@@ -46,6 +46,9 @@ export function transform2dragon(): void {
 }
 
 export function tryTransform2dragon(): void {
+  if (!hasEnemy()) {
+    return;
+  }
   try {
     transform2dragon();
   } catch {
@@ -72,6 +75,9 @@ export function castSupportSkill(): void {
 }
 
 export function tryCastSupportSkill(): void {
+  if (!hasEnemy()) {
+    return;
+  }
   try {
     castSupportSkill();
   } catch {
