@@ -3,7 +3,7 @@ import {
   supportSkillAvailable,
   transformGaugeFull
 } from '@/images';
-import { findImageInScreen } from '@/imageUtil';
+import { findImageInScreen } from '@/utils/image';
 
 export function hasEnemy(): boolean {
   try {

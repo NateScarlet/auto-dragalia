@@ -7,8 +7,8 @@ import {
   presentPrice4000,
   presentPrice8000
 } from '@/images';
-import { clickImage, findImageInScreen } from '@/imageUtil';
 import { store } from '@/store';
+import { clickImage, findImageInScreen } from '@/utils/image';
 
 const allPresentPriceImages: Image[] = [
   presentPrice0,

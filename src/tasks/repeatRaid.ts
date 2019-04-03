@@ -14,8 +14,8 @@ import {
   startBattleButton,
   tapButton
 } from '@/images';
-import { clickImage, findImageInScreen, tryClickImage } from '@/imageUtil';
 import { store } from '@/store';
+import { clickImage, findImageInScreen, tryClickImage } from '@/utils/image';
 
 export function repeatRaid(): void {
   tryClickImage(startBattleButton);
