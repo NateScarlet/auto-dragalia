@@ -1,4 +1,10 @@
-# auto-dragalia [![Build Status](https://travis-ci.org/NateScarlet/auto-dragalia.svg?branch=master)](https://travis-ci.org/NateScarlet/auto-dragalia) [![Release](https://img.shields.io/github/release/NateScarlet/auto-dragalia.svg)](https://github.com/NateScarlet/auto-dragalia/releases/latest) [![Auto.js 4.x](https://img.shields.io/badge/Auto.js-4.x-009688.svg)](https://github.com/hyb1996/Auto.js) ![Android 7.x](https://img.shields.io/badge/Android-7+-a4c639.svg?logo=android)
+# auto-dragalia
+
+[![Build Status](https://travis-ci.org/NateScarlet/auto-dragalia.svg?branch=master)](https://travis-ci.org/NateScarlet/auto-dragalia)
+[![Release](https://img.shields.io/github/release/NateScarlet/auto-dragalia.svg)](https://github.com/NateScarlet/auto-dragalia/releases/latest)
+[![Auto.js 4.x](https://img.shields.io/badge/Auto.js-4.x-009688.svg)](https://github.com/hyb1996/Auto.js)
+![Android 7.x](https://img.shields.io/badge/Android-7+-a4c639.svg?logo=android)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 《失落的龙约》 [Auto.js] 辅助脚本
 
