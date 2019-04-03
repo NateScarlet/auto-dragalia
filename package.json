@@ -11,7 +11,8 @@
     "watch": "webpack --watch",
     "capture": "autojs cap",
     "code-generate:images": "node generate-images-code.js",
-    "adb:push": "node push.js"
+    "adb:push": "node push.js",
+    "release": "standard-version -t"
   },
   "dependencies": {},
   "devDependencies": {
@@ -24,6 +25,7 @@
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "raw-loader": "^1.0.0",
+    "standard-version": "^5.0.2",
     "ts-loader": "^5.3.3",
     "tslint": "^5.12.1",
     "tslint-microsoft-contrib": "^6.0.0",
