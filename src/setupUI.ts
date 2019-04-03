@@ -56,7 +56,6 @@ export function setupUI(): {
     onItemSelected(): void {
       const taskName: string = window.taskSpinner.getSelectedItem();
 
-      toast(taskName);
       if (taskName === idleText) {
         store.currentTask = undefined;
       } else {
