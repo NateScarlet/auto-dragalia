@@ -1,4 +1,4 @@
-import { loadingText } from '@/images';
+import { loadingText, retryButton } from '@/images';
 
 export function tryFindImageInScreen(
   ...args: Parameters<typeof findImageInScreen>
@@ -70,6 +70,7 @@ export function waitImage(image: Image, options?: IWaitImageOptions): Point {
 
 export function waitLoading(delay: number = 500): void {
   while (tryFindImageInScreen(loadingText)) {
+    tryClickImage(retryButton);
     sleep(delay);
   }
 }
