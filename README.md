@@ -10,6 +10,10 @@
 
 [发布页面](https://github.com/NateScarlet/auto-dragalia/releases)
 
+## 需求
+
+- [Auto.js 4.x](https://github.com/hyb1996/Auto.js/releases) 当前应用商店没有发布 Auto.js 4.x 版本 需要前往官方仓库发布页面下载
+
 ## 功能
 
 - [x] 重复单人战斗
