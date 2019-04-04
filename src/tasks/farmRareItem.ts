@@ -41,9 +41,7 @@ export function farmRareItem(): void {
 
   waitImage(loadingText);
   toastLog('检测到正在进入第二关卡');
-  waitLoading();
-  toastLog('检测到已进入第二关卡');
-  waitAndClickImage(menuButton);
+  waitAndClickImage(menuButton, { timeout: 60e3 });
   waitImage(rareItem);
   if (tryFindImageInScreen(noRareItem, { threshold: 0.99 })) {
     toastLog('没有刷到稀有物品, 直接下一轮');
