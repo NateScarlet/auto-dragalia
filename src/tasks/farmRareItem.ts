@@ -2,6 +2,7 @@ import {
   autoBattleSwitchOff,
   cancelButton,
   closeButton,
+  continueButtonBlue,
   continueButtonRed,
   giveUpButtonBlue,
   levelSelectButton,
@@ -51,14 +52,13 @@ export function farmRareItem(): void {
     waitAndClickImage(giveUpButtonBlue);
   } else {
     toastLog('成功刷到稀有物品, 继续完成战斗');
-    while (!tryClickImage(continueButtonRed)) {
+    while (!tryClickImage(continueButtonBlue)) {
       tryClickImage(okButton);
       tryClickImage(closeButton);
       tryClickImage(cancelButton);
       tryClickImage(tapButton);
       tryClickImage(nextText);
     }
-    clickImage(continueButtonRed);
   }
   waitImage(levelSelectButton);
 }

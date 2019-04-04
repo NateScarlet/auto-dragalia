@@ -3,6 +3,7 @@
 import autoBattleSwitchOffPng from '@/assets/images/auto-battle-switch-off.png';
 import cancelButtonPng from '@/assets/images/cancel-button.png';
 import closeButtonPng from '@/assets/images/close-button.png';
+import continueButtonBluePng from '@/assets/images/continue-button-blue.png';
 import continueButtonRedPng from '@/assets/images/continue-button-red.png';
 import enemyLegendPng from '@/assets/images/enemy-legend.png';
 import giveUpButtonBluePng from '@/assets/images/give-up-button-blue.png';
@@ -32,6 +33,7 @@ import transformGaugeFullPng from '@/assets/images/transform-gauge-full.png';
 export const autoBattleSwitchOff: Image = images.fromBase64(autoBattleSwitchOffPng);
 export const cancelButton: Image = images.fromBase64(cancelButtonPng);
 export const closeButton: Image = images.fromBase64(closeButtonPng);
+export const continueButtonBlue: Image = images.fromBase64(continueButtonBluePng);
 export const continueButtonRed: Image = images.fromBase64(continueButtonRedPng);
 export const enemyLegend: Image = images.fromBase64(enemyLegendPng);
 export const giveUpButtonBlue: Image = images.fromBase64(giveUpButtonBluePng);
