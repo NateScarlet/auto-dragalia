@@ -12,8 +12,8 @@ export function runTaskForever(): void {
     try {
       handler();
     } catch (err) {
-      toast(err);
-      sleep(3000);
+      console.show();
+      console.error(err);
       store.currentTask = undefined;
     }
   }
