@@ -6,8 +6,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-- click blue continue button ([d2ea378](https://github.com/NateScarlet/auto-dragalia/commit/d2ea378)), closes [#5](https://github.com/NateScarlet/auto-dragalia/issues/5)
-- use other level select button image ([ab71c16](https://github.com/NateScarlet/auto-dragalia/commit/ab71c16)), closes [#4](https://github.com/NateScarlet/auto-dragalia/issues/4)
+- **farm-rare-item:** click blue continue button ([d2ea378](https://github.com/NateScarlet/auto-dragalia/commit/d2ea378)), closes [#5](https://github.com/NateScarlet/auto-dragalia/issues/5)
+- **farm-rare-item:** use other level select button image ([ab71c16](https://github.com/NateScarlet/auto-dragalia/commit/ab71c16)), closes [#4](https://github.com/NateScarlet/auto-dragalia/issues/4)
 
 ### Features
 
