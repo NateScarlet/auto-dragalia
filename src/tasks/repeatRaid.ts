@@ -3,7 +3,7 @@ import {
   autoBattleSwitchOff,
   cancelButton,
   closeButton,
-  continueButton,
+  continueButtonRed,
   giveUpButtonBlue,
   giveUpButtonWhite,
   nextText,
@@ -35,13 +35,13 @@ export function repeatRaid(): void {
     console.verbose('Give up button not visible');
   }
   try {
-    findImageInScreen(continueButton);
+    findImageInScreen(continueButtonRed);
     try {
       repeatWithStamina();
 
       return;
     } catch {
-      clickImage(continueButton);
+      clickImage(continueButtonRed);
 
       return;
     }
