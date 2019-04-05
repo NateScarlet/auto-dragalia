@@ -12,8 +12,7 @@
     "capture": "autojs cap",
     "code-generate:images": "node generate-images-code.js",
     "adb:push": "node push.js",
-    "release": "standard-version",
-    "temp": "scripts/postchangelog.js"
+    "release": "standard-version"
   },
   "dependencies": {},
   "devDependencies": {
