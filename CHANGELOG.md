@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [0.8.0](https://github.com/NateScarlet/auto-dragalia/compare/v0.7.2...v0.8.0) (2019-04-05)
 
+refactor with async functions
+
 ### Features
 
 - add `IWaitImageOptions.findOptions` ([9387aad](https://github.com/NateScarlet/auto-dragalia/commit/9387aad))
