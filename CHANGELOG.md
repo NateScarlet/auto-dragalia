@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.1](https://github.com/NateScarlet/auto-dragalia/compare/v0.8.0...v0.8.1) (2019-04-05)
+
+### Bug Fixes
+
+- **farm-rare-item:** support low graphics quality ([0490f04](https://github.com/NateScarlet/auto-dragalia/commit/0490f04)), closes [#10](https://github.com/NateScarlet/auto-dragalia/issues/10)
+
+### Performance Improvements
+
+- improve waiting delay logic ([9150bd5](https://github.com/NateScarlet/auto-dragalia/commit/9150bd5))
+- use cache with screen capture ([7028068](https://github.com/NateScarlet/auto-dragalia/commit/7028068)), closes [#11](https://github.com/NateScarlet/auto-dragalia/issues/11)
+
 ## [0.8.0](https://github.com/NateScarlet/auto-dragalia/compare/v0.7.2...v0.8.0) (2019-04-05)
 
 refactor with async functions
