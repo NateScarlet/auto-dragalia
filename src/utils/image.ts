@@ -1,6 +1,21 @@
 import { loadingText, retryButtonBlue, retryButtonRed } from '@/images';
 import { wait } from '@/utils/wait';
 
+export function tryFindAnyImage({
+  images,
+  options
+}: {
+  images: Image[];
+  options?: images.FindImageOptions;
+}): Point | undefined {
+  for (const i of images) {
+    const pos: Point | undefined = tryFindImageInScreen(i, options);
+    if (pos) {
+      return pos;
+    }
+  }
+}
+
 export function tryFindImageInScreen(
   ...args: Parameters<typeof findImageInScreen>
 ): Point | undefined {
@@ -45,6 +60,7 @@ export function tryClickImage(image: Image): Point | undefined {
     return;
   }
 }
+
 export async function waitAndClickImage(
   ...args: Parameters<typeof waitImage>
 ): Promise<Point> {
