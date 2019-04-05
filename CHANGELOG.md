@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/NateScarlet/auto-dragalia/compare/v0.8.1...v0.9.0) (2019-04-05)
+
+### Features
+
+- vibrate when task occurs error ([d582d57](https://github.com/NateScarlet/auto-dragalia/commit/d582d57))
+- **farm-rare-item:** add waiting timeout ([87141b9](https://github.com/NateScarlet/auto-dragalia/commit/87141b9))
+
 ## [0.8.1](https://github.com/NateScarlet/auto-dragalia/compare/v0.8.0...v0.8.1) (2019-04-05)
 
 ### Bug Fixes
