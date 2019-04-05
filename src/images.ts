@@ -8,7 +8,11 @@ import continueButtonRedPng from '@/assets/images/continue-button-red.png';
 import enemyLegendPng from '@/assets/images/enemy-legend.png';
 import giveUpButtonBluePng from '@/assets/images/give-up-button-blue.png';
 import giveUpButtonWhitePng from '@/assets/images/give-up-button-white.png';
-import levelSelectButtonPng from '@/assets/images/level-select-button.png';
+import levelSelectBeginnerPng from '@/assets/images/level-select-beginner.png';
+import levelSelectExpertPng from '@/assets/images/level-select-expert.png';
+import levelSelectMasterPng from '@/assets/images/level-select-master.png';
+import levelSelectStandardPng from '@/assets/images/level-select-standard.png';
+import levelSelectPng from '@/assets/images/level-select.png';
 import loadingTextPng from '@/assets/images/loading-text.png';
 import menuButtonPng from '@/assets/images/menu-button.png';
 import nextTextPng from '@/assets/images/next-text.png';
@@ -30,15 +34,27 @@ import supportSkillAvailablePng from '@/assets/images/support-skill-available.pn
 import tapButtonPng from '@/assets/images/tap-button.png';
 import transformGaugeFullPng from '@/assets/images/transform-gauge-full.png';
 
-export const autoBattleSwitchOff: Image = images.fromBase64(autoBattleSwitchOffPng);
+export const autoBattleSwitchOff: Image = images.fromBase64(
+  autoBattleSwitchOffPng
+);
 export const cancelButton: Image = images.fromBase64(cancelButtonPng);
 export const closeButton: Image = images.fromBase64(closeButtonPng);
-export const continueButtonBlue: Image = images.fromBase64(continueButtonBluePng);
+export const continueButtonBlue: Image = images.fromBase64(
+  continueButtonBluePng
+);
 export const continueButtonRed: Image = images.fromBase64(continueButtonRedPng);
 export const enemyLegend: Image = images.fromBase64(enemyLegendPng);
 export const giveUpButtonBlue: Image = images.fromBase64(giveUpButtonBluePng);
 export const giveUpButtonWhite: Image = images.fromBase64(giveUpButtonWhitePng);
-export const levelSelectButton: Image = images.fromBase64(levelSelectButtonPng);
+export const levelSelectBeginner: Image = images.fromBase64(
+  levelSelectBeginnerPng
+);
+export const levelSelectExpert: Image = images.fromBase64(levelSelectExpertPng);
+export const levelSelectMaster: Image = images.fromBase64(levelSelectMasterPng);
+export const levelSelectStandard: Image = images.fromBase64(
+  levelSelectStandardPng
+);
+export const levelSelect: Image = images.fromBase64(levelSelectPng);
 export const loadingText: Image = images.fromBase64(loadingTextPng);
 export const menuButton: Image = images.fromBase64(menuButtonPng);
 export const nextText: Image = images.fromBase64(nextTextPng);
@@ -51,11 +67,21 @@ export const presentPrice15000: Image = images.fromBase64(presentPrice15000Png);
 export const presentPrice4000: Image = images.fromBase64(presentPrice4000Png);
 export const presentPrice8000: Image = images.fromBase64(presentPrice8000Png);
 export const rareItem: Image = images.fromBase64(rareItemPng);
-export const repeatBattleButton: Image = images.fromBase64(repeatBattleButtonPng);
-export const repeatWithStaminaButton: Image = images.fromBase64(repeatWithStaminaButtonPng);
+export const repeatBattleButton: Image = images.fromBase64(
+  repeatBattleButtonPng
+);
+export const repeatWithStaminaButton: Image = images.fromBase64(
+  repeatWithStaminaButtonPng
+);
 export const retryButton: Image = images.fromBase64(retryButtonPng);
 export const startBattleButton: Image = images.fromBase64(startBattleButtonPng);
-export const supportSelectButton: Image = images.fromBase64(supportSelectButtonPng);
-export const supportSkillAvailable: Image = images.fromBase64(supportSkillAvailablePng);
+export const supportSelectButton: Image = images.fromBase64(
+  supportSelectButtonPng
+);
+export const supportSkillAvailable: Image = images.fromBase64(
+  supportSkillAvailablePng
+);
 export const tapButton: Image = images.fromBase64(tapButtonPng);
-export const transformGaugeFull: Image = images.fromBase64(transformGaugeFullPng);
+export const transformGaugeFull: Image = images.fromBase64(
+  transformGaugeFullPng
+);

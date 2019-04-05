@@ -3,9 +3,12 @@ import {
   cancelButton,
   closeButton,
   continueButtonBlue,
-  continueButtonRed,
   giveUpButtonBlue,
-  levelSelectButton,
+  levelSelect,
+  levelSelectBeginner,
+  levelSelectExpert,
+  levelSelectMaster,
+  levelSelectStandard,
   loadingText,
   menuButton,
   nextText,
@@ -17,7 +20,6 @@ import {
   tapButton
 } from '@/images';
 import {
-  clickImage,
   tryClickImage,
   tryFindImageInScreen,
   waitAndClickImage,
@@ -26,11 +28,16 @@ import {
 } from '@/utils/image';
 
 export function farmRareItem(): void {
-  try {
-    clickImage(levelSelectButton);
-  } catch {
+  const levelSelectPosition: Point | undefined =
+    tryFindImageInScreen(levelSelectMaster) ||
+    tryFindImageInScreen(levelSelectExpert) ||
+    tryFindImageInScreen(levelSelectStandard) ||
+    tryFindImageInScreen(levelSelectBeginner);
+  if (!levelSelectPosition) {
     throw new Error('请至关卡选择页面再开始');
   }
+  click(levelSelectPosition.x, levelSelectPosition.y);
+
   waitAndClickImage(supportSelectButton);
   waitAndClickImage(startBattleButton);
   waitImage(loadingText);
@@ -58,5 +65,5 @@ export function farmRareItem(): void {
       tryClickImage(nextText);
     }
   }
-  waitImage(levelSelectButton);
+  waitImage(levelSelect);
 }
