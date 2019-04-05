@@ -7,17 +7,23 @@ class Store {
     oldValue?: string
   ) => void)[] = [];
 
-  private internalCurrentTask?: string | undefined;
+  private readonly state: {
+    task?: string;
+  };
+
+  constructor() {
+    this.state = {};
+  }
 
   get currentTask(): string | undefined {
-    return this.internalCurrentTask;
+    return this.state.task;
   }
   set currentTask(value: string | undefined) {
-    if (value === this.internalCurrentTask) {
+    if (value === this.state.task) {
       return;
     }
-    const oldValue: string | undefined = this.internalCurrentTask;
-    this.internalCurrentTask = value;
+    const oldValue: string | undefined = this.state.task;
+    this.state.task = value;
     for (const i of this.taskChangeListeners) {
       i(value, oldValue);
     }
