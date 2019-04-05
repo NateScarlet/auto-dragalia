@@ -58,12 +58,12 @@ export async function waitImage(
   image: Image,
   options?: IWaitImageOptions
 ): Promise<Point> {
-  const { timeout = 600e3, delay = 500 } = options || {};
+  const { timeout = 600e3, delay = 500, findOptions = {} } = options || {};
   await wait(delay);
   const startTime: Date = new Date();
   while (new Date().getTime() - startTime.getTime() < timeout) {
     try {
-      return findImageInScreen(image);
+      return findImageInScreen(image, findOptions);
     } catch {
       console.verbose('Waiting image');
       await wait(delay);
@@ -83,4 +83,5 @@ export async function waitLoading(delay: number = 500): Promise<void> {
 interface IWaitImageOptions {
   timeout?: number;
   delay?: number;
+  findOptions?: images.FindImageOptions;
 }
