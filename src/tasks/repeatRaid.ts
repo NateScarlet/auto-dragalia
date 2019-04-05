@@ -10,7 +10,7 @@ import {
   okButton,
   repeatBattleButton,
   repeatWithStaminaButton,
-  retryButton,
+  retryButtonRed,
   startBattleButton,
   tapButton
 } from '@/images';
@@ -20,7 +20,7 @@ import { clickImage, findImageInScreen, tryClickImage } from '@/utils/image';
 export function repeatRaid(): void {
   tryClickImage(startBattleButton);
   tryClickImage(autoBattleSwitchOff);
-  tryClickImage(retryButton);
+  tryClickImage(retryButtonRed);
   tryClickImage(okButton);
   tryClickImage(closeButton);
   tryClickImage(cancelButton);

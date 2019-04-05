@@ -27,7 +27,8 @@ import presentPrice8000Png from '@/assets/images/present-price-8000.png';
 import rareItemPng from '@/assets/images/rare-item.png';
 import repeatBattleButtonPng from '@/assets/images/repeat-battle-button.png';
 import repeatWithStaminaButtonPng from '@/assets/images/repeat-with-stamina-button.png';
-import retryButtonPng from '@/assets/images/retry-button.png';
+import retryButtonBluePng from '@/assets/images/retry-button-blue.png';
+import retryButtonRedPng from '@/assets/images/retry-button-red.png';
 import startBattleButtonPng from '@/assets/images/start-battle-button.png';
 import supportSelectButtonPng from '@/assets/images/support-select-button.png';
 import supportSkillAvailablePng from '@/assets/images/support-skill-available.png';
@@ -73,7 +74,8 @@ export const repeatBattleButton: Image = images.fromBase64(
 export const repeatWithStaminaButton: Image = images.fromBase64(
   repeatWithStaminaButtonPng
 );
-export const retryButton: Image = images.fromBase64(retryButtonPng);
+export const retryButtonBlue: Image = images.fromBase64(retryButtonBluePng);
+export const retryButtonRed: Image = images.fromBase64(retryButtonRedPng);
 export const startBattleButton: Image = images.fromBase64(startBattleButtonPng);
 export const supportSelectButton: Image = images.fromBase64(
   supportSelectButtonPng
