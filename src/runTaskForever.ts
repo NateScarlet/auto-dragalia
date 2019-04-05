@@ -5,7 +5,8 @@ import { wait } from '@/utils/wait';
 export async function runTaskForever(): Promise<void> {
   if (store.currentTask !== undefined) {
     const taskName: string = store.currentTask;
-    const handler: (() => void) | undefined = taskRegistry[taskName];
+    const handler: (() => Promise<void> | void) | undefined =
+      taskRegistry[taskName];
     if (!handler) {
       throw new Error(`Unknown task: ${taskName}`);
     }
@@ -14,7 +15,7 @@ export async function runTaskForever(): Promise<void> {
       await handler();
     } catch (err) {
       console.show();
-      console.error(err);
+      console.error(String(err));
       store.currentTask = undefined;
     }
   }
