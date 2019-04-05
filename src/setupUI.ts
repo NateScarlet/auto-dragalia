@@ -66,7 +66,7 @@ export function setupUI(): {
       throw new Error('This should never happen');
     }
   });
-  store.onTaskChangeListeners.push((newValue?: string) => {
+  store.taskChangeListeners.push((newValue?: string) => {
     ui.run(() => {
       window.taskSpinner.setSelection(
         spinnerItems.indexOf(newValue || idleText)

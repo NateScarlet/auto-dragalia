@@ -2,7 +2,7 @@
  * Application state storage
  */
 class Store {
-  public onTaskChangeListeners: ((
+  public taskChangeListeners: ((
     newValue?: string,
     oldValue?: string
   ) => void)[] = [];
@@ -18,7 +18,7 @@ class Store {
     }
     const oldValue: string | undefined = this.internalCurrentTask;
     this.internalCurrentTask = value;
-    for (const i of this.onTaskChangeListeners) {
+    for (const i of this.taskChangeListeners) {
       i(value, oldValue);
     }
   }
