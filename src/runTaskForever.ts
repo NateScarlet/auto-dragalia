@@ -16,6 +16,7 @@ export async function runTaskForever(): Promise<void> {
     } catch (err) {
       console.show();
       console.error(String(err));
+      device.vibrate(0.5e3);
       store.currentTask = undefined;
     }
   }
