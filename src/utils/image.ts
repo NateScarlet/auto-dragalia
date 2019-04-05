@@ -1,6 +1,24 @@
 import { loadingText, retryButtonBlue, retryButtonRed } from '@/images';
 import { wait } from '@/utils/wait';
 
+images.requestScreenCapture(false);
+const screenCache: {
+  image: Image;
+  updated: Date;
+} = {
+  image: images.captureScreen(),
+  updated: new Date()
+};
+export function captureScreenWithCache(maxAge: number = 500): Image {
+  const now: Date = new Date();
+  if (now.getTime() - screenCache.updated.getTime() > maxAge) {
+    screenCache.image = images.captureScreen();
+    screenCache.updated = now;
+  }
+
+  return screenCache.image;
+}
+
 export function tryFindAnyImage({
   images,
   options
@@ -31,7 +49,7 @@ export function findImageInScreen(
   options?: images.FindImageOptions
 ): Point {
   const ret: Point | null = images.findImage(
-    images.captureScreen(),
+    captureScreenWithCache(),
     image,
     options
   );

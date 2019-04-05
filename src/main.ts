@@ -5,7 +5,6 @@ import { name, version } from 'package.json';
 
 ((): void => {
   console.log(`${name}: ${version}`);
-  images.requestScreenCapture(false);
 
   launch('com.nintendo.zaga');
 
