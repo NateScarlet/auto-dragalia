@@ -52,7 +52,6 @@ export function farmRareItem(): void {
   waitImage(rareItem);
   if (tryFindImageInScreen(noRareItem, { threshold: 0.99 })) {
     toastLog('没有刷到稀有物品, 直接下一轮');
-    sleep(500);
     waitAndClickImage(giveUpButtonBlue);
     waitAndClickImage(giveUpButtonBlue);
   } else {
