@@ -1,3 +1,6 @@
+/**
+ * Application state storage
+ */
 class Store {
   public onTaskChangeListeners: ((
     newValue?: string,
