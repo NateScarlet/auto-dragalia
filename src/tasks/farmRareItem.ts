@@ -21,6 +21,7 @@ import {
   tapButton
 } from '@/images';
 import {
+  clickImage,
   tryClickImage,
   tryFindAnyImage,
   tryFindImageInScreen,
@@ -40,9 +41,9 @@ export async function farmRareItem(): Promise<void> {
   }
   click(levelSelectPosition.x, levelSelectPosition.y);
 
-  await waitAndClickImage(supportSelectButton);
-  await waitAndClickImage(startBattleButton);
-  await waitImage(loadingText);
+  await waitAndClickImage(supportSelectButton, { timeout: 5e3 });
+  await waitAndClickImage(startBattleButton, { timeout: 5e3 });
+  await waitImage(loadingText, { timeout: 5e3 });
   toastLog('检测到正在进入第一关卡');
   await waitLoading();
   toastLog('检测到已进入第一关卡');
@@ -51,7 +52,7 @@ export async function farmRareItem(): Promise<void> {
   await waitImage(loadingText);
   toastLog('检测到正在进入第二关卡');
   await waitAndClickImage(menuButton, { timeout: 60e3 });
-  await waitImage(rareItem);
+  await waitImage(rareItem, { timeout: 5e3 });
   if (
     tryFindAnyImage({
       images: [noRareItem1, noRareItem2],
@@ -59,8 +60,8 @@ export async function farmRareItem(): Promise<void> {
     })
   ) {
     toastLog('没有刷到稀有物品, 直接下一轮');
-    await waitAndClickImage(giveUpButtonBlue);
-    await waitAndClickImage(giveUpButtonBlue);
+    clickImage(giveUpButtonBlue);
+    await waitAndClickImage(giveUpButtonBlue, { timeout: 5e3 });
   } else {
     toastLog('成功刷到稀有物品, 继续完成战斗');
     while (!tryClickImage(continueButtonBlue)) {
@@ -71,5 +72,5 @@ export async function farmRareItem(): Promise<void> {
       tryClickImage(nextText);
     }
   }
-  await waitImage(levelSelect);
+  await waitImage(levelSelect, { timeout: 60e3 });
 }
