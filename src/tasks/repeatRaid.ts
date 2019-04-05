@@ -1,4 +1,3 @@
-import { tryCastSupportSkill, tryTransform2dragon } from '@/battle';
 import {
   autoBattleSwitchOff,
   cancelButton,
@@ -14,6 +13,7 @@ import {
   startBattleButton,
   tapButton
 } from '@/images';
+import { tryCastSupportSkill, tryTransform2dragon } from '@/utils/battle';
 import {
   clickImage,
   tryClickImage,
