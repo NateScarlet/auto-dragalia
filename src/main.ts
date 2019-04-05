@@ -3,7 +3,7 @@ import { setupUI } from '@/setupUI';
 import { setupTaskRegistry } from '@/tasks';
 import { name, version } from 'package.json';
 
-function main(): void {
+((): void => {
   console.log(`${name}: ${version}`);
   images.requestScreenCapture(false);
 
@@ -13,7 +13,6 @@ function main(): void {
 
   setupTaskRegistry();
   setupUI();
+  // tslint:disable-next-line: no-floating-promises
   runTaskForever();
-}
-
-main();
+})();

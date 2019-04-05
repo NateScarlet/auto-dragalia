@@ -1,4 +1,4 @@
-import layoutTemplateXml from '@/layoutTemplate.xml';
+import * as layoutTemplateXml from '@/layoutTemplate.xml';
 import { store } from '@/store';
 import { taskRegistry } from '@/tasks';
 
