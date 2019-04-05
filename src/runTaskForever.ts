@@ -1,7 +1,8 @@
 import { store } from '@/store';
 import { taskRegistry } from '@/tasks';
+import { wait } from '@/utils/wait';
 
-export function runTaskForever(): void {
+export async function runTaskForever(): Promise<void> {
   if (store.currentTask !== undefined) {
     const taskName: string = store.currentTask;
     const handler: (() => void) | undefined = taskRegistry[taskName];
@@ -10,13 +11,13 @@ export function runTaskForever(): void {
     }
     console.log(`运行任务: ${taskName}`);
     try {
-      handler();
+      await handler();
     } catch (err) {
       console.show();
       console.error(err);
       store.currentTask = undefined;
     }
   }
-  sleep(1000);
-  runTaskForever();
+  await wait(1000);
+  await runTaskForever();
 }

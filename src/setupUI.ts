@@ -74,5 +74,10 @@ export function setupUI(): {
     });
   });
 
+  // Empty timer for async syntax
+  // https://hyb1996.github.io/AutoJs-Docs/#/floaty?id=floaty
+  // tslint:disable-next-line:no-empty
+  setInterval(() => {}, 1e3);
+
   return { window, spinnerItems };
 }

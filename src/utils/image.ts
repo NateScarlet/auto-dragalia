@@ -1,4 +1,5 @@
 import { loadingText, retryButtonBlue, retryButtonRed } from '@/images';
+import { wait } from '@/utils/wait';
 
 export function tryFindImageInScreen(
   ...args: Parameters<typeof findImageInScreen>
@@ -44,35 +45,38 @@ export function tryClickImage(image: Image): Point | undefined {
     return;
   }
 }
-export function waitAndClickImage(
+export async function waitAndClickImage(
   ...args: Parameters<typeof waitImage>
-): Point {
-  const pos: Point = waitImage(args[0]);
+): Promise<Point> {
+  const pos: Point = await waitImage(...args);
   click(pos.x, pos.y);
 
   return pos;
 }
 
-export function waitImage(image: Image, options?: IWaitImageOptions): Point {
+export async function waitImage(
+  image: Image,
+  options?: IWaitImageOptions
+): Promise<Point> {
   const { timeout = 600e3, delay = 500 } = options || {};
-  sleep(delay);
+  await wait(delay);
   const startTime: Date = new Date();
   while (new Date().getTime() - startTime.getTime() < timeout) {
     try {
       return findImageInScreen(image);
     } catch {
       console.verbose('Waiting image');
-      sleep(delay);
+      await wait(delay);
     }
   }
   throw new Error('等待超时');
 }
 
-export function waitLoading(delay: number = 500): void {
+export async function waitLoading(delay: number = 500): Promise<void> {
   while (tryFindImageInScreen(loadingText)) {
     tryClickImage(retryButtonRed);
     tryClickImage(retryButtonBlue);
-    sleep(delay);
+    await wait(delay);
   }
 }
 
