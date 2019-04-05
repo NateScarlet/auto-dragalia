@@ -3,84 +3,57 @@ import {
   supportSkillAvailable,
   transformGaugeFull
 } from '@/images';
-import { findImageInScreen } from '@/utils/image';
+import { findImageInScreen, waitImage } from '@/utils/image';
+import { wait } from '@/utils/wait';
 
-export function hasEnemy(): boolean {
-  try {
-    images.findImageInRegion(
-      images.captureScreen(),
-      enemyLegend,
-      device.width / 4,
-      0,
-      (device.width / 4) * 3,
-      device.height / 2,
-      0.8
-    );
-
-    return true;
-  } catch {
-    toast('周围无敌人');
-
-    return false;
-  }
-}
-export function waitForEnemy(max: number = 3): void {
-  let count: number = 0;
-  while (!hasEnemy()) {
-    sleep(1000);
-    count += 1;
-    if (count > max) {
-      throw new Error('Wait too long');
+export async function waitForEnemy(): Promise<void> {
+  await waitImage(enemyLegend, {
+    timeout: 3e3,
+    findOptions: {
+      region: [device.width / 4, 0, (device.width / 4) * 3, device.height / 2],
+      threshold: 0.8
     }
-  }
+  });
 }
-export function transform2dragon(): void {
+
+export async function transform2dragon(): Promise<void> {
   const pos: Point = findImageInScreen(transformGaugeFull);
-  waitForEnemy();
+  await waitForEnemy();
   toast('龙化');
   click(pos.x + 100, pos.y);
-  sleep(3000);
-  waitForEnemy();
+  await wait(2500);
+  await waitForEnemy();
   toast('使用龙技能');
   click(pos.x + 360, pos.y + 300);
 }
 
-export function tryTransform2dragon(): void {
-  if (!hasEnemy()) {
-    return;
-  }
+export async function tryTransform2dragon(): Promise<void> {
   try {
-    transform2dragon();
+    await transform2dragon();
   } catch {
-    console.verbose('Can not transform to dragon');
+    return;
   }
 }
 
-export function castSupportSkill(): void {
-  const pos: Point = images.findImageInRegion(
-    images.captureScreen(),
-    supportSkillAvailable,
-    device.width / 3,
-    device.height / 4
-  );
-  if (pos === null) {
+export async function castSupportSkill(): Promise<void> {
+  const pos: Point | undefined = findImageInScreen(supportSkillAvailable, {
+    region: [device.width / 3, device.height / 4]
+  });
+  if (!pos) {
     console.verbose(`支援技能不可用`);
 
     return;
   }
-  waitForEnemy();
+  await waitForEnemy();
   toast('使用支援技能');
   console.verbose(`支援技能位置: ${pos}`);
   click(pos.x, pos.y - 80);
 }
 
-export function tryCastSupportSkill(): void {
-  if (!hasEnemy()) {
-    return;
-  }
+export async function tryCastSupportSkill(): Promise<void> {
   try {
-    castSupportSkill();
+    await castSupportSkill();
   } catch {
-    console.verbose('Can not cast support skill');
+    return;
   }
 }

@@ -1,6 +1,6 @@
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   rule: {
-    'scope-enum': ['farm-rare-item', 'feed-dragon']
+    'scope-enum': ['farm-rare-item', 'feed-dragon', 'repeat-raid']
   }
 };

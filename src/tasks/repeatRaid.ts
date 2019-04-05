@@ -14,10 +14,14 @@ import {
   startBattleButton,
   tapButton
 } from '@/images';
-import { store } from '@/store';
-import { clickImage, findImageInScreen, tryClickImage } from '@/utils/image';
+import {
+  clickImage,
+  tryClickImage,
+  tryFindImageInScreen,
+  waitAndClickImage
+} from '@/utils/image';
 
-export function repeatRaid(): void {
+export async function repeatRaid(): Promise<void> {
   tryClickImage(startBattleButton);
   tryClickImage(autoBattleSwitchOff);
   tryClickImage(retryButtonRed);
@@ -26,41 +30,27 @@ export function repeatRaid(): void {
   tryClickImage(cancelButton);
   tryClickImage(tapButton);
   tryClickImage(nextText);
-  try {
-    clickImage(giveUpButtonWhite);
-    sleep(500);
-    clickImage(giveUpButtonBlue);
-    store.currentTask = undefined;
-  } catch {
-    console.verbose('Give up button not visible');
+  if (tryClickImage(giveUpButtonWhite)) {
+    await waitAndClickImage(giveUpButtonBlue, { timeout: 60e3 });
+    throw new Error('队伍战力不足, 无法通关');
   }
-  try {
-    findImageInScreen(continueButtonRed);
-    try {
-      repeatWithStamina();
-
-      return;
-    } catch {
-      clickImage(continueButtonRed);
-
-      return;
-    }
-  } catch {
-    console.verbose('Continue button not visible');
-  }
-  try {
-    repeatWithStamina();
-  } catch {
-    console.verbose('Repeat button not visible');
-  }
+  // tslint:disable-next-line: no-floating-promises
+  tryRepeatWithStamina();
+  // tslint:disable-next-line: no-floating-promises
   tryTransform2dragon();
+  // tslint:disable-next-line: no-floating-promises
   tryCastSupportSkill();
 }
 
-function repeatWithStamina(): void {
+async function tryRepeatWithStamina(): Promise<void> {
+  try {
+    await repeatWithStamina();
+  } catch {
+    tryClickImage(continueButtonRed);
+  }
+}
+async function repeatWithStamina(): Promise<void> {
   clickImage(repeatBattleButton);
-  sleep(500);
-  clickImage(repeatWithStaminaButton);
-  sleep(500);
-  clickImage(okButton);
+  await waitAndClickImage(repeatWithStaminaButton);
+  await waitAndClickImage(okButton);
 }
