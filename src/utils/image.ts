@@ -59,9 +59,12 @@ export async function waitImage(
   options?: IWaitImageOptions
 ): Promise<Point> {
   const { timeout = 600e3, delay = 500, findOptions = {} } = options || {};
+
   await wait(delay);
   const startTime: Date = new Date();
   while (new Date().getTime() - startTime.getTime() < timeout) {
+    tryClickImage(retryButtonRed);
+    tryClickImage(retryButtonBlue);
     try {
       return findImageInScreen(image, findOptions);
     } catch {
