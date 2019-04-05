@@ -96,6 +96,7 @@ export async function waitImage(
 
   await wait(delay);
   const startTime: Date = new Date();
+  let roundStartTime: Date = startTime;
   while (new Date().getTime() - startTime.getTime() < timeout) {
     tryClickImage(retryButtonRed);
     tryClickImage(retryButtonBlue);
@@ -103,17 +104,22 @@ export async function waitImage(
       return findImageInScreen(image, findOptions);
     } catch {
       console.verbose('Waiting image');
-      await wait(delay);
+      const now: Date = new Date();
+      await wait(delay - (now.getTime() - roundStartTime.getTime()));
+      roundStartTime = now;
     }
   }
   throw new Error('等待超时');
 }
 
 export async function waitLoading(delay: number = 500): Promise<void> {
+  let roundStartTime: Date = new Date();
   while (tryFindImageInScreen(loadingText)) {
     tryClickImage(retryButtonRed);
     tryClickImage(retryButtonBlue);
-    await wait(delay);
+    const now: Date = new Date();
+    await wait(delay - (now.getTime() - roundStartTime.getTime()));
+    roundStartTime = now;
   }
 }
 
