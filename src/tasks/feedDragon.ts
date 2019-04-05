@@ -7,8 +7,8 @@ import {
   presentPrice4000,
   presentPrice8000
 } from '@/images';
-import { store } from '@/store';
-import { clickImage, findImageInScreen } from '@/utils/image';
+import { clickImage, findImageInScreen, tryClickImage } from '@/utils/image';
+import { wait } from '@/utils/wait';
 
 const allPresentPriceImages: Image[] = [
   presentPrice0,
@@ -17,17 +17,15 @@ const allPresentPriceImages: Image[] = [
   presentPrice8000,
   presentPrice15000
 ];
-export function feedDragon(): void {
+
+export async function feedDragon(): Promise<void> {
   try {
     clickImage(presentButton);
   } catch {
-    toast('未找到礼物按钮, 请手动前往龙之庭院');
-    sleep(2000);
-    store.currentTask = undefined;
-
-    return;
+    throw new Error('未找到礼物按钮, 请手动前往龙之庭院');
   }
-  sleep(500);
+
+  await wait(500);
   for (const i of allPresentPriceImages) {
     try {
       const pos: Point = findImageInScreen(i);
@@ -36,18 +34,19 @@ export function feedDragon(): void {
       break;
     }
   }
-  let waitEndTime: number = new Date().getTime() + 2e4;
+
+  let waitEndTime: number = new Date().getTime() + 20e3;
   let isCloseClicked: boolean = false;
   while (new Date().getTime() <= waitEndTime) {
-    try {
-      clickImage(closeButton);
+    if (tryClickImage(closeButton)) {
       isCloseClicked = true;
       waitEndTime = new Date().getTime() + 2e3;
-      sleep(500);
-    } catch {
-      sleep(1000);
+      await wait(500);
+    } else {
+      await wait(1000);
     }
   }
+
   if (!isCloseClicked) {
     throw new Error('无可用礼物');
   }
