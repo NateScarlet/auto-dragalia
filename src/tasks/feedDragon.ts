@@ -7,7 +7,12 @@ import {
   presentPrice4000,
   presentPrice8000
 } from '@/images';
-import { clickImage, findImageInScreen, tryClickImage } from '@/utils/image';
+import {
+  clickImage,
+  findImageInScreen,
+  tryClickImage,
+  tryFindImageInScreen
+} from '@/utils/image';
 import { wait } from '@/utils/wait';
 
 const allPresentPriceImages: Image[] = [
@@ -43,6 +48,9 @@ export async function feedDragon(): Promise<void> {
       waitEndTime = new Date().getTime() + 2e3;
       await wait(500);
     } else {
+      if (tryFindImageInScreen(presentButton)) {
+        break;
+      }
       await wait(1000);
     }
   }
