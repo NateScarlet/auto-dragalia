@@ -6,7 +6,8 @@
   "recommendations": [
     "hyb1996.auto-js-vscodeext",
     "streetsidesoftware.code-spell-checker",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-tslint-plugin"
   ],
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
   "unwantedRecommendations": []
