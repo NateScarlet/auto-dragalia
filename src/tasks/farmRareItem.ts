@@ -51,14 +51,14 @@ export async function farmRareItem(): Promise<void> {
 
   await waitImage(startBattleButton, {
     id: 'start-battle',
-    timeout: 10e3,
+    timeout: 30e3,
     onDelay(): void {
       tryClickImage(supportSelectButton, { id: 'support-select' });
     }
   });
   await waitImage(loadingText, {
     id: 'level-1-loading',
-    timeout: 10e3,
+    timeout: 30e3,
     onDelay(): void {
       tryClickImage(startBattleButton, { id: 'start-battle' });
     }
