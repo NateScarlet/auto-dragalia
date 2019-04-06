@@ -48,15 +48,20 @@ export async function farmRareItem(): Promise<void> {
   }
   click(levelSelectPosition.x, levelSelectPosition.y);
 
-  await waitAndClickImage(supportSelectButton, {
-    timeout: 5e3,
-    id: 'support-select'
+  await waitImage(startBattleButton, {
+    id: 'start-battle',
+    timeout: 10e3,
+    onDelay(): void {
+      tryClickImage(supportSelectButton, { id: 'support-select' });
+    }
   });
-  await waitAndClickImage(startBattleButton, {
-    timeout: 5e3,
-    id: 'start-battle'
+  await waitImage(loadingText, {
+    id: 'level-1-loading',
+    timeout: 10e3,
+    onDelay(): void {
+      tryClickImage(startBattleButton, { id: 'start-battle' });
+    }
   });
-  await waitImage(loadingText, { timeout: 5e3, id: 'level-1-loading' });
   toastLog('检测到正在进入第一关卡');
   await waitLoading();
   toastLog('检测到已进入第一关卡');
