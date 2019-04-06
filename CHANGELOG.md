@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.1](https://github.com/NateScarlet/auto-dragalia/compare/v0.10.0...v0.10.1) (2019-04-06)
+
+### Bug Fixes
+
+- **farm-rare-item:** increase waiting timeout ([bc6a789](https://github.com/NateScarlet/auto-dragalia/commit/bc6a789))
+
 ## [0.10.0](https://github.com/NateScarlet/auto-dragalia/compare/v0.9.2...v0.10.0) (2019-04-06)
 
 Added image ids for logging.
