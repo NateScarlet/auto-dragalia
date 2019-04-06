@@ -34,11 +34,15 @@ import {
 } from '@/utils/image';
 
 export async function farmRareItem(): Promise<void> {
-  const levelSelectPosition: Point | undefined =
-    tryFindImageInScreen(levelSelectMaster) ||
-    tryFindImageInScreen(levelSelectExpert) ||
-    tryFindImageInScreen(levelSelectStandard) ||
-    tryFindImageInScreen(levelSelectBeginner);
+  const levelSelectPosition: Point | undefined = tryFindAnyImage(
+    [
+      levelSelectMaster,
+      levelSelectExpert,
+      levelSelectMaster,
+      levelSelectStandard
+    ],
+    { id: 'level-select' }
+  );
   if (!levelSelectPosition) {
     throw new Error('请至关卡选择页面再开始');
   }
@@ -56,33 +60,41 @@ export async function farmRareItem(): Promise<void> {
   toastLog('检测到正在进入第一关卡');
   await waitLoading();
   toastLog('检测到已进入第一关卡');
-  tryClickImage(autoBattleSwitchOff);
+  tryClickImage(autoBattleSwitchOff, { id: 'auto-battle-switch-off' });
 
   await waitImage(loadingText, { id: 'level-2-loading' });
   toastLog('检测到正在进入第二关卡');
   await waitAnyImage([rareItem1, rareItem2], {
     timeout: 60e3,
     onDelay(): void {
-      tryClickImage(menuButton);
+      tryClickImage(menuButton, { id: 'menu-button' });
     },
     id: 'rare-item'
   });
   if (
     tryFindAnyImage([noRareItem1, noRareItem2, noRareItem3], {
-      threshold: 0.99
+      threshold: 0.99,
+      id: 'no-rare-time'
     })
   ) {
     toastLog('没有刷到稀有物品, 直接下一轮');
-    clickImage(giveUpButtonBlue);
-    await waitAndClickImage(giveUpButtonBlue, { timeout: 5e3 });
+    clickImage(giveUpButtonBlue, { id: 'give-up-button-1' });
+    await waitAndClickImage(giveUpButtonBlue, {
+      timeout: 5e3,
+      id: 'give-up-button-2'
+    });
   } else {
     toastLog('成功刷到稀有物品, 继续完成战斗');
-    while (!tryClickImage(continueButtonBlue)) {
-      tryClickImage(okButton);
-      tryClickImage(closeButton);
-      tryClickImage(cancelButton);
-      tryClickImage(tapButton);
-      tryClickImage(nextText);
+    while (
+      !tryClickImage(continueButtonBlue, {
+        id: 'finish-phrase-continue-button'
+      })
+    ) {
+      tryClickImage(okButton, { id: 'finish-phrase-ok-button' });
+      tryClickImage(closeButton, { id: 'finish-phrase-close-button' });
+      tryClickImage(cancelButton, { id: 'finish-phrase-cancel-button' });
+      tryClickImage(tapButton, { id: 'finish-phrase-tap-button' });
+      tryClickImage(nextText, { id: 'finish-phrase-next-text' });
     }
   }
   await waitImage(levelSelect, { timeout: 60e3, id: 'level-select' });
