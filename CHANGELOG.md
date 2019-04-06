@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.2](https://github.com/NateScarlet/auto-dragalia/compare/v0.9.1...v0.9.2) (2019-04-06)
+
+### Bug Fixes
+
+- add more rare item images ([2cceec5](https://github.com/NateScarlet/auto-dragalia/commit/2cceec5)), closes [#12](https://github.com/NateScarlet/auto-dragalia/issues/12)
+- **farm-rare-item:** menu click may block ([0df2710](https://github.com/NateScarlet/auto-dragalia/commit/0df2710))
+
 ## [0.9.1](https://github.com/NateScarlet/auto-dragalia/compare/v0.9.0...v0.9.1) (2019-04-06)
 
 ### Bug Fixes
