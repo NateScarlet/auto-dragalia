@@ -41,7 +41,7 @@
 
 [auto.js]: https://github.com/hyb1996/Auto.js
 
-## 关于刷稀出错
+## 关于刷稀有出错
 
 ### 战斗菜单停留超时
 
