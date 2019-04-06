@@ -93,19 +93,19 @@ export async function waitImage(
   return waitAnyImage([image], options);
 }
 
-let waitCount: number = 0;
+let waitingCount: number = 0;
 
 export async function waitAnyImage(
   images: Image[],
   options?: IWaitImageOptions
 ): Promise<Point> {
-  waitCount += 1;
+  waitingCount += 1;
   const {
     timeout = 600e3,
     delay = 500,
     findOptions = {},
     onDelay = (): void | Promise<void> => undefined,
-    id = String(waitCount)
+    id = String(waitingCount)
   } = options || {};
 
   await wait(delay);
