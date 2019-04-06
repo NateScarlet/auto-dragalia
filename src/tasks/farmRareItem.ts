@@ -54,8 +54,12 @@ export async function farmRareItem(): Promise<void> {
 
   await waitImage(loadingText);
   toastLog('检测到正在进入第二关卡');
-  await waitAndClickImage(menuButton, { timeout: 60e3 });
-  await waitAnyImage([rareItem1, rareItem2], { timeout: 5e3 });
+  await waitAnyImage([rareItem1, rareItem2], {
+    timeout: 60e3,
+    delayCallback(): void {
+      tryClickImage(menuButton);
+    }
+  });
   if (
     tryFindAnyImage({
       images: [noRareItem1, noRareItem2, noRareItem3],
