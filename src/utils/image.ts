@@ -21,7 +21,7 @@ export function captureScreenWithCache(maxAge: number = 500): Image {
 
 export function tryFindAnyImage(
   images: Image[],
-  options: images.FindImageOptions
+  options?: IFindImageOptions
 ): Point | undefined {
   for (const i of images) {
     const pos: Point | undefined = tryFindImageInScreen(i, options);
@@ -43,34 +43,35 @@ export function tryFindImageInScreen(
 
 export function findImageInScreen(
   image: Image,
-  options?: images.FindImageOptions
+  options?: IFindImageOptions
 ): Point {
+  const { id = '<id-not-set>' } = options || {};
   const ret: Point | null = images.findImage(
     captureScreenWithCache(),
     image,
     options
   );
   if (ret === null) {
-    throw new Error(`未找到图像`);
+    throw new Error(`未找到图像: ${id}`);
   }
-  console.verbose(`Found image at: ${ret}`);
+  console.verbose(`Found image: ${id}: ${ret}`);
 
   return ret;
 }
 
-export function clickImage(
-  image: Image,
-  options?: images.FindImageOptions
-): Point {
+export function clickImage(image: Image, options?: IFindImageOptions): Point {
   const pos: Point = findImageInScreen(image, options);
   click(pos.x, pos.y);
 
   return pos;
 }
 
-export function tryClickImage(image: Image): Point | undefined {
+export function tryClickImage(
+  image: Image,
+  options?: IFindImageOptions
+): Point | undefined {
   try {
-    return clickImage(image);
+    return clickImage(image, options);
   } catch (err) {
     return;
   }
@@ -111,14 +112,17 @@ export async function waitAnyImage(
   const startTime: Date = new Date();
   let roundStartTime: Date = startTime;
   while (new Date().getTime() - startTime.getTime() < timeout) {
-    const ret: Point | undefined = tryFindAnyImage(images, findOptions);
+    const ret: Point | undefined = tryFindAnyImage(images, {
+      ...findOptions,
+      id
+    });
     if (ret) {
       return ret;
     }
     console.verbose(`Waiting image: ${id}`);
     await onDelay();
-    tryClickImage(retryButtonRed);
-    tryClickImage(retryButtonBlue);
+    tryClickImage(retryButtonRed, { id: 'retry-button-red' });
+    tryClickImage(retryButtonBlue, { id: 'retry-button-blue' });
     const now: Date = new Date();
     await wait(delay - (now.getTime() - roundStartTime.getTime()));
     roundStartTime = now;
@@ -128,9 +132,9 @@ export async function waitAnyImage(
 
 export async function waitLoading(delay: number = 500): Promise<void> {
   let roundStartTime: Date = new Date();
-  while (tryFindImageInScreen(loadingText)) {
-    tryClickImage(retryButtonRed);
-    tryClickImage(retryButtonBlue);
+  while (tryFindImageInScreen(loadingText, { id: 'loading-text' })) {
+    tryClickImage(retryButtonRed, { id: 'retry-button-red' });
+    tryClickImage(retryButtonBlue, { id: 'retry-button-blue' });
     const now: Date = new Date();
     await wait(delay - (now.getTime() - roundStartTime.getTime()));
     roundStartTime = now;
@@ -143,4 +147,8 @@ interface IWaitImageOptions {
   findOptions?: images.FindImageOptions;
   id?: string;
   onDelay?(): void | Promise<void>;
+}
+
+interface IFindImageOptions extends images.FindImageOptions {
+  id?: string;
 }
