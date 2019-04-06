@@ -48,3 +48,11 @@
 原因是由于稀有物品数量要求高精度识别 不能直接单张图适配所有设备
 
 参考 [#12](https://github.com/NateScarlet/auto-dragalia/issues/12) 截图发 issue 添加更多识别图片即可解决
+
+### 解算界面停留超时
+
+打太脚本快来不及点菜单
+
+降倍速或者降战力解决
+
+参见 [#13](https://github.com/NateScarlet/auto-dragalia/issues/13)
