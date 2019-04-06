@@ -92,15 +92,19 @@ export async function waitImage(
   return waitAnyImage([image], options);
 }
 
+let waitCount: number = 0;
+
 export async function waitAnyImage(
   images: Image[],
   options?: IWaitImageOptions
 ): Promise<Point> {
+  waitCount += 1;
   const {
     timeout = 600e3,
     delay = 500,
     findOptions = {},
-    onDelay = (): void | Promise<void> => undefined
+    onDelay = (): void | Promise<void> => undefined,
+    id = String(waitCount)
   } = options || {};
 
   await wait(delay);
@@ -111,7 +115,7 @@ export async function waitAnyImage(
     if (ret) {
       return ret;
     }
-    console.verbose('Waiting image');
+    console.verbose(`Waiting image: ${id}`);
     await onDelay();
     tryClickImage(retryButtonRed);
     tryClickImage(retryButtonBlue);
@@ -137,5 +141,6 @@ interface IWaitImageOptions {
   timeout?: number;
   delay?: number;
   findOptions?: images.FindImageOptions;
+  id?: string;
   onDelay?(): void | Promise<void>;
 }
