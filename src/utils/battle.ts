@@ -19,11 +19,11 @@ export async function waitForEnemy(): Promise<void> {
 export async function transform2dragon(): Promise<void> {
   const pos: Point = findImageInScreen(transformGaugeFull);
   await waitForEnemy();
-  toast('龙化');
+  console.log('龙化');
   click(pos.x + 100, pos.y);
   await wait(2500);
   await waitForEnemy();
-  toast('使用龙技能');
+  console.log('使用龙技能');
   click(pos.x + 360, pos.y + 300);
 }
 
@@ -45,8 +45,7 @@ export async function castSupportSkill(): Promise<void> {
     return;
   }
   await waitForEnemy();
-  toast('使用支援技能');
-  console.verbose(`支援技能位置: ${pos}`);
+  console.log(`使用支援技能: ${pos}`);
   click(pos.x, pos.y - 80);
 }
 
