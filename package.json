@@ -10,8 +10,8 @@
     "build": "cross-env NODE_ENV=production webpack -p",
     "watch": "webpack --watch",
     "capture": "autojs cap",
-    "code-generate:images": "node generate-images-code.js",
-    "adb:push": "node push.js",
+    "code-generate:images": "node ./scripts/generate-images-code.js",
+    "adb:push": "node ./scripts/push.js",
     "release": "standard-version"
   },
   "dependencies": {},
@@ -55,7 +55,7 @@
   },
   "standard-version": {
     "scripts": {
-      "postchangelog": "node scripts/postchangelog.js"
+      "postchangelog": "node ./scripts/postchangelog.js"
     }
   }
 }
