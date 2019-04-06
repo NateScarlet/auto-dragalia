@@ -14,8 +14,10 @@ import {
   nextText,
   noRareItem1,
   noRareItem2,
+  noRareItem3,
   okButton,
-  rareItem,
+  rareItem1,
+  rareItem2,
   startBattleButton,
   supportSelectButton,
   tapButton
@@ -26,6 +28,7 @@ import {
   tryFindAnyImage,
   tryFindImageInScreen,
   waitAndClickImage,
+  waitAnyImage,
   waitImage,
   waitLoading
 } from '@/utils/image';
@@ -52,10 +55,10 @@ export async function farmRareItem(): Promise<void> {
   await waitImage(loadingText);
   toastLog('检测到正在进入第二关卡');
   await waitAndClickImage(menuButton, { timeout: 60e3 });
-  await waitImage(rareItem, { timeout: 5e3 });
+  await waitAnyImage([rareItem1, rareItem2], { timeout: 5e3 });
   if (
     tryFindAnyImage({
-      images: [noRareItem1, noRareItem2],
+      images: [noRareItem1, noRareItem2, noRareItem3],
       options: { threshold: 0.99 }
     })
   ) {

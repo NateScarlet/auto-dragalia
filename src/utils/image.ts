@@ -92,22 +92,32 @@ export async function waitImage(
   image: Image,
   options?: IWaitImageOptions
 ): Promise<Point> {
+  return waitAnyImage([image], options);
+}
+
+export async function waitAnyImage(
+  images: Image[],
+  options?: IWaitImageOptions
+): Promise<Point> {
   const { timeout = 600e3, delay = 500, findOptions = {} } = options || {};
 
   await wait(delay);
   const startTime: Date = new Date();
   let roundStartTime: Date = startTime;
   while (new Date().getTime() - startTime.getTime() < timeout) {
+    const ret: Point | undefined = tryFindAnyImage({
+      images,
+      options: findOptions
+    });
+    if (ret) {
+      return ret;
+    }
+    console.verbose('Waiting image');
     tryClickImage(retryButtonRed);
     tryClickImage(retryButtonBlue);
-    try {
-      return findImageInScreen(image, findOptions);
-    } catch {
-      console.verbose('Waiting image');
-      const now: Date = new Date();
-      await wait(delay - (now.getTime() - roundStartTime.getTime()));
-      roundStartTime = now;
-    }
+    const now: Date = new Date();
+    await wait(delay - (now.getTime() - roundStartTime.getTime()));
+    roundStartTime = now;
   }
   throw new Error('等待超时');
 }
