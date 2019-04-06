@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.0](https://github.com/NateScarlet/auto-dragalia/compare/v0.9.2...v0.10.0) (2019-04-06)
+
+### Bug Fixes
+
+- **farm-rare-item:** invalid click during animation ([1d1fc6b](https://github.com/NateScarlet/auto-dragalia/commit/1d1fc6b)), closes [#14](https://github.com/NateScarlet/auto-dragalia/issues/14)
+
+### Features
+
+- add `IFindImageOptions` ([601d0cb](https://github.com/NateScarlet/auto-dragalia/commit/601d0cb))
+- add `IWaitImageOptions.id` ([078a2bb](https://github.com/NateScarlet/auto-dragalia/commit/078a2bb))
+- add version to error message ([6ba53c2](https://github.com/NateScarlet/auto-dragalia/commit/6ba53c2))
+- **farm-rare-item:** add menu animation wating ([b907394](https://github.com/NateScarlet/auto-dragalia/commit/b907394))
+- **farm-rare-item:** set finding ids ([3711f65](https://github.com/NateScarlet/auto-dragalia/commit/3711f65))
+- **farm-rare-item:** set waiting ids ([c6217bb](https://github.com/NateScarlet/auto-dragalia/commit/c6217bb))
+
 ## [0.9.2](https://github.com/NateScarlet/auto-dragalia/compare/v0.9.1...v0.9.2) (2019-04-06)
 
 ### Bug Fixes
