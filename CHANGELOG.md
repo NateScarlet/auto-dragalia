@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [0.10.0](https://github.com/NateScarlet/auto-dragalia/compare/v0.9.2...v0.10.0) (2019-04-06)
 
+Added image ids for logging.
+
 ### Bug Fixes
 
 - **farm-rare-item:** invalid click during animation ([1d1fc6b](https://github.com/NateScarlet/auto-dragalia/commit/1d1fc6b)), closes [#14](https://github.com/NateScarlet/auto-dragalia/issues/14)
