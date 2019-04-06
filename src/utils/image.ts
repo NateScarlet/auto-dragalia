@@ -103,7 +103,7 @@ export async function waitAnyImage(
     timeout = 600e3,
     delay = 500,
     findOptions = {},
-    delayCallback = (): void | Promise<void> => undefined
+    onDelay = (): void | Promise<void> => undefined
   } = options || {};
 
   await wait(delay);
@@ -118,7 +118,7 @@ export async function waitAnyImage(
       return ret;
     }
     console.verbose('Waiting image');
-    await delayCallback();
+    await onDelay();
     tryClickImage(retryButtonRed);
     tryClickImage(retryButtonBlue);
     const now: Date = new Date();
@@ -143,5 +143,5 @@ interface IWaitImageOptions {
   timeout?: number;
   delay?: number;
   findOptions?: images.FindImageOptions;
-  delayCallback?(): void | Promise<void>;
+  onDelay?(): void | Promise<void>;
 }

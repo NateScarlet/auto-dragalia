@@ -56,7 +56,7 @@ export async function farmRareItem(): Promise<void> {
   toastLog('检测到正在进入第二关卡');
   await waitAnyImage([rareItem1, rareItem2], {
     timeout: 60e3,
-    delayCallback(): void {
+    onDelay(): void {
       tryClickImage(menuButton);
     }
   });
