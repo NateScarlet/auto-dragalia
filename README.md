@@ -49,7 +49,7 @@
 
 参考 [#12](https://github.com/NateScarlet/auto-dragalia/issues/12) 截图发 issue 添加更多识别图片即可解决
 
-### 解算界面停留超时
+### 结算界面停留超时
 
 打太脚本快来不及点菜单
 
