@@ -61,9 +61,8 @@ export async function farmRareItem(): Promise<void> {
     }
   });
   if (
-    tryFindAnyImage({
-      images: [noRareItem1, noRareItem2, noRareItem3],
-      options: { threshold: 0.99 }
+    tryFindAnyImage([noRareItem1, noRareItem2, noRareItem3], {
+      threshold: 0.99
     })
   ) {
     toastLog('没有刷到稀有物品, 直接下一轮');

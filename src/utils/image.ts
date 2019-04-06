@@ -19,13 +19,10 @@ export function captureScreenWithCache(maxAge: number = 500): Image {
   return screenCache.image;
 }
 
-export function tryFindAnyImage({
-  images,
-  options
-}: {
-  images: Image[];
-  options?: images.FindImageOptions;
-}): Point | undefined {
+export function tryFindAnyImage(
+  images: Image[],
+  options: images.FindImageOptions
+): Point | undefined {
   for (const i of images) {
     const pos: Point | undefined = tryFindImageInScreen(i, options);
     if (pos) {
@@ -110,10 +107,7 @@ export async function waitAnyImage(
   const startTime: Date = new Date();
   let roundStartTime: Date = startTime;
   while (new Date().getTime() - startTime.getTime() < timeout) {
-    const ret: Point | undefined = tryFindAnyImage({
-      images,
-      options: findOptions
-    });
+    const ret: Point | undefined = tryFindAnyImage(images, findOptions);
     if (ret) {
       return ret;
     }
