@@ -14,12 +14,7 @@ import {
   tapButton
 } from '@/images';
 import { tryCastSupportSkill, tryTransform2dragon } from '@/utils/battle';
-import {
-  clickImage,
-  tryClickImage,
-  tryFindImageInScreen,
-  waitAndClickImage
-} from '@/utils/image';
+import { clickImage, tryClickImage, waitAndClickImage } from '@/utils/image';
 
 export async function repeatRaid(): Promise<void> {
   tryClickImage(startBattleButton);
@@ -35,11 +30,10 @@ export async function repeatRaid(): Promise<void> {
     throw new Error('队伍战力不足, 无法通关');
   }
   // tslint:disable-next-line: no-floating-promises
-  tryRepeatWithStamina();
-  // tslint:disable-next-line: no-floating-promises
   tryTransform2dragon();
   // tslint:disable-next-line: no-floating-promises
   tryCastSupportSkill();
+  await tryRepeatWithStamina();
 }
 
 async function tryRepeatWithStamina(): Promise<void> {
