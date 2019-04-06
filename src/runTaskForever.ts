@@ -1,6 +1,7 @@
 import { store } from '@/store';
 import { taskRegistry } from '@/tasks';
 import { wait } from '@/utils/wait';
+import { version } from 'package.json';
 
 export async function runTaskForever(): Promise<void> {
   if (store.currentTask !== undefined) {
@@ -15,7 +16,7 @@ export async function runTaskForever(): Promise<void> {
       await handler();
     } catch (err) {
       console.show();
-      console.error(String(err));
+      console.error(`${version}: ${err}`);
       device.vibrate(0.5e3);
       store.currentTask = undefined;
     }
