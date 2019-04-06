@@ -32,6 +32,7 @@ import {
   waitImage,
   waitLoading
 } from '@/utils/image';
+import { wait } from '@/utils/wait';
 
 export async function farmRareItem(): Promise<void> {
   const levelSelectPosition: Point | undefined = tryFindAnyImage(
@@ -76,6 +77,7 @@ export async function farmRareItem(): Promise<void> {
     },
     id: 'rare-item'
   });
+  await wait(500); // Wait menu animation finish;
   if (
     tryFindAnyImage([noRareItem1, noRareItem2, noRareItem3], {
       threshold: 0.99,
