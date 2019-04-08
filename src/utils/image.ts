@@ -157,17 +157,6 @@ export async function waitAnyImage(
   throw new Error('等待超时');
 }
 
-export async function waitLoading(delay: number = 500): Promise<void> {
-  let roundStartTime: Date = new Date();
-  while (tryFindImageInScreen(loadingText, { id: 'loading-text' })) {
-    tryClickImage(retryButtonRed, { id: 'retry-button-red' });
-    tryClickImage(retryButtonBlue, { id: 'retry-button-blue' });
-    const now: Date = new Date();
-    await wait(delay - (now.getTime() - roundStartTime.getTime()));
-    roundStartTime = now;
-  }
-}
-
 interface IWaitImageOptions {
   timeout?: number;
   delay?: number;

@@ -28,8 +28,7 @@ import {
   tryFindAnyImage,
   waitAndClickImage,
   waitAnyImage,
-  waitImage,
-  waitLoading
+  waitImage
 } from '@/utils/image';
 import { wait } from '@/utils/wait';
 
@@ -64,7 +63,7 @@ export async function farmRareItem(): Promise<void> {
     }
   });
   toastLog('检测到正在进入第一关卡');
-  await waitLoading();
+  await waitImage(false, loadingText, { id: 'level-1-loading' });
   toastLog('检测到已进入第一关卡');
   tryClickImage(autoBattleSwitchOff, { id: 'auto-battle-switch-off' });
 
