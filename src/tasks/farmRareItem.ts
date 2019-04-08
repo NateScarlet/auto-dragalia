@@ -5,6 +5,7 @@ import {
   continueButtonBlue,
   giveUpButtonBlue,
   levelSelect,
+  levelSelectBeginner,
   levelSelectExpert,
   levelSelectMaster,
   levelSelectStandard,
@@ -38,7 +39,8 @@ export async function farmRareItem(): Promise<void> {
       levelSelectMaster,
       levelSelectExpert,
       levelSelectMaster,
-      levelSelectStandard
+      levelSelectStandard,
+      levelSelectBeginner
     ],
     { id: 'level-select' }
   );
