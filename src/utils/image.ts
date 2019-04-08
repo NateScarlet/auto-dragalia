@@ -132,7 +132,8 @@ export async function waitAnyImage(
     delay = 500,
     findOptions = {},
     onDelay = (): void | Promise<void> => undefined,
-    id = String(waitingCount)
+    id = String(waitingCount),
+    retry = false
   } = options || {};
 
   await wait(delay);
@@ -148,8 +149,10 @@ export async function waitAnyImage(
     }
     console.verbose(`Waiting image ${appear ? 'appear' : 'disappear'}: ${id}`);
     await onDelay();
-    tryClickImage(retryButtonRed, { id: 'retry-button-red' });
-    tryClickImage(retryButtonBlue, { id: 'retry-button-blue' });
+    if (retry) {
+      tryClickImage(retryButtonRed, { id: 'retry-button-red' });
+      tryClickImage(retryButtonBlue, { id: 'retry-button-blue' });
+    }
     const now: Date = new Date();
     await wait(delay - (now.getTime() - roundStartTime.getTime()));
     roundStartTime = now;
@@ -162,6 +165,7 @@ interface IWaitImageOptions {
   delay?: number;
   findOptions?: images.FindImageOptions;
   id?: string;
+  retry?: boolean;
   onDelay?(): void | Promise<void>;
 }
 
