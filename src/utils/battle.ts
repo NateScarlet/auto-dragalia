@@ -7,7 +7,7 @@ import { findImageInScreen, waitImage } from '@/utils/image';
 import { wait } from '@/utils/wait';
 
 export async function waitForEnemy(): Promise<void> {
-  await waitImage(enemyLegend, {
+  await waitImage(true, enemyLegend, {
     timeout: 3e3,
     findOptions: {
       region: [device.width / 4, 0, (device.width / 4) * 3, device.height / 2],

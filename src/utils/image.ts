@@ -78,27 +78,54 @@ export function tryClickImage(
 }
 
 export async function waitAndClickImage(
-  ...args: Parameters<typeof waitImage>
+  image: Image,
+  options?: IWaitImageOptions
 ): Promise<Point> {
-  const pos: Point = await waitImage(...args);
+  const pos: Point = await waitImage(true, image, options);
   click(pos.x, pos.y);
 
   return pos;
 }
 
 export async function waitImage(
+  appear: true,
   image: Image,
   options?: IWaitImageOptions
-): Promise<Point> {
-  return waitAnyImage([image], options);
+): Promise<Point>;
+export async function waitImage(
+  appear: false,
+  image: Image,
+  options?: IWaitImageOptions
+): Promise<void>;
+export async function waitImage(
+  appear: boolean,
+  image: Image,
+  options?: IWaitImageOptions
+): Promise<Point | void> {
+  if (appear) {
+    return waitAnyImage(appear, [image], options);
+  }
+
+  return waitAnyImage(appear, [image], options);
 }
 
 let waitingCount: number = 0;
 
 export async function waitAnyImage(
+  appear: true,
   images: Image[],
   options?: IWaitImageOptions
-): Promise<Point> {
+): Promise<Point>;
+export async function waitAnyImage(
+  appear: false,
+  images: Image[],
+  options?: IWaitImageOptions
+): Promise<void>;
+export async function waitAnyImage(
+  appear: boolean,
+  images: Image[],
+  options?: IWaitImageOptions
+): Promise<Point | void> {
   waitingCount += 1;
   const {
     timeout = 600e3,
@@ -116,10 +143,10 @@ export async function waitAnyImage(
       ...findOptions,
       id
     });
-    if (ret) {
+    if (Boolean(ret) === appear) {
       return ret;
     }
-    console.verbose(`Waiting image: ${id}`);
+    console.verbose(`Waiting image ${appear ? 'appear' : 'disappear'}: ${id}`);
     await onDelay();
     tryClickImage(retryButtonRed, { id: 'retry-button-red' });
     tryClickImage(retryButtonBlue, { id: 'retry-button-blue' });

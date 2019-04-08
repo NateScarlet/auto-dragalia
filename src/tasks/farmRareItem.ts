@@ -5,7 +5,6 @@ import {
   continueButtonBlue,
   giveUpButtonBlue,
   levelSelect,
-  levelSelectBeginner,
   levelSelectExpert,
   levelSelectMaster,
   levelSelectStandard,
@@ -26,7 +25,6 @@ import {
   clickImage,
   tryClickImage,
   tryFindAnyImage,
-  tryFindImageInScreen,
   waitAndClickImage,
   waitAnyImage,
   waitImage,
@@ -49,14 +47,14 @@ export async function farmRareItem(): Promise<void> {
   }
   click(levelSelectPosition.x, levelSelectPosition.y);
 
-  await waitImage(startBattleButton, {
+  await waitImage(true, startBattleButton, {
     id: 'start-battle',
     timeout: 30e3,
     onDelay(): void {
       tryClickImage(supportSelectButton, { id: 'support-select' });
     }
   });
-  await waitImage(loadingText, {
+  await waitImage(true, loadingText, {
     id: 'level-1-loading',
     timeout: 30e3,
     onDelay(): void {
@@ -68,9 +66,9 @@ export async function farmRareItem(): Promise<void> {
   toastLog('检测到已进入第一关卡');
   tryClickImage(autoBattleSwitchOff, { id: 'auto-battle-switch-off' });
 
-  await waitImage(loadingText, { id: 'level-2-loading' });
+  await waitImage(true, loadingText, { id: 'level-2-loading' });
   toastLog('检测到正在进入第二关卡');
-  await waitAnyImage([rareItem1, rareItem2], {
+  await waitAnyImage(true, [rareItem1, rareItem2], {
     timeout: 60e3,
     onDelay(): void {
       tryClickImage(menuButton, { id: 'menu-button' });
@@ -104,5 +102,5 @@ export async function farmRareItem(): Promise<void> {
       tryClickImage(nextText, { id: 'finish-phrase-next-text' });
     }
   }
-  await waitImage(levelSelect, { timeout: 60e3, id: 'level-select' });
+  await waitImage(true, levelSelect, { timeout: 60e3, id: 'level-select' });
 }
