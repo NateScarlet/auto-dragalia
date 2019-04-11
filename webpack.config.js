@@ -43,10 +43,9 @@ module.exports = {
     }
   },
   output: {
-    filename:
-      process.env.NODE_ENV === 'production'
-        ? `${name}-${version}.auto.js`
-        : 'main.auto.js',
+    filename: `${name}-${
+      process.env.NODE_ENV === 'production' ? version : 'dev'
+    }.auto.js`,
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [],
