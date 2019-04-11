@@ -1,4 +1,5 @@
 import {
+  cancelButton,
   closeButton,
   presentButton,
   presentPrice0,
@@ -42,10 +43,14 @@ export async function feedDragon(): Promise<void> {
   }
 
   if (
-    !(await keepClickAnyImage([closeButton], {
-      nextTimeout: 2e3,
+    !(await keepClickAnyImage([closeButton, cancelButton], {
+      findOptions: {
+        id: 'close-button'
+      },
       onDelay(): boolean {
-        return !tryFindImageInScreen(presentButton);
+        return !tryFindImageInScreen(presentButton, {
+          id: 'present-button'
+        });
       }
     }))
   ) {

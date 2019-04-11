@@ -1,4 +1,5 @@
 import {
+  cancelButton,
   closeButton,
   cloverButton,
   cloverPage,
@@ -43,7 +44,7 @@ export async function feedFourLeafClover(): Promise<void> {
     }
 
     if (
-      !(await keepClickAnyImage([closeButton], {
+      !(await keepClickAnyImage([closeButton, cancelButton], {
         findOptions: {
           id: 'close-button'
         },
