@@ -12,7 +12,6 @@ import {
   clickImage,
   findImageInScreen,
   keepClickAnyImage,
-  tryClickImage,
   tryFindImageInScreen
 } from '@/utils/image';
 import { wait } from '@/utils/wait';
