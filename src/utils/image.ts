@@ -1,4 +1,4 @@
-import { loadingText, retryButtonBlue, retryButtonRed } from '@/images';
+import { retryButtonBlue, retryButtonRed } from '@/images';
 import { wait } from '@/utils/wait';
 
 images.requestScreenCapture(false);
