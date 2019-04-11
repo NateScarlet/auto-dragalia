@@ -10,9 +10,9 @@ import {
 } from '@/images';
 import {
   clickImage,
-  findImageInScreen,
+  findImage,
   keepClickAnyImage,
-  tryFindImageInScreen
+  tryFindImage
 } from '@/utils/image';
 import { wait } from '@/utils/wait';
 
@@ -34,7 +34,7 @@ export async function feedDragon(): Promise<void> {
   await wait(500);
   for (const i of allPresentPriceImages) {
     try {
-      const pos: Point = findImageInScreen(i);
+      const pos: Point = findImage(i);
       swipe(pos.x, pos.y, pos.x, pos.y - 300, 300);
     } catch {
       break;
@@ -47,7 +47,7 @@ export async function feedDragon(): Promise<void> {
         id: 'close-button'
       },
       onDelay(): boolean {
-        return !tryFindImageInScreen(presentButton, {
+        return !tryFindImage(presentButton, {
           id: 'present-button'
         });
       }

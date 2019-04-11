@@ -3,7 +3,7 @@ import {
   supportSkillAvailable,
   transformGaugeFull
 } from '@/images';
-import { findImageInScreen, waitImage } from '@/utils/image';
+import { findImage, waitImage } from '@/utils/image';
 import { wait } from '@/utils/wait';
 
 export async function waitForEnemy(): Promise<void> {
@@ -17,7 +17,7 @@ export async function waitForEnemy(): Promise<void> {
 }
 
 export async function transform2dragon(): Promise<void> {
-  const pos: Point = findImageInScreen(transformGaugeFull);
+  const pos: Point = findImage(transformGaugeFull);
   await waitForEnemy();
   console.log('龙化');
   click(pos.x + 100, pos.y);
@@ -36,7 +36,7 @@ export async function tryTransform2dragon(): Promise<void> {
 }
 
 export async function castSupportSkill(): Promise<void> {
-  const pos: Point | undefined = findImageInScreen(supportSkillAvailable, {
+  const pos: Point | undefined = findImage(supportSkillAvailable, {
     region: [device.width / 3, device.height / 4]
   });
   if (!pos) {

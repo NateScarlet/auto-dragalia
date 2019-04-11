@@ -8,10 +8,10 @@ import {
 } from '@/images';
 import {
   clickImage,
-  findImageInScreen,
+  findImage,
   keepClickAnyImage,
   tryClickImage,
-  tryFindImageInScreen
+  tryFindImage
 } from '@/utils/image';
 import { wait } from '@/utils/wait';
 
@@ -23,7 +23,7 @@ export async function feedFourLeafClover(): Promise<void> {
   }
 
   if (
-    tryFindImageInScreen(lv29Button, {
+    tryFindImage(lv29Button, {
       threshold: 0.95,
       id: 'lv29-button'
     })
@@ -35,7 +35,7 @@ export async function feedFourLeafClover(): Promise<void> {
 
     await wait(500);
     try {
-      const pos: Point = findImageInScreen(cloverButton, {
+      const pos: Point = findImage(cloverButton, {
         id: 'clover-button'
       });
       swipe(pos.x, pos.y, pos.x, pos.y - 300, 300);
@@ -49,7 +49,7 @@ export async function feedFourLeafClover(): Promise<void> {
           id: 'close-button'
         },
         onDelay(): boolean {
-          return !tryFindImageInScreen(presentButton, {
+          return !tryFindImage(presentButton, {
             id: 'present-button'
           });
         }

@@ -8,27 +8,24 @@ export function tryFindAnyImage(
   options?: IFindImageOptions
 ): Point | undefined {
   for (const i of images) {
-    const pos: Point | undefined = tryFindImageInScreen(i, options);
+    const pos: Point | undefined = tryFindImage(i, options);
     if (pos) {
       return pos;
     }
   }
 }
 
-export function tryFindImageInScreen(
-  ...args: Parameters<typeof findImageInScreen>
+export function tryFindImage(
+  ...args: Parameters<typeof findImage>
 ): Point | undefined {
   try {
-    return findImageInScreen(...args);
+    return findImage(...args);
   } catch {
     return;
   }
 }
 
-export function findImageInScreen(
-  image: Image,
-  options?: IFindImageOptions
-): Point {
+export function findImage(image: Image, options?: IFindImageOptions): Point {
   const { id = '<id-not-set>' } = options || {};
   const ret: Point | null = images.findImage(
     images.captureScreen(),
@@ -44,7 +41,7 @@ export function findImageInScreen(
 }
 
 export function clickImage(image: Image, options?: IFindImageOptions): Point {
-  const pos: Point = findImageInScreen(image, options);
+  const pos: Point = findImage(image, options);
   click(pos.x, pos.y);
 
   return pos;
