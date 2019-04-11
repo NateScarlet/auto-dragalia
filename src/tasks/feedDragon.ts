@@ -10,6 +10,7 @@ import {
 import {
   clickImage,
   findImageInScreen,
+  keepClickAnyImage,
   tryClickImage,
   tryFindImageInScreen
 } from '@/utils/image';
@@ -40,22 +41,14 @@ export async function feedDragon(): Promise<void> {
     }
   }
 
-  let waitEndTime: number = new Date().getTime() + 20e3;
-  let isCloseClicked: boolean = false;
-  while (new Date().getTime() <= waitEndTime) {
-    if (tryClickImage(closeButton)) {
-      isCloseClicked = true;
-      waitEndTime = new Date().getTime() + 2e3;
-      await wait(500);
-    } else {
-      if (tryFindImageInScreen(presentButton)) {
-        break;
+  if (
+    !(await keepClickAnyImage([closeButton], {
+      nextTimeout: 2e3,
+      onDelay(): boolean {
+        return !tryFindImageInScreen(presentButton);
       }
-      await wait(1000);
-    }
-  }
-
-  if (!isCloseClicked) {
+    }))
+  ) {
     throw new Error('无可用礼物');
   }
 }

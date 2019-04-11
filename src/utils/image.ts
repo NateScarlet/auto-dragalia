@@ -61,6 +61,20 @@ export function tryClickImage(
   }
 }
 
+export function tryClickAnyImage(
+  images: Image[],
+  options?: IFindImageOptions
+): Point | undefined {
+  const pos: Point | undefined = tryFindAnyImage(images, options);
+  if (!pos) {
+    return;
+  }
+
+  click(pos.x, pos.y);
+
+  return pos;
+}
+
 export async function waitAndClickImage(
   image: Image,
   options?: IWaitImageOptions
@@ -144,6 +158,33 @@ export async function waitAnyImage(
   throw new Error('等待超时');
 }
 
+export async function keepClickAnyImage(
+  images: Image[],
+  {
+    firstTimeout = 20e3,
+    nextTimeout = 5e3,
+    findOptions,
+    onDelay = (): boolean => true
+  }: IKeepClickImageOptions = {}
+): Promise<number> {
+  let waitEndTime: number = Date.now() + firstTimeout;
+  let clickCount: number = 0;
+  while (Date.now() <= waitEndTime) {
+    if (tryClickAnyImage(images, findOptions)) {
+      clickCount += 1;
+      waitEndTime = Date.now() + nextTimeout;
+      await wait(500);
+    } else {
+      await wait(1000);
+    }
+    if (!(await onDelay())) {
+      break;
+    }
+  }
+
+  return clickCount;
+}
+
 interface IWaitImageOptions {
   timeout?: number;
   delay?: number;
@@ -155,4 +196,11 @@ interface IWaitImageOptions {
 
 interface IFindImageOptions extends images.FindImageOptions {
   id?: string;
+}
+
+interface IKeepClickImageOptions {
+  firstTimeout?: number;
+  nextTimeout?: number;
+  findOptions?: IFindImageOptions;
+  onDelay?(): boolean | Promise<boolean>;
 }
