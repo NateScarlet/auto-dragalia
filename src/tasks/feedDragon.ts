@@ -26,7 +26,7 @@ const allPresentPriceImages: Image[] = [
 
 export async function feedDragon(): Promise<void> {
   try {
-    clickImage(presentButton);
+    clickImage(presentButton, { id: 'present-button' });
   } catch {
     throw new Error('未找到礼物按钮, 请手动前往龙之庭院');
   }
@@ -34,7 +34,7 @@ export async function feedDragon(): Promise<void> {
   await wait(500);
   for (const i of allPresentPriceImages) {
     try {
-      const pos: Point = findImage(i);
+      const pos: Point = findImage(i, { id: 'present-price' });
       swipe(pos.x, pos.y, pos.x, pos.y - 300, 300);
     } catch {
       break;
