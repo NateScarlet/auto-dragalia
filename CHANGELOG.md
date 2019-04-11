@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.11.0](https://github.com/NateScarlet/auto-dragalia/compare/v0.10.1...v0.11.0) (2019-04-11)
+
+### Bug Fixes
+
+- **farm-rare-item:** add back level select detect ([0c427bc](https://github.com/NateScarlet/auto-dragalia/commit/0c427bc))
+- **feed-dragon,feed-four-leaf-clover:** improve dialog handling ([f130501](https://github.com/NateScarlet/auto-dragalia/commit/f130501)), closes [#21](https://github.com/NateScarlet/auto-dragalia/issues/21)
+
+### Features
+
+- add `IWaitImageOptions.retry` ([3a9b1ce](https://github.com/NateScarlet/auto-dragalia/commit/3a9b1ce))
+- modify arguments of waitImage, waitAnyImage ([0242695](https://github.com/NateScarlet/auto-dragalia/commit/0242695))
+- remove `waitLoading` ([1319917](https://github.com/NateScarlet/auto-dragalia/commit/1319917))
+- **feedFourLeafClover:** new task ([c3ffde5](https://github.com/NateScarlet/auto-dragalia/commit/c3ffde5)), closes [#20](https://github.com/NateScarlet/auto-dragalia/issues/20)
+
+### Performance Improvements
+
+- remove screen cache since it has no effect ([41ce5c9](https://github.com/NateScarlet/auto-dragalia/commit/41ce5c9))
+
 ## [0.10.1](https://github.com/NateScarlet/auto-dragalia/compare/v0.10.0...v0.10.1) (2019-04-06)
 
 ### Bug Fixes
