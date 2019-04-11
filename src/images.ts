@@ -3,6 +3,8 @@
 import * as autoBattleSwitchOffPng from '@/assets/images/auto-battle-switch-off.png';
 import * as cancelButtonPng from '@/assets/images/cancel-button.png';
 import * as closeButtonPng from '@/assets/images/close-button.png';
+import * as cloverButtonPng from '@/assets/images/clover-button.png';
+import * as cloverPagePng from '@/assets/images/clover-page.png';
 import * as continueButtonBluePng from '@/assets/images/continue-button-blue.png';
 import * as continueButtonRedPng from '@/assets/images/continue-button-red.png';
 import * as enemyLegendPng from '@/assets/images/enemy-legend.png';
@@ -14,6 +16,7 @@ import * as levelSelectMasterPng from '@/assets/images/level-select-master.png';
 import * as levelSelectStandardPng from '@/assets/images/level-select-standard.png';
 import * as levelSelectPng from '@/assets/images/level-select.png';
 import * as loadingTextPng from '@/assets/images/loading-text.png';
+import * as lv29ButtonPng from '@/assets/images/lv29-button.png';
 import * as menuButtonPng from '@/assets/images/menu-button.png';
 import * as nextTextPng from '@/assets/images/next-text.png';
 import * as noRareItem1Png from '@/assets/images/no-rare-item-1.png';
@@ -38,28 +41,23 @@ import * as supportSkillAvailablePng from '@/assets/images/support-skill-availab
 import * as tapButtonPng from '@/assets/images/tap-button.png';
 import * as transformGaugeFullPng from '@/assets/images/transform-gauge-full.png';
 
-export const autoBattleSwitchOff: Image = images.fromBase64(
-  autoBattleSwitchOffPng
-);
+export const autoBattleSwitchOff: Image = images.fromBase64(autoBattleSwitchOffPng);
 export const cancelButton: Image = images.fromBase64(cancelButtonPng);
 export const closeButton: Image = images.fromBase64(closeButtonPng);
-export const continueButtonBlue: Image = images.fromBase64(
-  continueButtonBluePng
-);
+export const cloverButton: Image = images.fromBase64(cloverButtonPng);
+export const cloverPage: Image = images.fromBase64(cloverPagePng);
+export const continueButtonBlue: Image = images.fromBase64(continueButtonBluePng);
 export const continueButtonRed: Image = images.fromBase64(continueButtonRedPng);
 export const enemyLegend: Image = images.fromBase64(enemyLegendPng);
 export const giveUpButtonBlue: Image = images.fromBase64(giveUpButtonBluePng);
 export const giveUpButtonWhite: Image = images.fromBase64(giveUpButtonWhitePng);
-export const levelSelectBeginner: Image = images.fromBase64(
-  levelSelectBeginnerPng
-);
+export const levelSelectBeginner: Image = images.fromBase64(levelSelectBeginnerPng);
 export const levelSelectExpert: Image = images.fromBase64(levelSelectExpertPng);
 export const levelSelectMaster: Image = images.fromBase64(levelSelectMasterPng);
-export const levelSelectStandard: Image = images.fromBase64(
-  levelSelectStandardPng
-);
+export const levelSelectStandard: Image = images.fromBase64(levelSelectStandardPng);
 export const levelSelect: Image = images.fromBase64(levelSelectPng);
 export const loadingText: Image = images.fromBase64(loadingTextPng);
+export const lv29Button: Image = images.fromBase64(lv29ButtonPng);
 export const menuButton: Image = images.fromBase64(menuButtonPng);
 export const nextText: Image = images.fromBase64(nextTextPng);
 export const noRareItem1: Image = images.fromBase64(noRareItem1Png);
@@ -74,22 +72,12 @@ export const presentPrice4000: Image = images.fromBase64(presentPrice4000Png);
 export const presentPrice8000: Image = images.fromBase64(presentPrice8000Png);
 export const rareItem1: Image = images.fromBase64(rareItem1Png);
 export const rareItem2: Image = images.fromBase64(rareItem2Png);
-export const repeatBattleButton: Image = images.fromBase64(
-  repeatBattleButtonPng
-);
-export const repeatWithStaminaButton: Image = images.fromBase64(
-  repeatWithStaminaButtonPng
-);
+export const repeatBattleButton: Image = images.fromBase64(repeatBattleButtonPng);
+export const repeatWithStaminaButton: Image = images.fromBase64(repeatWithStaminaButtonPng);
 export const retryButtonBlue: Image = images.fromBase64(retryButtonBluePng);
 export const retryButtonRed: Image = images.fromBase64(retryButtonRedPng);
 export const startBattleButton: Image = images.fromBase64(startBattleButtonPng);
-export const supportSelectButton: Image = images.fromBase64(
-  supportSelectButtonPng
-);
-export const supportSkillAvailable: Image = images.fromBase64(
-  supportSkillAvailablePng
-);
+export const supportSelectButton: Image = images.fromBase64(supportSelectButtonPng);
+export const supportSkillAvailable: Image = images.fromBase64(supportSkillAvailablePng);
 export const tapButton: Image = images.fromBase64(tapButtonPng);
-export const transformGaugeFull: Image = images.fromBase64(
-  transformGaugeFullPng
-);
+export const transformGaugeFull: Image = images.fromBase64(transformGaugeFullPng);
