@@ -44,7 +44,7 @@ export async function feedDragon(): Promise<void> {
   if (
     !(await keepClickAnyImage([closeButton, cancelButton], {
       findOptions: {
-        id: 'close-button'
+        id: 'dialog-button'
       },
       onDelay(): boolean {
         return !tryFindImage(presentButton, {
