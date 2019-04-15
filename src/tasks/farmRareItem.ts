@@ -15,6 +15,7 @@ import {
   noRareItem1,
   noRareItem2,
   noRareItem3,
+  noRareItem4,
   okButton,
   rareItem1,
   rareItem2,
@@ -81,7 +82,7 @@ export async function farmRareItem(): Promise<void> {
   });
   await wait(500); // Wait menu animation finish;
   if (
-    tryFindAnyImage([noRareItem1, noRareItem2, noRareItem3], {
+    tryFindAnyImage([noRareItem1, noRareItem2, noRareItem3, noRareItem4], {
       threshold: 0.99,
       id: 'no-rare-time'
     })
