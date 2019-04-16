@@ -1,11 +1,4 @@
-import {
-  cancelButton,
-  closeButton,
-  cloverButton,
-  cloverPage,
-  lv29Button,
-  presentButton
-} from '@/images';
+import { img } from '@/assets/images';
 import {
   clickImage,
   findImage,
@@ -17,13 +10,13 @@ import { wait } from '@/utils/wait';
 
 export async function feedFourLeafClover(): Promise<void> {
   try {
-    clickImage(presentButton, { id: 'present-button' });
+    clickImage(img.presentButton, { id: 'present-button' });
   } catch {
     throw new Error('未找到礼物按钮, 请手动前往龙之庭院');
   }
 
   if (
-    tryFindImage(lv29Button, {
+    tryFindImage(img.lv29Button, {
       threshold: 0.95,
       id: 'lv29-button'
     })
@@ -31,11 +24,11 @@ export async function feedFourLeafClover(): Promise<void> {
     throw new Error('信赖度已达到29级，若继续，请手动喂食');
   } else {
     await wait(500);
-    tryClickImage(cloverPage, { id: 'clover-page' });
+    tryClickImage(img.cloverPage, { id: 'clover-page' });
 
     await wait(500);
     try {
-      const pos: Point = findImage(cloverButton, {
+      const pos: Point = findImage(img.cloverButton, {
         id: 'clover-button'
       });
       swipe(pos.x, pos.y, pos.x, pos.y - 300, 300);
@@ -44,12 +37,12 @@ export async function feedFourLeafClover(): Promise<void> {
     }
 
     if (
-      !(await keepClickAnyImage([closeButton, cancelButton], {
+      !(await keepClickAnyImage([img.closeButton, img.cancelButton], {
         findOptions: {
           id: 'dialog-button'
         },
         onDelay(): boolean {
-          return !tryFindImage(presentButton, {
+          return !tryFindImage(img.presentButton, {
             id: 'present-button'
           });
         }

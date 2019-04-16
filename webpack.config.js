@@ -1,5 +1,8 @@
 const path = require('path');
 const { name, version } = require('./package.json');
+
+const versionStr = process.env.NODE_ENV === 'production' ? version : 'dev';
+
 module.exports = {
   entry: ['./src/main.ts'],
   module: {
@@ -7,30 +10,15 @@ module.exports = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader'
-          },
-          {
-            loader: 'ts-loader'
-          }
-        ]
+        use: [{ loader: 'ts-loader' }]
       },
       {
         test: /\.(png|jpg|gif)$/i,
-        use: [
-          {
-            loader: 'url-loader'
-          }
-        ]
+        use: [{ loader: 'url-loader' }]
       },
       {
         test: /\.xml$/i,
-        use: [
-          {
-            loader: 'raw-loader'
-          }
-        ]
+        use: [{ loader: 'raw-loader' }]
       }
     ]
   },
@@ -43,9 +31,7 @@ module.exports = {
     }
   },
   output: {
-    filename: `${name}-${
-      process.env.NODE_ENV === 'production' ? version : 'dev'
-    }.auto.js`,
+    filename: `${name}-${versionStr}.auto.js`,
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [],

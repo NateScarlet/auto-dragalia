@@ -1,32 +1,18 @@
-import {
-  autoBattleSwitchOff,
-  cancelButton,
-  closeButton,
-  continueButtonRed,
-  giveUpButtonBlue,
-  giveUpButtonWhite,
-  nextText,
-  okButton,
-  repeatBattleButton,
-  repeatWithStaminaButton,
-  retryButtonRed,
-  startBattleButton,
-  tapButton
-} from '@/images';
+import { img } from '@/assets/images';
 import { tryCastSupportSkill, tryTransform2dragon } from '@/utils/battle';
 import { clickImage, tryClickImage, waitAndClickImage } from '@/utils/image';
 
 export async function repeatRaid(): Promise<void> {
-  tryClickImage(startBattleButton);
-  tryClickImage(autoBattleSwitchOff);
-  tryClickImage(retryButtonRed);
-  tryClickImage(okButton);
-  tryClickImage(closeButton);
-  tryClickImage(cancelButton);
-  tryClickImage(tapButton);
-  tryClickImage(nextText);
-  if (tryClickImage(giveUpButtonWhite)) {
-    await waitAndClickImage(giveUpButtonBlue, { timeout: 60e3 });
+  tryClickImage(img.startBattleButton);
+  tryClickImage(img.autoBattleSwitchOff);
+  tryClickImage(img.retryButtonRed);
+  tryClickImage(img.okButton);
+  tryClickImage(img.closeButton);
+  tryClickImage(img.cancelButton);
+  tryClickImage(img.tapButton);
+  tryClickImage(img.nextText);
+  if (tryClickImage(img.giveUpButtonWhite)) {
+    await waitAndClickImage(img.giveUpButtonBlue, { timeout: 60e3 });
     throw new Error('队伍战力不足, 无法通关');
   }
   // tslint:disable-next-line: no-floating-promises
@@ -40,11 +26,11 @@ async function tryRepeatWithStamina(): Promise<void> {
   try {
     await repeatWithStamina();
   } catch {
-    tryClickImage(continueButtonRed);
+    tryClickImage(img.continueButtonRed);
   }
 }
 async function repeatWithStamina(): Promise<void> {
-  clickImage(repeatBattleButton);
-  await waitAndClickImage(repeatWithStaminaButton);
-  await waitAndClickImage(okButton);
+  clickImage(img.repeatBattleButton);
+  await waitAndClickImage(img.repeatWithStaminaButton);
+  await waitAndClickImage(img.okButton);
 }

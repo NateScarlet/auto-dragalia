@@ -1,17 +1,23 @@
 import { runTaskForever } from '@/runTaskForever';
 import { setupUI } from '@/setupUI';
 import { setupTaskRegistry } from '@/tasks';
+import { getAssetByResolution, loadAssets } from '@/utils/image';
 import { name, version } from 'package.json';
 
-((): void => {
+// tslint:disable-next-line: no-floating-promises
+(async (): Promise<void> => {
   console.log(`${name}: ${version}`);
 
-  launch('com.nintendo.zaga');
+  try {
+    launch('com.nintendo.zaga');
 
-  device.keepScreenOn(10000);
+    device.keepScreenOn(10000);
 
-  setupTaskRegistry();
-  setupUI();
-  // tslint:disable-next-line: no-floating-promises
-  runTaskForever();
+    setupTaskRegistry();
+    setupUI();
+    loadAssets(getAssetByResolution());
+    await runTaskForever();
+  } catch (err) {
+    console.error(JSON.stringify(err));
+  }
 })();

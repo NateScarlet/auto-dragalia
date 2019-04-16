@@ -1,13 +1,4 @@
-import {
-  cancelButton,
-  closeButton,
-  presentButton,
-  presentPrice0,
-  presentPrice1500,
-  presentPrice15000,
-  presentPrice4000,
-  presentPrice8000
-} from '@/images';
+import { img } from '@/assets/images';
 import {
   clickImage,
   findImage,
@@ -17,16 +8,18 @@ import {
 import { wait } from '@/utils/wait';
 
 const allPresentPriceImages: Image[] = [
-  presentPrice0,
-  presentPrice1500,
-  presentPrice4000,
-  presentPrice8000,
-  presentPrice15000
+  img.presentPrice0,
+  img.presentPrice1500,
+  img.presentPrice4000,
+  img.presentPrice8000,
+  img.presentPrice15000
 ];
 
 export async function feedDragon(): Promise<void> {
   try {
-    clickImage(presentButton, { id: 'present-button' });
+    clickImage(img.presentButton, {
+      id: 'present-button'
+    });
   } catch {
     throw new Error('未找到礼物按钮, 请手动前往龙之庭院');
   }
@@ -34,7 +27,9 @@ export async function feedDragon(): Promise<void> {
   await wait(500);
   for (const i of allPresentPriceImages) {
     try {
-      const pos: Point = findImage(i, { id: 'present-price' });
+      const pos: Point = findImage(i, {
+        id: 'present-price'
+      });
       swipe(pos.x, pos.y, pos.x, pos.y - 300, 300);
     } catch {
       break;
@@ -42,12 +37,12 @@ export async function feedDragon(): Promise<void> {
   }
 
   if (
-    !(await keepClickAnyImage([closeButton, cancelButton], {
+    !(await keepClickAnyImage([img.closeButton, img.cancelButton], {
       findOptions: {
         id: 'dialog-button'
       },
       onDelay(): boolean {
-        return !tryFindImage(presentButton, {
+        return !tryFindImage(img.presentButton, {
           id: 'present-button'
         });
       }

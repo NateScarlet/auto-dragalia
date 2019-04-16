@@ -1,13 +1,9 @@
-import {
-  enemyLegend,
-  supportSkillAvailable,
-  transformGaugeFull
-} from '@/images';
+import { img } from '@/assets/images';
 import { findImage, waitImage } from '@/utils/image';
 import { wait } from '@/utils/wait';
 
 export async function waitForEnemy(): Promise<void> {
-  await waitImage(true, enemyLegend, {
+  await waitImage(true, img.enemyLegend, {
     timeout: 3e3,
     findOptions: {
       region: [device.width / 4, 0, (device.width / 4) * 3, device.height / 2],
@@ -17,7 +13,7 @@ export async function waitForEnemy(): Promise<void> {
 }
 
 export async function transform2dragon(): Promise<void> {
-  const pos: Point = findImage(transformGaugeFull);
+  const pos: Point = findImage(img.transformGaugeFull);
   await waitForEnemy();
   console.log('龙化');
   click(pos.x + 100, pos.y);
@@ -36,7 +32,7 @@ export async function tryTransform2dragon(): Promise<void> {
 }
 
 export async function castSupportSkill(): Promise<void> {
-  const pos: Point | undefined = findImage(supportSkillAvailable, {
+  const pos: Point | undefined = findImage(img.supportSkillAvailable, {
     region: [device.width / 3, device.height / 4]
   });
   if (!pos) {

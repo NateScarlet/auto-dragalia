@@ -1,10 +1,4 @@
 {
-    "cSpell.words": [
-        "autojs",
-        "dragalia",
-        "pansx",
-        "polyfill",
-        "zaga"
-    ],
-    "typescript.preferences.importModuleSpecifier": "non-relative"
+  "cSpell.words": ["Sortby", "autojs", "dragalia", "pansx", "polyfill", "zaga"],
+  "typescript.preferences.importModuleSpecifier": "non-relative"
 }
