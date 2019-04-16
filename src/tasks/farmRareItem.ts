@@ -51,7 +51,7 @@ export async function farmRareItem(): Promise<void> {
 
   await waitImage(true, img.loadingText, { id: 'level-2-loading' });
   toastLog('检测到正在进入第二关卡');
-  await waitAnyImage(true, [img.rareItem1, img.rareItem2], {
+  await waitAnyImage(true, [img.rareItem], {
     timeout: 60e3,
     onDelay(): void {
       tryClickImage(img.menuButton, { id: 'menu-button' });
@@ -61,13 +61,10 @@ export async function farmRareItem(): Promise<void> {
   });
   await wait(500); // Wait menu animation finish;
   if (
-    tryFindAnyImage(
-      [img.noRareItem1, img.noRareItem2, img.noRareItem3, img.noRareItem4],
-      {
-        threshold: 0.99,
-        id: 'no-rare-time'
-      }
-    )
+    tryFindAnyImage([img.noRareItem1, img.noRareItem2], {
+      threshold: 0.99,
+      id: 'no-rare-time'
+    })
   ) {
     toastLog('没有刷到稀有物品, 直接下一轮');
     clickImage(img.giveUpButtonBlue, { id: 'give-up-button-1' });
