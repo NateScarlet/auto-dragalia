@@ -53,6 +53,16 @@
 
 [auto.js]: https://github.com/hyb1996/Auto.js
 
+## 屏幕分辨率支持
+
+基础适配分辨率为 1080x2160
+
+其他适配过的分辨率见 [src/assets/images](./src/assets/images)
+
+脚本功能利用识图实现, 所以相近分辨率的都应该可以用
+
+欢迎发 PR 添加更多分辨率
+
 ## 关于刷稀有出错
 
 ### 战斗菜单停留超时
