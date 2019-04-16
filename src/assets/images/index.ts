@@ -11,4 +11,4 @@ export const assets: Record<string, Partial<ImageAssets>> = {
   '1080x2340': img1080x2340
 };
 
-export const img: ImageAssets = img1080x2160;
+export const img: ImageAssets = { ...(<ImageAssets>img1080x2160) };

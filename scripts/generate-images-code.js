@@ -45,6 +45,8 @@ async function generateImageIndex(folder) {
           'export const index: Record<string, Image> = {};',
           '',
           ...exportLines,
+          '',
+          'Object.freeze(index);',
           ''
         ].join('\n'),
         resolve
@@ -90,7 +92,7 @@ export const assets: Record<string, Partial<ImageAssets>> = {`,
         .map(i => `  '${i}': img${i},`),
       `};
 
-export const img: ImageAssets = img1080x2160;
+export const img: ImageAssets =  { ...(<ImageAssets>img1080x2160) };
 `
     ].join('\n')
   );

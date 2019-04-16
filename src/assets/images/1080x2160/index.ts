@@ -79,3 +79,5 @@ index.supportSelectButton = images.fromBase64(supportSelectButtonPng);
 index.supportSkillAvailable = images.fromBase64(supportSkillAvailablePng);
 index.tapButton = images.fromBase64(tapButtonPng);
 index.transformGaugeFull = images.fromBase64(transformGaugeFullPng);
+
+Object.freeze(index);

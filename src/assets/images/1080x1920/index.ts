@@ -7,3 +7,5 @@ export const index: Record<string, Image> = {};
 
 index.noRareItem1 = images.fromBase64(noRareItem1Png);
 index.rareItem = images.fromBase64(rareItemPng);
+
+Object.freeze(index);
