@@ -9,8 +9,8 @@ export function loadAssets(name: string): void {
 }
 
 export function getAssetByResolution(
-  height: number = device.height,
-  width: number = device.width
+  width: number = device.width,
+  height: number = device.height
 ): string {
   const pattern: RegExp = /(\d+)x(\d+)/;
   interface IResolution {
@@ -29,8 +29,8 @@ export function getAssetByResolution(
 
         return {
           name: i[0],
-          height: Number.parseInt(i[1], 10),
-          width: Number.parseInt(i[2], 10)
+          width: Number.parseInt(i[1], 10),
+          height: Number.parseInt(i[2], 10)
         };
       }
     );

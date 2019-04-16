@@ -90,7 +90,7 @@ export const assets: Record<string, Partial<ImageAssets>> = {`,
         .map(i => `  '${i}': img${i},`),
       `};
 
-export const img: ImageAssets = img2160x1080;
+export const img: ImageAssets = img1080x2160;
 `
     ].join('\n')
   );
