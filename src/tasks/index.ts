@@ -1,7 +1,7 @@
 import { farmRareItem } from '@/tasks/farmRareItem';
 import { feedDragon } from '@/tasks/feedDragon';
-import { repeatRaid } from '@/tasks/repeatRaid';
 import { feedFourLeafClover } from '@/tasks/feedFourLeafClover';
+import { repeatRaid } from '@/tasks/repeatRaid';
 
 export const taskRegistry: Record<
   string,
