@@ -39,7 +39,7 @@ Added image ids for logging.
 - add `IFindImageOptions` ([601d0cb](https://github.com/NateScarlet/auto-dragalia/commit/601d0cb))
 - add `IWaitImageOptions.id` ([078a2bb](https://github.com/NateScarlet/auto-dragalia/commit/078a2bb))
 - add version to error message ([6ba53c2](https://github.com/NateScarlet/auto-dragalia/commit/6ba53c2))
-- **farm-rare-item:** add menu animation wating ([b907394](https://github.com/NateScarlet/auto-dragalia/commit/b907394))
+- **farm-rare-item:** add menu animation waiting ([b907394](https://github.com/NateScarlet/auto-dragalia/commit/b907394))
 - **farm-rare-item:** set finding ids ([3711f65](https://github.com/NateScarlet/auto-dragalia/commit/3711f65))
 - **farm-rare-item:** set waiting ids ([c6217bb](https://github.com/NateScarlet/auto-dragalia/commit/c6217bb))
 

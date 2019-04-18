@@ -1,7 +1,7 @@
-# Created by .ignore support plugin (hsz.mobi)
 /node_modules/
 /dist/
 /yarn.lock
 yarn-error.log
-qmacro.ini
 /captures
+
+/.vscode/settings.json
