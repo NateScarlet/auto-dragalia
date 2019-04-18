@@ -6,6 +6,7 @@
 ![Android 7.x](https://img.shields.io/badge/Android-7+-a4c639.svg?logo=android)
 [![Maintainability](https://api.codeclimate.com/v1/badges/619eae52db0e72683d02/maintainability)](https://codeclimate.com/github/NateScarlet/auto-dragalia/maintainability)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![Gitter](https://badges.gitter.im/auto-dragalia/community.svg)](https://gitter.im/auto-dragalia/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 《失落的龙约》 [Auto.js] 辅助脚本
 
