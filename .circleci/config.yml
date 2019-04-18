@@ -1,0 +1,56 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: 'Install dependencies'
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Build
+          command: npm run build
+      - run:
+          name: Archive
+          command: mkdir artifacts && python -m zipfile -c artifacts/auto-dragalia-${CIRCLE_TAG:-${CIRCLE_SHA1:0:8}}.zip dist/*
+      - store_artifacts:
+          path: artifacts
+      - persist_to_workspace:
+          root: 'artifacts'
+          paths:
+            - '*.zip'
+      - run:
+          name: 'Add github comment'
+          command: .circleci/comment.js
+  github-release:
+    docker:
+      - image: circleci/golang:1.8
+    steps:
+      - attach_workspace:
+          at: ./artifacts
+      - run:
+          name: 'Install ghr'
+          command: go get github.com/tcnksm/ghr
+      - run:
+          name: 'Upload'
+          command: ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_TAG} ./artifacts/
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+      - github-release:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/

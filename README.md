@@ -1,6 +1,6 @@
 # auto-dragalia
 
-[![Build Status](https://travis-ci.org/NateScarlet/auto-dragalia.svg?branch=master)](https://travis-ci.org/NateScarlet/auto-dragalia)
+[![Build Status](https://img.shields.io/circleci/project/github/NateScarlet/auto-dragalia.svg)](https://circleci.com/gh/NateScarlet/auto-dragalia)
 [![Release](https://img.shields.io/github/release/NateScarlet/auto-dragalia.svg)](https://github.com/NateScarlet/auto-dragalia/releases/latest)
 [![Auto.js 4.x](https://img.shields.io/badge/Auto.js-4.x-009688.svg)](https://github.com/hyb1996/Auto.js)
 ![Android 7.x](https://img.shields.io/badge/Android-7+-a4c639.svg?logo=android)
