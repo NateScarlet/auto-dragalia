@@ -1,5 +1,6 @@
 import { img } from '@/assets/images';
 import {
+  chainImageClicks,
   clickImage,
   tryClickImage,
   tryFindAnyImage,
@@ -42,22 +43,26 @@ function selectLevel(): void {
 }
 
 async function enterStage1(): Promise<void> {
-  await waitImage(true, img.startBattleButton, {
-    id: 'start-battle',
-    timeout: 30e3,
-    onDelay(): void {
-      tryClickImage(img.supportSelectButton, { id: 'support-select' });
+  await chainImageClicks(
+    {
+      image: img.supportSelectButton,
+      timeout: 30e3,
+      id: 'support-select',
+      retry: true
     },
-    retry: true
-  });
-  await waitImage(true, img.loadingText, {
-    id: 'level-1-loading',
-    timeout: 30e3,
-    onDelay(): void {
-      tryClickImage(img.startBattleButton, { id: 'start-battle' });
+    {
+      image: img.startBattleButton,
+      id: 'start-battle',
+      timeout: 30e3,
+      retry: true
     },
-    retry: true
-  });
+    {
+      image: img.loadingText,
+      id: 'level-1-loading',
+      timeout: 30e3,
+      retry: true
+    }
+  );
   toastLog('检测到正在进入第一关卡');
   await waitImage(false, img.loadingText, {
     id: 'level-1-loading',

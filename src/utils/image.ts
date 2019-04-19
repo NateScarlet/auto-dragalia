@@ -219,6 +219,48 @@ export async function keepClickAnyImage(
 
   return clickCount;
 }
+async function chainImageClick(
+  left: IImageClickChainItem,
+  right: IImageClickChainItem
+): Promise<Point> {
+  return waitImage(true, right.image, {
+    id: right.id,
+    delay: right.delay,
+    findOptions: right.findOptions,
+    async onDelay(): Promise<void> {
+      if (right.onDelay) {
+        await right.onDelay();
+      }
+      tryClickImage(left.image, {
+        id: left.id,
+        level: left.level,
+        region: left.region,
+        threshold: left.threshold
+      });
+    },
+    retry: right.retry,
+    timeout: right.timeout
+  });
+}
+
+/**
+ * Click multiple images one by one, last image waited but not clicked
+ * @param items Options for each image to click
+ * @return image positions in order
+ */
+export async function chainImageClicks(
+  ...items: IImageClickChainItem[]
+): Promise<Point[]> {
+  const ret: Point[] = [];
+  for (let pos: number = 0; pos + 1 < items.length; pos += 1) {
+    ret.push(await chainImageClick(items[pos], items[pos + 1]));
+  }
+  if (ret === undefined) {
+    throw new Error('Need at least 2 image to chain click');
+  }
+
+  return ret;
+}
 
 interface IWaitImageOptions {
   timeout?: number;
@@ -227,6 +269,11 @@ interface IWaitImageOptions {
   id?: string;
   retry?: boolean;
   onDelay?(): void | Promise<void>;
+}
+interface IImageClickChainItem
+  extends IWaitImageOptions,
+    images.FindImageOptions {
+  image: Image;
 }
 
 interface IFindImageOptions extends images.FindImageOptions {
