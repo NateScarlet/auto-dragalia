@@ -172,7 +172,7 @@ export async function waitAnyImage(
   await wait(delay);
   const startTime: Date = new Date();
   let roundStartTime: Date = startTime;
-  while (new Date().getTime() - startTime.getTime() < timeout) {
+  while (Date.now() - startTime.getTime() < timeout) {
     const ret: Point | undefined = tryFindAnyImage(images, {
       ...findOptions,
       id
@@ -180,17 +180,24 @@ export async function waitAnyImage(
     if (Boolean(ret) === appear) {
       return ret;
     }
+    await waitRound();
+  }
+  throw new Error('等待超时');
+
+  async function waitRound(): Promise<void> {
     console.verbose(`Waiting image ${appear ? 'appear' : 'disappear'}: ${id}`);
     await onDelay();
     if (retry) {
-      tryClickImage(img.retryButtonRed, { id: 'retry-button-red' });
-      tryClickImage(img.retryButtonBlue, { id: 'retry-button-blue' });
+      handleRetry();
     }
-    const now: Date = new Date();
-    await wait(delay - (now.getTime() - roundStartTime.getTime()));
-    roundStartTime = now;
+    await wait(delay - (Date.now() - roundStartTime.getTime()));
+    roundStartTime = new Date();
   }
-  throw new Error('等待超时');
+}
+
+function handleRetry(): void {
+  tryClickImage(img.retryButtonRed, { id: 'retry-button-red' });
+  tryClickImage(img.retryButtonBlue, { id: 'retry-button-blue' });
 }
 
 export async function keepClickAnyImage(
