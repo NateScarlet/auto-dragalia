@@ -6,7 +6,7 @@ labels: bug
 assignees: NateScarlet
 ---
 
-## BUG 描述
+## 描述
 
 对 bug 的清晰简洁描述。
 
