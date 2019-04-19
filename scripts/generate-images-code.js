@@ -63,20 +63,19 @@ async function generateImageIndex(folder) {
       ''
     ].join('\n')
   );
+  const folderNames = folders.map(i => path.posix.basename(i));
   fs.writeFileSync(
     path.posix.join(baseDir, 'index.ts'),
     [
       ...commonHeader,
-      ...folders
-        .map(i => path.posix.basename(i))
-        .map(i => `import { index as img${i} } from '@/assets/images/${i}';`),
+      ...folderNames.map(
+        i => `import { index as img${i} } from '@/assets/images/${i}';`
+      ),
       `\
 import { ImageAssets } from '@/assets/images/type';
 
 export const assets: Record<string, Partial<ImageAssets>> = {`,
-      ...folders
-        .map(i => path.posix.basename(i))
-        .map(i => `  '${i}': img${i},`),
+      ...folderNames.map(i => `  '${i}': img${i},`),
       `};
 
 export const img: ImageAssets = { ...(<ImageAssets>img1080x2160) };
