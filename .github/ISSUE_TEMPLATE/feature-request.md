@@ -1,7 +1,7 @@
 ---
 name: 功能请求
 about: 为这个项目提供想法和建议
-title: '[功能请求]'
+title: ''
 labels: enhancement
 assignees: ''
 ---

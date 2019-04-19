@@ -1,7 +1,7 @@
 ---
 name: Bug 报告
 about: 创建报告以帮助我们改进
-title: '[BUG]'
+title: ''
 labels: bug
 assignees: NateScarlet
 ---
@@ -12,7 +12,12 @@ assignees: NateScarlet
 
 ## 重现
 
-重现行为的步骤： 1.去'...' 2.点击“......” 3.向下滚动到“....” 4.看错误
+重现行为的步骤：
+
+1. 去……
+2. 点击……
+3. 向下滚动到……
+4. 错误发生
 
 ## 预期行为
 
