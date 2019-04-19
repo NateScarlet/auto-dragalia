@@ -84,17 +84,17 @@ export async function keepClickAnyImage(
 async function handleKeepAnyImageClicking(
   context: IKeepClickAnyImageContext
 ): Promise<void> {
-  const {
-    nextTimeout = 5e3,
-    findOptions,
-    onDelay = (): boolean => true
-  }: IKeepClickImageOptions = context.options;
-
   if (Date.now() > context.waitEndTime) {
     context.isFinished = true;
 
     return;
   }
+
+  const {
+    nextTimeout = 5e3,
+    findOptions,
+    onDelay = (): boolean => true
+  }: IKeepClickImageOptions = context.options;
 
   if (tryClickAnyImage(context.images, findOptions)) {
     context.clickCount += 1;
