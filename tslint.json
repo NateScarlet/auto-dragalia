@@ -8,6 +8,7 @@
     "newline-per-chained-call": false,
     "align": false,
     "strict-boolean-expressions": false,
-    "match-default-export-name": false
+    "match-default-export-name": false,
+    "max-file-line-count": [true, 250]
   }
 }
