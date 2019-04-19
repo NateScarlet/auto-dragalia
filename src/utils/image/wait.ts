@@ -24,8 +24,7 @@ export async function waitAnyImage(
     delay = 500,
     findOptions = {},
     onDelay = (): void | Promise<void> => undefined,
-    id = String(waitingCount),
-    retry = false
+    id = String(waitingCount)
   } = options || {};
 
   await wait(delay);
@@ -46,9 +45,6 @@ export async function waitAnyImage(
   async function waitRound(): Promise<void> {
     console.verbose(`Waiting image ${appear ? 'appear' : 'disappear'}: ${id}`);
     await onDelay();
-    if (retry) {
-      handleRetry();
-    }
     await wait(delay - (Date.now() - roundStartTime.getTime()));
     roundStartTime = new Date();
   }
@@ -81,6 +77,5 @@ export interface IWaitImageOptions {
   delay?: number;
   findOptions?: images.FindImageOptions;
   id?: string;
-  retry?: boolean;
   onDelay?(): void | Promise<void>;
 }

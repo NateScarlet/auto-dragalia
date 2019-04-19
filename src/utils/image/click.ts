@@ -105,7 +105,6 @@ async function chainImageClick(
         threshold: left.threshold
       });
     },
-    retry: right.retry,
     timeout: right.timeout
   });
 }

@@ -2,6 +2,7 @@ import { img } from '@/assets/images';
 import {
   chainImageClicks,
   clickImage,
+  handleRetry,
   tryClickImage,
   tryFindAnyImage,
   waitAndClickImage,
@@ -19,7 +20,7 @@ export async function farmRareItem(): Promise<void> {
   await waitImage(true, img.levelSelect, {
     timeout: 60e3,
     id: 'level-select',
-    retry: true
+    onDelay: handleRetry
   });
 }
 
@@ -48,25 +49,25 @@ async function enterStage1(): Promise<void> {
       image: img.supportSelectButton,
       timeout: 30e3,
       id: 'support-select',
-      retry: true
+      onDelay: handleRetry
     },
     {
       image: img.startBattleButton,
       id: 'start-battle',
       timeout: 30e3,
-      retry: true
+      onDelay: handleRetry
     },
     {
       image: img.loadingText,
       id: 'level-1-loading',
       timeout: 30e3,
-      retry: true
+      onDelay: handleRetry
     }
   );
   toastLog('检测到正在进入第一关卡');
   await waitImage(false, img.loadingText, {
     id: 'level-1-loading',
-    retry: true
+    onDelay: handleRetry
   });
   toastLog('检测到已进入第一关卡');
 }
@@ -81,12 +82,12 @@ async function enterMenu(): Promise<void> {
   await waitAnyImage(true, [img.rareItem], {
     timeout: 60e3,
     onDelay(): void {
+      handleRetry();
       tryClickImage(img.menuButton, {
         id: 'menu-button'
       });
     },
-    id: 'rare-item',
-    retry: true
+    id: 'rare-item'
   });
   await wait(500); // Wait menu animation finish;
 }
