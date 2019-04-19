@@ -38,6 +38,7 @@ type IWindow = floaty.FloatyWindow & {
 };
 
 const idleText: string = '停止';
+
 export function setupUI(): {
   window: IWindow;
   spinnerItems: string[];
@@ -51,11 +52,20 @@ export function setupUI(): {
   window.setAdjustEnabled(true);
   window.exitOnClose();
 
-  // Setup spinner
+  setupSpinner(window, spinnerItems);
+
+  // Empty timer for async syntax
+  // https://hyb1996.github.io/AutoJs-Docs/#/floaty?id=floaty
+  // tslint:disable-next-line:no-empty
+  setInterval(() => {}, 1e3);
+
+  return { window, spinnerItems };
+}
+
+function setupSpinner(window: IWindow, spinnerItems: string[]): void {
   window.taskSpinner.setOnItemSelectedListener({
     onItemSelected(): void {
       const taskName: string = window.taskSpinner.getSelectedItem();
-
       if (taskName === idleText) {
         store.currentTask = undefined;
       } else {
@@ -73,11 +83,4 @@ export function setupUI(): {
       );
     });
   });
-
-  // Empty timer for async syntax
-  // https://hyb1996.github.io/AutoJs-Docs/#/floaty?id=floaty
-  // tslint:disable-next-line:no-empty
-  setInterval(() => {}, 1e3);
-
-  return { window, spinnerItems };
 }
