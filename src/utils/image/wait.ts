@@ -1,3 +1,4 @@
+import { img } from '@/assets/images';
 import { handleRetry, tryFindAnyImage } from '@/utils/image';
 import { wait } from '@/utils/wait';
 
@@ -64,6 +65,18 @@ export async function waitImage(
   }
 
   return waitAnyImage(appear, [image], options);
+}
+
+export async function waitLoading(options?: IWaitImageOptions): Promise<void> {
+  await waitImage(false, img.loadingText, {
+    ...options,
+    async onDelay(): Promise<void> {
+      handleRetry();
+      if (options && options.onDelay) {
+        await options.onDelay();
+      }
+    }
+  });
 }
 
 export interface IWaitImageOptions {

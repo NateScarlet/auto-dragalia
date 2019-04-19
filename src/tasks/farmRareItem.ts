@@ -3,18 +3,25 @@ import {
   chainImageClicks,
   clickImage,
   handleRetry,
+  IImageClickChainItem,
+  IWaitImageOptions,
   tryClickImage,
   tryFindAnyImage,
   waitAndClickImage,
   waitAnyImage,
-  waitImage
+  waitImage,
+  waitLoading
 } from '@/utils/image';
 import { wait } from '@/utils/wait';
 
 export async function farmRareItem(): Promise<void> {
   selectLevel();
   await enterStage1();
+  toastLog('检测到正在进入第一关卡');
+  await waitLoading({ id: 'stage-1-loading' });
+  toastLog('检测到已进入第一关卡');
   await enterStage2();
+  toastLog('检测到正在进入第二关卡');
   await enterMenu();
   await checkRareItem();
   await waitImage(true, img.levelSelect, {
@@ -59,23 +66,16 @@ async function enterStage1(): Promise<void> {
     },
     {
       image: img.loadingText,
-      id: 'level-1-loading',
+      id: 'stage-1-loading',
       timeout: 30e3,
       onDelay: handleRetry
     }
   );
-  toastLog('检测到正在进入第一关卡');
-  await waitImage(false, img.loadingText, {
-    id: 'level-1-loading',
-    onDelay: handleRetry
-  });
-  toastLog('检测到已进入第一关卡');
 }
 
 async function enterStage2(): Promise<void> {
   tryClickImage(img.autoBattleSwitchOff, { id: 'auto-battle-switch-off' });
-  await waitImage(true, img.loadingText, { id: 'level-2-loading' });
-  toastLog('检测到正在进入第二关卡');
+  await waitImage(true, img.loadingText, { id: 'stage-2-loading' });
 }
 
 async function enterMenu(): Promise<void> {
