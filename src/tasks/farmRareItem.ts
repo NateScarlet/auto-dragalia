@@ -10,13 +10,19 @@ import {
 import { wait } from '@/utils/wait';
 
 export async function farmRareItem(): Promise<void> {
-  await enterLevel1();
-  await enterLevel2();
+  selectLevel();
+  await enterStage1();
+  await enterStage2();
   await enterMenu();
   await checkRareItem();
+  await waitImage(true, img.levelSelect, {
+    timeout: 60e3,
+    id: 'level-select',
+    retry: true
+  });
 }
 
-async function enterLevel1(): Promise<void> {
+function selectLevel(): void {
   const levelSelectPosition: Point | undefined = tryFindAnyImage(
     [
       img.levelSelectMaster,
@@ -25,12 +31,17 @@ async function enterLevel1(): Promise<void> {
       img.levelSelectStandard,
       img.levelSelectBeginner
     ],
-    { id: 'level-select' }
+    {
+      id: 'level-select'
+    }
   );
   if (!levelSelectPosition) {
     throw new Error('请至关卡选择页面再开始');
   }
   click(levelSelectPosition.x, levelSelectPosition.y);
+}
+
+async function enterStage1(): Promise<void> {
   await waitImage(true, img.startBattleButton, {
     id: 'start-battle',
     timeout: 30e3,
@@ -55,7 +66,7 @@ async function enterLevel1(): Promise<void> {
   toastLog('检测到已进入第一关卡');
 }
 
-async function enterLevel2(): Promise<void> {
+async function enterStage2(): Promise<void> {
   tryClickImage(img.autoBattleSwitchOff, { id: 'auto-battle-switch-off' });
   await waitImage(true, img.loadingText, { id: 'level-2-loading' });
   toastLog('检测到正在进入第二关卡');
@@ -82,31 +93,34 @@ async function checkRareItem(): Promise<void> {
       id: 'no-rare-time'
     })
   ) {
-    toastLog('没有刷到稀有物品, 直接下一轮');
-    clickImage(img.giveUpButtonBlue, { id: 'give-up-button-1' });
-    await waitAndClickImage(img.giveUpButtonBlue, {
-      timeout: 5e3,
-      id: 'give-up-button-2'
-    });
+    await onFail();
   } else {
-    toastLog('成功刷到稀有物品, 继续完成战斗');
-    while (
-      !tryClickImage(img.continueButtonBlue, {
-        id: 'finish-phrase-continue-button'
-      })
-    ) {
-      tryClickImage(img.okButton, { id: 'finish-phrase-ok-button' });
-      tryClickImage(img.closeButton, {
-        id: 'finish-phrase-close-button'
-      });
-      tryClickImage(img.cancelButton, { id: 'finish-phrase-cancel-button' });
-      tryClickImage(img.tapButton, { id: 'finish-phrase-tap-button' });
-      tryClickImage(img.nextText, { id: 'finish-phrase-next-text' });
-    }
+    onSuccess();
   }
-  await waitImage(true, img.levelSelect, {
-    timeout: 60e3,
-    id: 'level-select',
-    retry: true
+}
+
+function onSuccess(): void {
+  toastLog('成功刷到稀有物品, 继续完成战斗');
+  while (
+    !tryClickImage(img.continueButtonBlue, {
+      id: 'finish-phrase-continue-button'
+    })
+  ) {
+    tryClickImage(img.okButton, { id: 'finish-phrase-ok-button' });
+    tryClickImage(img.closeButton, {
+      id: 'finish-phrase-close-button'
+    });
+    tryClickImage(img.cancelButton, { id: 'finish-phrase-cancel-button' });
+    tryClickImage(img.tapButton, { id: 'finish-phrase-tap-button' });
+    tryClickImage(img.nextText, { id: 'finish-phrase-next-text' });
+  }
+}
+
+async function onFail(): Promise<void> {
+  toastLog('没有刷到稀有物品, 直接下一轮');
+  clickImage(img.giveUpButtonBlue, { id: 'give-up-button-1' });
+  await waitAndClickImage(img.giveUpButtonBlue, {
+    timeout: 5e3,
+    id: 'give-up-button-2'
   });
 }
