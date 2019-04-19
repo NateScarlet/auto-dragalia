@@ -16,15 +16,8 @@ const allPresentPriceImages: Image[] = [
 ];
 
 export async function feedDragon(): Promise<void> {
-  try {
-    clickImage(img.presentButton, {
-      id: 'present-button'
-    });
-  } catch {
-    throw new Error('未找到礼物按钮, 请手动前往龙之庭院');
-  }
+  await enterPresentPage();
 
-  await wait(500);
   for (const i of allPresentPriceImages) {
     try {
       const pos: Point = findImage(i, {
@@ -49,5 +42,16 @@ export async function feedDragon(): Promise<void> {
     }))
   ) {
     throw new Error('无可用礼物');
+  }
+}
+
+export async function enterPresentPage(): Promise<void> {
+  try {
+    clickImage(img.presentButton, {
+      id: 'present-button'
+    });
+    await wait(500);
+  } catch {
+    throw new Error('未找到礼物按钮, 请手动前往龙之庭院');
   }
 }

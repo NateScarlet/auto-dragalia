@@ -1,6 +1,6 @@
 import { img } from '@/assets/images';
+import { enterPresentPage } from '@/tasks/feedDragon';
 import {
-  clickImage,
   findImage,
   keepClickAnyImage,
   tryClickImage,
@@ -9,11 +9,7 @@ import {
 import { wait } from '@/utils/wait';
 
 export async function feedFourLeafClover(): Promise<void> {
-  try {
-    clickImage(img.presentButton, { id: 'present-button' });
-  } catch {
-    throw new Error('未找到礼物按钮, 请手动前往龙之庭院');
-  }
+  await enterPresentPage();
 
   if (
     tryFindImage(img.lv29Button, {
