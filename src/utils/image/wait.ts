@@ -27,27 +27,21 @@ export async function waitAnyImage(
     id = String(waitingCount)
   } = options || {};
 
-  const waitingEndTime: Date = new Date(Date.now() + timeout);
-  let ret: Point | undefined;
-  while (Date.now() < waitingEndTime.getTime()) {
-    if (await waitRound()) {
-      return ret;
-    }
-  }
-  throw new Error('等待超时');
-
-  async function waitRound(): Promise<boolean> {
-    const roundStartTime: Date = new Date();
-    ret = tryFindAnyImage(images, { ...findOptions, id });
+  const waitingEndTime: number = Date.now() + timeout;
+  while (Date.now() < waitingEndTime) {
+    const roundStartTime: number = Date.now();
+    const ret: Point | undefined = tryFindAnyImage(images, {
+      ...findOptions,
+      id
+    });
     if (Boolean(ret) === appear) {
-      return true;
+      return ret;
     }
     console.verbose(`Waiting image ${appear ? 'appear' : 'disappear'}: ${id}`);
     await onDelay();
-    await wait(delay - (Date.now() - roundStartTime.getTime()));
-
-    return false;
+    await wait(delay - (Date.now() - roundStartTime));
   }
+  throw new Error('等待超时');
 }
 
 export async function waitImage(
