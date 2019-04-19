@@ -1,11 +1,6 @@
 import { img } from '@/assets/images';
-import { enterPresentPage } from '@/tasks/feedDragon';
-import {
-  findImage,
-  keepClickAnyImage,
-  tryClickImage,
-  tryFindImage
-} from '@/utils/image';
+import { enterPresentPage, handlePresentResponse } from '@/tasks/feedDragon';
+import { findImage, tryClickImage, tryFindImage } from '@/utils/image';
 import { wait } from '@/utils/wait';
 
 export async function feedFourLeafClover(): Promise<void> {
@@ -32,19 +27,6 @@ export async function feedFourLeafClover(): Promise<void> {
       throw new Error('没有四叶草，请去炼草');
     }
 
-    if (
-      !(await keepClickAnyImage([img.closeButton, img.cancelButton], {
-        findOptions: {
-          id: 'dialog-button'
-        },
-        onDelay(): boolean {
-          return !tryFindImage(img.presentButton, {
-            id: 'present-button'
-          });
-        }
-      }))
-    ) {
-      throw new Error('无可用礼物或等待超时');
-    }
+    await handlePresentResponse();
   }
 }

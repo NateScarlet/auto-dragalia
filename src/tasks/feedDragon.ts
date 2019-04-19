@@ -29,6 +29,21 @@ export async function feedDragon(): Promise<void> {
     }
   }
 
+  await handlePresentResponse();
+}
+
+export async function enterPresentPage(): Promise<void> {
+  try {
+    clickImage(img.presentButton, {
+      id: 'present-button'
+    });
+    await wait(500);
+  } catch {
+    throw new Error('未找到礼物按钮, 请手动前往龙之庭院');
+  }
+}
+
+export async function handlePresentResponse(): Promise<void> {
   if (
     !(await keepClickAnyImage([img.closeButton, img.cancelButton], {
       findOptions: {
@@ -42,16 +57,5 @@ export async function feedDragon(): Promise<void> {
     }))
   ) {
     throw new Error('无可用礼物');
-  }
-}
-
-export async function enterPresentPage(): Promise<void> {
-  try {
-    clickImage(img.presentButton, {
-      id: 'present-button'
-    });
-    await wait(500);
-  } catch {
-    throw new Error('未找到礼物按钮, 请手动前往龙之庭院');
   }
 }
