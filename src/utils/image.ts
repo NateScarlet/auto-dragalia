@@ -212,6 +212,15 @@ export async function keepClickAnyImage(
   let waitEndTime: number = Date.now() + firstTimeout;
   let clickCount: number = 0;
   while (Date.now() <= waitEndTime) {
+    await handleClick();
+    if (!(await onDelay())) {
+      break;
+    }
+  }
+
+  return clickCount;
+
+  async function handleClick(): Promise<void> {
     if (tryClickAnyImage(images, findOptions)) {
       clickCount += 1;
       waitEndTime = Date.now() + nextTimeout;
@@ -219,13 +228,9 @@ export async function keepClickAnyImage(
     } else {
       await wait(1000);
     }
-    if (!(await onDelay())) {
-      break;
-    }
   }
-
-  return clickCount;
 }
+
 async function chainImageClick(
   left: IImageClickChainItem,
   right: IImageClickChainItem
