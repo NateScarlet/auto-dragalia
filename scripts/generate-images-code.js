@@ -10,8 +10,9 @@ const commonHeader = [
   '// This file is auto generated',
   '// Use `npm run code-generate:images` to update this file'
 ];
+
 async function generateImageIndex(folder) {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     const relativePath = path.posix.relative('src', folder);
     fs.readdir(folder, (err, files) => {
       if (err) {
@@ -36,21 +37,7 @@ async function generateImageIndex(folder) {
           `index.${imageName} = images.fromBase64(${importName});`
         );
       }
-      fs.writeFile(
-        `${folder}/index.ts`,
-        [
-          ...commonHeader,
-          ...importLines,
-          '',
-          'export const index: Record<string, Image> = {};',
-          '',
-          ...exportLines,
-          '',
-          'Object.freeze(index);',
-          ''
-        ].join('\n'),
-        resolve
-      );
+      updateIndex(folder, importLines, exportLines).then(resolve, reject);
     });
   });
 }
@@ -92,8 +79,34 @@ export const assets: Record<string, Partial<ImageAssets>> = {`,
         .map(i => `  '${i}': img${i},`),
       `};
 
-export const img: ImageAssets =  { ...(<ImageAssets>img1080x2160) };
+export const img: ImageAssets = { ...(<ImageAssets>img1080x2160) };
 `
     ].join('\n')
   );
 })();
+
+async function updateIndex(folder, importLines, exportLines) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(
+      `${folder}/index.ts`,
+      [
+        ...commonHeader,
+        ...importLines,
+        '',
+        'export const index: Record<string, Image> = {};',
+        '',
+        ...exportLines,
+        '',
+        'Object.freeze(index);',
+        ''
+      ].join('\n'),
+      err => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve();
+      }
+    );
+  });
+}
