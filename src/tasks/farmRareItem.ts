@@ -10,6 +10,13 @@ import {
 import { wait } from '@/utils/wait';
 
 export async function farmRareItem(): Promise<void> {
+  await enterLevel1();
+  await enterLevel2();
+  await enterMenu();
+  await checkRareItem();
+}
+
+async function enterLevel1(): Promise<void> {
   const levelSelectPosition: Point | undefined = tryFindAnyImage(
     [
       img.levelSelectMaster,
@@ -24,7 +31,6 @@ export async function farmRareItem(): Promise<void> {
     throw new Error('请至关卡选择页面再开始');
   }
   click(levelSelectPosition.x, levelSelectPosition.y);
-
   await waitImage(true, img.startBattleButton, {
     id: 'start-battle',
     timeout: 30e3,
@@ -47,19 +53,29 @@ export async function farmRareItem(): Promise<void> {
     retry: true
   });
   toastLog('检测到已进入第一关卡');
-  tryClickImage(img.autoBattleSwitchOff, { id: 'auto-battle-switch-off' });
+}
 
+async function enterLevel2(): Promise<void> {
+  tryClickImage(img.autoBattleSwitchOff, { id: 'auto-battle-switch-off' });
   await waitImage(true, img.loadingText, { id: 'level-2-loading' });
   toastLog('检测到正在进入第二关卡');
+}
+
+async function enterMenu(): Promise<void> {
   await waitAnyImage(true, [img.rareItem], {
     timeout: 60e3,
     onDelay(): void {
-      tryClickImage(img.menuButton, { id: 'menu-button' });
+      tryClickImage(img.menuButton, {
+        id: 'menu-button'
+      });
     },
     id: 'rare-item',
     retry: true
   });
   await wait(500); // Wait menu animation finish;
+}
+
+async function checkRareItem(): Promise<void> {
   if (
     tryFindAnyImage([img.noRareItem1, img.noRareItem2], {
       threshold: 0.99,
