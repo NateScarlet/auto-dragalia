@@ -5,6 +5,8 @@
 [![Auto.js 4.x](https://img.shields.io/badge/Auto.js-4.x-009688.svg)](https://github.com/hyb1996/Auto.js)
 ![Android 7.x](https://img.shields.io/badge/Android-7+-a4c639.svg?logo=android)
 [![Maintainability](https://api.codeclimate.com/v1/badges/619eae52db0e72683d02/maintainability)](https://codeclimate.com/github/NateScarlet/auto-dragalia/maintainability)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/NateScarlet/auto-dragalia.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/NateScarlet/auto-dragalia/alerts/)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/NateScarlet/auto-dragalia.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/NateScarlet/auto-dragalia/context:javascript)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![Gitter](https://badges.gitter.im/auto-dragalia/community.svg)](https://gitter.im/auto-dragalia/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
