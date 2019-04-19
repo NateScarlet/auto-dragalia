@@ -5,7 +5,8 @@ module.exports = {
       'farm-rare-item',
       'feed-dragon',
       'repeat-raid',
-      'feed-four-leaf-clover'
+      'feed-four-leaf-clover',
+      'deps'
     ]
   }
 };
