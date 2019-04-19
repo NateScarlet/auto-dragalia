@@ -54,35 +54,57 @@ export function handleRetry(): void {
   tryClickImage(img.retryButtonRed, { id: 'retry-button-red' });
   tryClickImage(img.retryButtonBlue, { id: 'retry-button-blue' });
 }
+interface IKeepClickAnyImageContext {
+  waitEndTime: number;
+  clickCount: number;
+  isFinished: boolean;
+  images: Image[];
+  options: IKeepClickImageOptions;
+}
 
 export async function keepClickAnyImage(
   images: Image[],
-  {
-    firstTimeout = 20e3,
+  options?: IKeepClickImageOptions
+): Promise<number> {
+  const { firstTimeout = 20e3 }: IKeepClickImageOptions = options || {};
+  const context: IKeepClickAnyImageContext = {
+    images,
+    waitEndTime: Date.now() + firstTimeout,
+    clickCount: 0,
+    isFinished: false,
+    options: options || {}
+  };
+  while (!context.isFinished) {
+    await handleKeepAnyImageClicking(context);
+  }
+
+  return context.clickCount;
+}
+
+async function handleKeepAnyImageClicking(
+  context: IKeepClickAnyImageContext
+): Promise<void> {
+  const {
     nextTimeout = 5e3,
     findOptions,
     onDelay = (): boolean => true
-  }: IKeepClickImageOptions = {}
-): Promise<number> {
-  let waitEndTime: number = Date.now() + firstTimeout;
-  let clickCount: number = 0;
-  while (Date.now() <= waitEndTime) {
-    await handleClick();
-    if (!(await onDelay())) {
-      break;
-    }
+  }: IKeepClickImageOptions = context.options;
+
+  if (Date.now() > context.waitEndTime) {
+    context.isFinished = true;
+
+    return;
   }
 
-  return clickCount;
-
-  async function handleClick(): Promise<void> {
-    if (tryClickAnyImage(images, findOptions)) {
-      clickCount += 1;
-      waitEndTime = Date.now() + nextTimeout;
-      await wait(500);
-    } else {
-      await wait(1000);
-    }
+  if (tryClickAnyImage(context.images, findOptions)) {
+    context.clickCount += 1;
+    context.waitEndTime = Date.now() + nextTimeout;
+    await wait(500);
+  } else {
+    await wait(1000);
+  }
+  if (!(await onDelay())) {
+    context.isFinished = true;
   }
 }
 
