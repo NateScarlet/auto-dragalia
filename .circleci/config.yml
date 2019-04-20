@@ -1,8 +1,21 @@
-version: 2
-jobs:
-  build:
+version: '2.1'
+executors:
+  node:
     docker:
       - image: circleci/node:lts
+  golang:
+    docker:
+      - image: circleci/golang:1.12
+commands:
+  install_hub:
+    description: 'Install hub CLI'
+    steps:
+      - run:
+          name: 'Install hub CLI'
+          command: go get github.com/github/hub && hub --version
+jobs:
+  build:
+    executor: node
     steps:
       - checkout
       - restore_cache:
@@ -23,29 +36,43 @@ jobs:
       - store_artifacts:
           path: artifacts
       - persist_to_workspace:
-          root: 'artifacts'
+          root: artifacts
           paths:
             - '*.zip'
       - run:
-          name: 'Add github comment'
-          command: .circleci/comment.js
-  github-release:
-    docker:
-      - image: circleci/golang:1.12
+          name: 'Record CIRCLE_BUILD_URL'
+          command: echo ${CIRCLE_BUILD_URL} > /tmp/CIRCLE_BUILD_URL
+      - persist_to_workspace:
+          root: /tmp
+          paths:
+            - 'CIRCLE_BUILD_URL'
+  github-comment:
+    executor: golang
     steps:
+      - install_hub
+      - checkout
       - attach_workspace:
-          at: ./artifacts
+          at: /tmp/workspace
       - run:
-          name: 'Install ghr'
-          command: go get github.com/tcnksm/ghr
+          name: 'Add github comment'
+          command: export CIRCLE_BUILD_URL=`cat /tmp/workspace/CIRCLE_BUILD_URL`; .circleci/comment.sh
+  github-release:
+    executor: golang
+    steps:
+      - install_hub
+      - attach_workspace:
+          at: /tmp/workspace
       - run:
-          name: 'Upload'
-          command: ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_TAG} ./artifacts/
+          name: 'Release'
+          command: hub release create -d -m ${CIRLE_TAG} -a /tmp/workspace/auto-dragalia-${CIRCLE_TAG:-${CIRCLE_SHA1:0:8}}.zip
 workflows:
   version: 2
   main:
     jobs:
       - build
+      - github-comment:
+          requires:
+            - build
       - github-release:
           requires:
             - build
