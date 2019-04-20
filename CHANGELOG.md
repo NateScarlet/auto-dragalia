@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.12.0](https://github.com/NateScarlet/auto-dragalia/compare/v0.11.0...v0.12.0) (2019-04-20)
+
+### Bug Fixes
+
+- **farm-rare-item:** add more rare item images ([510079c](https://github.com/NateScarlet/auto-dragalia/commit/510079c)), closes [#23](https://github.com/NateScarlet/auto-dragalia/issues/23)
+
+### Features
+
+- remove `IWaitImageOptions.retry` ([16ed02b](https://github.com/NateScarlet/auto-dragalia/commit/16ed02b))
+- support load asset by resolution ([2f5409e](https://github.com/NateScarlet/auto-dragalia/commit/2f5409e)), closes [#26](https://github.com/NateScarlet/auto-dragalia/issues/26)
+
+### Performance Improvements
+
+- only match images for current resolution ([991a3d6](https://github.com/NateScarlet/auto-dragalia/commit/991a3d6))
+
 ## [0.11.0](https://github.com/NateScarlet/auto-dragalia/compare/v0.10.1...v0.11.0) (2019-04-11)
 
 ### Bug Fixes

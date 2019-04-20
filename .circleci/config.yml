@@ -60,16 +60,20 @@ jobs:
     executor: golang
     steps:
       - install_hub
+      - checkout
       - attach_workspace:
           at: /tmp/workspace
       - run:
           name: 'Release'
-          command: hub release create -d -m ${CIRLE_TAG} -a /tmp/workspace/auto-dragalia-${CIRCLE_TAG:-${CIRCLE_SHA1:0:8}}.zip
+          command: hub release create -m "${CIRCLE_TAG}" -a "/tmp/workspace/auto-dragalia-${CIRCLE_TAG}.zip" ${CIRCLE_TAG}
 workflows:
   version: 2
   main:
     jobs:
-      - build
+      - build:
+          filters:
+            tags:
+              only: /.*/
       - github-comment:
           requires:
             - build
@@ -77,7 +81,7 @@ workflows:
           requires:
             - build
           filters:
+            tags:
+              only: /^v.+/
             branches:
               ignore: /.*/
-            tags:
-              only: /^v.*/
