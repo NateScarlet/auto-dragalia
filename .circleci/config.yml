@@ -65,7 +65,7 @@ jobs:
           at: /tmp/workspace
       - run:
           name: 'Release'
-          command: hub release create -m "${CIRCLE_TAG}" -a "/tmp/workspace/auto-dragalia-${CIRCLE_TAG}.zip" ${CIRCLE_TAG}
+          command: hub release create -d -m "${CIRCLE_TAG}" -a "/tmp/workspace/auto-dragalia-${CIRCLE_TAG}.zip" ${CIRCLE_TAG}
 workflows:
   version: 2
   main:
