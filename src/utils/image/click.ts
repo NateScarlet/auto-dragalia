@@ -139,12 +139,12 @@ async function chainImageClick(
 export async function chainImageClicks(
   ...items: IImageClickChainItem[]
 ): Promise<Point[]> {
+  if (items.length < 2) {
+    throw new Error('Need at least 2 image to chain click');
+  }
   const ret: Point[] = [];
   for (let pos: number = 0; pos + 1 < items.length; pos += 1) {
     ret.push(await chainImageClick(items[pos], items[pos + 1]));
-  }
-  if (ret === undefined) {
-    throw new Error('Need at least 2 image to chain click');
   }
 
   return ret;
