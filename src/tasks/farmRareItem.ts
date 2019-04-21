@@ -3,8 +3,6 @@ import {
   chainImageClicks,
   clickImage,
   handleRetry,
-  IImageClickChainItem,
-  IWaitImageOptions,
   tryClickImage,
   tryFindAnyImage,
   waitAndClickImage,
