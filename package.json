@@ -28,7 +28,7 @@
     "prettier": "1.17.0",
     "raw-loader": "2.0.0",
     "standard-version": "5.0.2",
-    "ts-loader": "5.3.3",
+    "ts-loader": "5.4.3",
     "tslint": "5.16.0",
     "tslint-microsoft-contrib": "6.1.1",
     "typescript": "3.4.4",
