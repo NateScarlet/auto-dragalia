@@ -22,6 +22,7 @@ export type ImageAssets = Record<
   | 'nextText'
   | 'noRareItem1'
   | 'noRareItem2'
+  | 'noRareItem3'
   | 'okButton'
   | 'presentButton'
   | 'presentPrice0'

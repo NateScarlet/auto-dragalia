@@ -92,7 +92,7 @@ async function enterMenu(): Promise<void> {
 
 async function checkRareItem(): Promise<void> {
   if (
-    tryFindAnyImage([img.noRareItem1, img.noRareItem2], {
+    tryFindAnyImage([img.noRareItem1, img.noRareItem2, img.noRareItem3], {
       threshold: 0.99,
       id: 'no-rare-time'
     })
