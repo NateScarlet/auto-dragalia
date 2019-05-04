@@ -21,7 +21,7 @@
     "@commitlint/cli": "7.5.2",
     "@commitlint/config-conventional": "7.5.0",
     "@types/lodash.sortby": "4.7.6",
-    "autojs-dev": "0.6.0-beta.3",
+    "autojs-dev": "0.7.1",
     "cross-env": "5.2.0",
     "husky": "2.2.0",
     "lint-staged": "8.1.6",
