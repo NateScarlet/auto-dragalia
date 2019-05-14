@@ -23,7 +23,7 @@
     "@types/lodash.sortby": "4.7.6",
     "autojs-dev": "0.7.1",
     "cross-env": "5.2.0",
-    "husky": "2.2.0",
+    "husky": "2.3.0",
     "lint-staged": "8.1.6",
     "prettier": "1.17.1",
     "raw-loader": "2.0.0",
