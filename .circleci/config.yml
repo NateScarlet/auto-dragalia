@@ -5,7 +5,7 @@ executors:
       - image: circleci/node:lts
   golang:
     docker:
-      - image: circleci/golang:1.12
+      - image: circleci/golang:1.13
 commands:
   install_hub:
     description: 'Install hub CLI'
