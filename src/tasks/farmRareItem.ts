@@ -10,12 +10,13 @@ import {
   waitImage,
   waitLoading
 } from '@/utils/image';
-import { wait } from '@/utils/wait';
+import { wait, waitToast } from '@/utils/wait';
 
 export async function farmRareItem(): Promise<void> {
   selectLevel();
   await enterStage1();
   toastLog('检测到正在进入第一关卡');
+  await waitToast();
   await waitLoading({ id: 'stage-1-loading' });
   toastLog('检测到已进入第一关卡');
   await enterStage2();
