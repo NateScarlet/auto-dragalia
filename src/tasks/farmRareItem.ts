@@ -4,7 +4,6 @@ import {
   clickImage,
   findImage,
   handleRetry,
-  tryClickAnyImage,
   tryClickImage,
   tryFindAnyImage,
   tryFindImage,
