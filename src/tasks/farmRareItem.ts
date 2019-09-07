@@ -127,6 +127,7 @@ function onSuccess(): void {
 async function onFail(): Promise<void> {
   log('没有刷到稀有物品, 直接下一轮');
   clickImage(img.giveUpButtonBlue, { id: 'give-up-button-1' });
+  await wait(500);
   await waitAndClickImage(img.giveUpButtonBlue, {
     timeout: 5e3,
     id: 'give-up-button-2'
