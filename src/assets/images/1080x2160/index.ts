@@ -38,6 +38,7 @@ import * as supportSelectButtonPng from '@/assets/images/1080x2160/support-selec
 import * as supportSkillAvailablePng from '@/assets/images/1080x2160/support-skill-available.png';
 import * as tapButtonPng from '@/assets/images/1080x2160/tap-button.png';
 import * as transformGaugeFullPng from '@/assets/images/1080x2160/transform-gauge-full.png';
+import * as x0Png from '@/assets/images/1080x2160/x0.png';
 
 export const index: Record<string, Image> = {};
 
@@ -79,5 +80,6 @@ index.supportSelectButton = images.fromBase64(supportSelectButtonPng);
 index.supportSkillAvailable = images.fromBase64(supportSkillAvailablePng);
 index.tapButton = images.fromBase64(tapButtonPng);
 index.transformGaugeFull = images.fromBase64(transformGaugeFullPng);
+index.x0 = images.fromBase64(x0Png);
 
 Object.freeze(index);

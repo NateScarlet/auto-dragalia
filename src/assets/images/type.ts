@@ -38,6 +38,7 @@ export type ImageAssets = Record<
   | 'supportSelectButton'
   | 'supportSkillAvailable'
   | 'tapButton'
-  | 'transformGaugeFull',
+  | 'transformGaugeFull'
+  | 'x0',
   Image
 >;

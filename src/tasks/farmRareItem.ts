@@ -2,9 +2,12 @@ import { img } from '@/assets/images';
 import {
   chainImageClicks,
   clickImage,
+  findImage,
   handleRetry,
+  tryClickAnyImage,
   tryClickImage,
   tryFindAnyImage,
+  tryFindImage,
   waitAndClickImage,
   waitAnyImage,
   waitImage,
@@ -44,6 +47,7 @@ function selectLevel(): void {
   if (!levelSelectPosition) {
     throw new Error('请至关卡选择页面再开始');
   }
+
   click(levelSelectPosition.x, levelSelectPosition.y);
 }
 
@@ -90,12 +94,14 @@ async function enterMenu(): Promise<void> {
 }
 
 async function checkRareItem(): Promise<void> {
-  if (
-    tryFindAnyImage([img.noRareItem1, img.noRareItem2], {
-      threshold: 0.99,
-      id: 'no-rare-time'
-    })
-  ) {
+  const p: Point = findImage(img.rareItem, { id: 'rare-item' });
+  const region: [number, number, number, number] = [
+    p.x,
+    p.y + img.rareItem.getHeight(),
+    img.rareItem.getWidth(),
+    img.rareItem.getHeight()
+  ];
+  if (tryFindImage(img.x0, { id: 'x0', region })) {
     await onFail();
   } else {
     onSuccess();
@@ -120,7 +126,7 @@ function onSuccess(): void {
 }
 
 async function onFail(): Promise<void> {
-  toastLog('没有刷到稀有物品, 直接下一轮');
+  log('没有刷到稀有物品, 直接下一轮');
   clickImage(img.giveUpButtonBlue, { id: 'give-up-button-1' });
   await waitAndClickImage(img.giveUpButtonBlue, {
     timeout: 5e3,
