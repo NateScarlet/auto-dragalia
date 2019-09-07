@@ -19,6 +19,8 @@
 - [Auto.js 4.x](https://github.com/hyb1996/Auto.js/releases) 当前应用商店没有发布 Auto.js 4.x 版本 需要前往官方仓库发布页面下载
 - 安卓 7.0 版本以上不需要 Root 权限
 
+2019-09-07: 由于 [Auto.js] 作者删除了官方发布页面，提供 4.0.5-alpha 版本磁力链接: `magnet:?xt=urn:btih:982942ff53262eb60b6a1367a947750f14498b3b&dn=autojs-4.0.5.alpha.apk&tr=udp%3a%2f%2f195.154.52.99%3a80%2fannounce&tr=http%3a%2f%2f176.113.71.19%3a6961%2fannounce&tr=udp%3a%2f%2f208.83.20.20%3a6969%2fannounce&tr=udp%3a%2f%2f54.37.235.149%3a6969%2fannounce&tr=udp%3a%2f%2f37.235.174.46%3a2710%2fannounce&tr=udp%3a%2f%2f5.206.19.247%3a6969%2fannounce&tr=udp%3a%2f%2f95.211.168.204%3a2710%2fannounce&tr=udp%3a%2f%2f89.234.156.205%3a451%2fannounce&tr=udp%3a%2f%2f184.105.151.164%3a6969%2fannounce&tr=udp%3a%2f%2f93.158.213.92%3a1337%2fannounce&tr=udp%3a%2f%2f185.19.107.254%3a80%2fannounce&tr=udp%3a%2f%2f142.44.243.4%3a1337%2fannounce&tr=udp%3a%2f%2f159.100.245.181%3a6969%2fannounce`
+
 ## 功能
 
 - [x] 重复战斗
