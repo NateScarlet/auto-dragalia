@@ -20,8 +20,6 @@ export type ImageAssets = Record<
   | 'lv29Button'
   | 'menuButton'
   | 'nextText'
-  | 'noRareItem1'
-  | 'noRareItem2'
   | 'okButton'
   | 'presentButton'
   | 'presentPrice0'
@@ -38,6 +36,7 @@ export type ImageAssets = Record<
   | 'supportSelectButton'
   | 'supportSkillAvailable'
   | 'tapButton'
-  | 'transformGaugeFull',
+  | 'transformGaugeFull'
+  | 'x0',
   Image
 >;

@@ -19,8 +19,6 @@ import * as loadingTextPng from '@/assets/images/1080x2160/loading-text.png';
 import * as lv29ButtonPng from '@/assets/images/1080x2160/lv29-button.png';
 import * as menuButtonPng from '@/assets/images/1080x2160/menu-button.png';
 import * as nextTextPng from '@/assets/images/1080x2160/next-text.png';
-import * as noRareItem1Png from '@/assets/images/1080x2160/no-rare-item-1.png';
-import * as noRareItem2Png from '@/assets/images/1080x2160/no-rare-item-2.png';
 import * as okButtonPng from '@/assets/images/1080x2160/ok-button.png';
 import * as presentButtonPng from '@/assets/images/1080x2160/present-button.png';
 import * as presentPrice0Png from '@/assets/images/1080x2160/present-price-0.png';
@@ -38,6 +36,7 @@ import * as supportSelectButtonPng from '@/assets/images/1080x2160/support-selec
 import * as supportSkillAvailablePng from '@/assets/images/1080x2160/support-skill-available.png';
 import * as tapButtonPng from '@/assets/images/1080x2160/tap-button.png';
 import * as transformGaugeFullPng from '@/assets/images/1080x2160/transform-gauge-full.png';
+import * as x0Png from '@/assets/images/1080x2160/x0.png';
 
 export const index: Record<string, Image> = {};
 
@@ -60,8 +59,6 @@ index.loadingText = images.fromBase64(loadingTextPng);
 index.lv29Button = images.fromBase64(lv29ButtonPng);
 index.menuButton = images.fromBase64(menuButtonPng);
 index.nextText = images.fromBase64(nextTextPng);
-index.noRareItem1 = images.fromBase64(noRareItem1Png);
-index.noRareItem2 = images.fromBase64(noRareItem2Png);
 index.okButton = images.fromBase64(okButtonPng);
 index.presentButton = images.fromBase64(presentButtonPng);
 index.presentPrice0 = images.fromBase64(presentPrice0Png);
@@ -79,5 +76,6 @@ index.supportSelectButton = images.fromBase64(supportSelectButtonPng);
 index.supportSkillAvailable = images.fromBase64(supportSkillAvailablePng);
 index.tapButton = images.fromBase64(tapButtonPng);
 index.transformGaugeFull = images.fromBase64(transformGaugeFullPng);
+index.x0 = images.fromBase64(x0Png);
 
 Object.freeze(index);

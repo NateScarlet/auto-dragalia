@@ -2,9 +2,11 @@ import { img } from '@/assets/images';
 import {
   chainImageClicks,
   clickImage,
+  findImage,
   handleRetry,
   tryClickImage,
   tryFindAnyImage,
+  tryFindImage,
   waitAndClickImage,
   waitAnyImage,
   waitImage,
@@ -15,7 +17,7 @@ import { wait } from '@/utils/wait';
 export async function farmRareItem(): Promise<void> {
   selectLevel();
   await enterStage1();
-  toastLog('检测到正在进入第一关卡');
+  log('检测到正在进入第一关卡');
   await waitLoading({ id: 'stage-1-loading' });
   toastLog('检测到已进入第一关卡');
   await enterStage2();
@@ -34,7 +36,6 @@ function selectLevel(): void {
     [
       img.levelSelectMaster,
       img.levelSelectExpert,
-      img.levelSelectMaster,
       img.levelSelectStandard,
       img.levelSelectBeginner
     ],
@@ -45,6 +46,7 @@ function selectLevel(): void {
   if (!levelSelectPosition) {
     throw new Error('请至关卡选择页面再开始');
   }
+
   click(levelSelectPosition.x, levelSelectPosition.y);
 }
 
@@ -91,12 +93,14 @@ async function enterMenu(): Promise<void> {
 }
 
 async function checkRareItem(): Promise<void> {
-  if (
-    tryFindAnyImage([img.noRareItem1, img.noRareItem2], {
-      threshold: 0.99,
-      id: 'no-rare-time'
-    })
-  ) {
+  const p: Point = findImage(img.rareItem, { id: 'rare-item' });
+  const region: [number, number, number, number] = [
+    p.x,
+    p.y + img.rareItem.getHeight(),
+    img.rareItem.getWidth(),
+    img.rareItem.getHeight()
+  ];
+  if (tryFindImage(img.x0, { id: 'x0', region })) {
     await onFail();
   } else {
     onSuccess();
@@ -121,8 +125,9 @@ function onSuccess(): void {
 }
 
 async function onFail(): Promise<void> {
-  toastLog('没有刷到稀有物品, 直接下一轮');
+  log('没有刷到稀有物品, 直接下一轮');
   clickImage(img.giveUpButtonBlue, { id: 'give-up-button-1' });
+  await wait(500);
   await waitAndClickImage(img.giveUpButtonBlue, {
     timeout: 5e3,
     id: 'give-up-button-2'
