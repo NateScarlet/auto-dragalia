@@ -18,8 +18,8 @@
     "lodash.sortby": "4.7.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "8.1.0",
-    "@commitlint/config-conventional": "8.1.0",
+    "@commitlint/cli": "8.2.0",
+    "@commitlint/config-conventional": "8.2.0",
     "@types/lodash.sortby": "4.7.6",
     "autojs-dev": "0.7.1",
     "cross-env": "5.2.1",
