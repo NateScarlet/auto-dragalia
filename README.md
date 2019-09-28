@@ -12,6 +12,8 @@
 
 《失落的龙约》 [Auto.js] 辅助脚本
 
+感谢 @pansx 提供灵感
+
 [发布页面](https://github.com/NateScarlet/auto-dragalia/releases)
 
 ## 需求

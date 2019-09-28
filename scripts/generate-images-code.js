@@ -1,6 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
+async function prettier(code) {
+  const { format, resolveConfig } = require('prettier');
+  const options = await resolveConfig();
+  return format(code, { ...options, parser: 'typescript' });
+}
+
 /** @param {string} str */
 function toCamelCase(str) {
   return str.replace(/[-\.](.)/g, match => match[1].toUpperCase());
@@ -53,59 +59,61 @@ async function generateImageIndex(folder) {
 
   fs.writeFileSync(
     path.posix.join(baseDir, 'type.ts'),
-    [
-      ...commonHeader,
-      'export type ImageAssets = Record<',
-      ...Array.from(imageNames)
-        .sort()
-        .map(i => `| '${i}'`),
-      ', Image>;',
-      ''
-    ].join('\n')
+    await prettier(
+      [
+        ...commonHeader,
+        'export type ImageAssets = Readonly<Record<',
+        ...Array.from(imageNames)
+          .sort()
+          .map(i => `| '${i}'`),
+        ', Image>>;'
+      ].join('\n')
+    )
   );
   const folderNames = folders.map(i => path.posix.basename(i));
   fs.writeFileSync(
     path.posix.join(baseDir, 'index.ts'),
-    [
-      ...commonHeader,
-      ...folderNames.map(
-        i => `import { index as img${i} } from '@/assets/images/${i}';`
-      ),
-      `\
+    await prettier(
+      [
+        ...commonHeader,
+        ...folderNames.map(
+          i => `import { index as img${i} } from '@/assets/images/${i}';`
+        ),
+        `\
 import { ImageAssets } from '@/assets/images/type';
 
 export const assets: Record<string, Partial<ImageAssets>> = {`,
-      ...folderNames.map(i => `  '${i}': img${i},`),
-      `};
+        ...folderNames.map(i => `  '${i}': img${i},`),
+        `};
 
 export const img: ImageAssets = { ...(<ImageAssets>img1080x2160) };
 `
-    ].join('\n')
+      ].join('\n')
+    )
   );
 })();
 
 async function updateIndex(folder, importLines, exportLines) {
+  const data = await prettier(
+    [
+      ...commonHeader,
+      ...importLines,
+      '',
+      'export const index: Record<string, Image> = {};',
+      '',
+      ...exportLines,
+      '',
+      'Object.freeze(index);',
+      ''
+    ].join('\n')
+  );
   return new Promise((resolve, reject) => {
-    fs.writeFile(
-      `${folder}/index.ts`,
-      [
-        ...commonHeader,
-        ...importLines,
-        '',
-        'export const index: Record<string, Image> = {};',
-        '',
-        ...exportLines,
-        '',
-        'Object.freeze(index);',
-        ''
-      ].join('\n'),
-      err => {
-        if (err) {
-          reject(err);
-          return;
-        }
-        resolve();
+    fs.writeFile(`${folder}/index.ts`, data, err => {
+      if (err) {
+        reject(err);
+        return;
       }
-    );
+      resolve();
+    });
   });
 }
