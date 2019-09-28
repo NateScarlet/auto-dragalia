@@ -42,12 +42,10 @@
     }
   },
   "lint-staged": {
-    "linters": {
-      "*.{md,ts,js,yml,xml,json}": [
-        "prettier --write",
-        "git add"
-      ]
-    }
+    "*.{md,ts,js,yml,xml,json}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "standard-version": {
     "scripts": {
