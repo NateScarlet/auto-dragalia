@@ -4,7 +4,6 @@
 import datetime as dt
 import os
 
-import fire
 import jwt
 import requests
 
@@ -106,30 +105,26 @@ def create_comment(
     ).json()
 
 
-def ci_comment() -> dict:
-    """Add comment for ci environment.  """
+def main() -> None:
+    commit_sha = os.environ['CIRCLE_SHA1']
+    filename = f"auto-dragalia-{os.getenv('CIRCLE_TAG') or commit_sha[:8]}.zip"
+    body = (f"自动构建 [{filename}]({os.getenv('CIRCLE_BUILD_URL')}"
+            f"/artifacts/0{os.getcwd()}/artifacts/{filename})")
 
     private_key = read_private_key(
         'auto-dragalia-bot.2019-10-18.private-key.pem')
     app_token = create_app_token(private_key, 42355)
-    installation_token = create_installation_token(app_token, 2278043)
-
-    commit_sha1 = os.environ['CIRCLE_SHA1']
-    filename = f"auto-dragalia-${os.getenv('CIRCLE_TAG') or commit_sha1[:8]}.zip"
-    body = (f"自动构建 [${filename}](${os.getenv('CIRCLE_BUILD_URL')}"
-            f"/artifacts/0{os.getcwd()}/artifacts/{filename})")
-
+    installation_token = create_installation_token(app_token, 2278043)['token']
     result = create_comment(
         installation_token,
         owner=os.getenv(
             "CIRCLE_PROJECT_USERNAME", "NateScarlet"),
         repo=os.getenv(
             "CIRCLE_PROJECT_REPONAME", "auto-dragalia"),
-        commit_sha=os.environ['CIRCLE_SHA1'],
+        commit_sha=commit_sha,
         body=body)
     print(result)
-    return result
 
 
 if __name__ == '__main__':
-    fire.Fire(ci_comment)
+    main()
