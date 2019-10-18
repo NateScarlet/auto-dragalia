@@ -1,0 +1,4 @@
+pyjwt==1.7.1
+requests==2.22.0
+cryptography==2.8
+fire==0.2.1

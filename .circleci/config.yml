@@ -6,6 +6,9 @@ executors:
   golang:
     docker:
       - image: circleci/golang:1.13
+  python:
+    docker:
+      - image: circleci/python:3.7
 commands:
   install_hub:
     description: 'Install hub CLI'
@@ -50,15 +53,17 @@ jobs:
           paths:
             - 'CIRCLE_BUILD_URL'
   github-comment:
-    executor: golang
+    executor: python
     steps:
-      - install_hub
       - checkout
+      - run:
+          name: 'Install dependencies'
+          command: 'pip install -r .circleci/requirements.txt'
       - attach_workspace:
           at: /tmp/workspace
       - run:
           name: 'Add github comment'
-          command: export CIRCLE_BUILD_URL=`cat /tmp/workspace/CIRCLE_BUILD_URL`; .circleci/comment.sh
+          command: export CIRCLE_BUILD_URL=`cat /tmp/workspace/CIRCLE_BUILD_URL`; .circleci/comment.py
   github-release:
     executor: golang
     steps:
