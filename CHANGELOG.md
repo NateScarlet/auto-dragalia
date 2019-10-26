@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.13.0](https://github.com/NateScarlet/auto-dragalia/compare/v0.12.0...v0.13.0) (2019-10-26)
+
+### Bug Fixes
+
+- handle too few items in `chainImageClicks` ([6b6e501](https://github.com/NateScarlet/auto-dragalia/commit/6b6e501))
+
+### Features
+
+- **farm-rare-item:** change matching mechanism ([#127](https://github.com/NateScarlet/auto-dragalia/issues/127)) ([b73645e](https://github.com/NateScarlet/auto-dragalia/commit/b73645e)), closes [#126](https://github.com/NateScarlet/auto-dragalia/issues/126)
+
+### BREAKING CHANGES
+
+- **farm-rare-item:** removed `no-rare-item` assets
+
 ## [0.12.0](https://github.com/NateScarlet/auto-dragalia/compare/v0.11.0...v0.12.0) (2019-04-20)
 
 ### Bug Fixes

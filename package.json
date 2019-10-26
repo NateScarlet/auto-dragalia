@@ -1,6 +1,6 @@
 {
   "name": "auto-dragalia",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "private": true,
   "main": "src/main.ts",
   "repository": "https://github.com/NateScarlet/auto-dragalia.git",
