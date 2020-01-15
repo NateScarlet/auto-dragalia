@@ -17,7 +17,7 @@ function formatTemplate(
   let ret = template;
   for (const k in values) {
     const v = values[k] as unknown;
-    ret = ret.replace(new RegExp(`\\$\{${k}\}`, 'g'), String(v));
+    ret = ret.split('${' + k + '}').join(String(v));
   }
   return ret;
 }
