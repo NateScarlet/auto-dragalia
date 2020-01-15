@@ -14,13 +14,10 @@
     "adb:push": "node ./scripts/push.js",
     "release": "standard-version"
   },
-  "dependencies": {
-    "lodash.sortby": "4.7.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "8.3.4",
     "@commitlint/config-conventional": "8.3.4",
-    "@types/lodash.sortby": "4.7.6",
     "@types/webpack-env": "1.15.0",
     "autojs-dev": "0.7.1",
     "husky": "4.0.9",
