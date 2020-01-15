@@ -2,6 +2,7 @@ import { farmRareItem } from '@/tasks/farmRareItem';
 import { feedDragon } from '@/tasks/feedDragon';
 import { feedFourLeafClover } from '@/tasks/feedFourLeafClover';
 import { repeatRaid } from '@/tasks/repeatRaid';
+import { tr } from '@/i18n';
 
 export const taskRegistry: Record<
   string,
@@ -9,8 +10,8 @@ export const taskRegistry: Record<
 > = {};
 
 export function setupTaskRegistry(): void {
-  taskRegistry.重复战斗 = repeatRaid;
-  taskRegistry.自动喂龙 = feedDragon;
-  taskRegistry.喂四叶草 = feedFourLeafClover;
-  taskRegistry.刷稀有 = farmRareItem;
+  taskRegistry[tr('repeat-raid')] = repeatRaid;
+  taskRegistry[tr('feed-dragon')] = feedDragon;
+  taskRegistry[tr('feed-four-leaf-clover')] = feedFourLeafClover;
+  taskRegistry[tr('farm-rare-item')] = farmRareItem;
 }

@@ -1,6 +1,7 @@
 import { img } from '@/assets/images';
 import { findImage, waitImage } from '@/utils/image';
 import { wait } from '@/utils/wait';
+import { tr } from '@/i18n';
 
 export async function waitForEnemy(): Promise<void> {
   await waitImage(true, img.enemyLegend, {
@@ -15,11 +16,11 @@ export async function waitForEnemy(): Promise<void> {
 export async function transform2dragon(): Promise<void> {
   const pos: Point = findImage(img.transformGaugeFull);
   await waitForEnemy();
-  console.log('龙化');
+  console.log(tr('transform-to-dragon'));
   click(pos.x + 100, pos.y);
   await wait(2500);
   await waitForEnemy();
-  console.log('使用龙技能');
+  console.log(tr('use-dragon-skill'));
   click(pos.x + 360, pos.y + 300);
 }
 
@@ -36,12 +37,12 @@ export async function castSupportSkill(): Promise<void> {
     region: [device.width / 3, device.height / 4]
   });
   if (!pos) {
-    console.verbose(`支援技能不可用`);
+    console.verbose(tr('no-support-skill-available'));
 
     return;
   }
   await waitForEnemy();
-  console.log(`使用支援技能: ${pos}`);
+  console.log(tr('use-support-skill', { pos }));
   click(pos.x, pos.y - 80);
 }
 

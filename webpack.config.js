@@ -4,6 +4,7 @@ const webpack = require('webpack');
 
 const TARGET_ASSET = process.env.TARGET_ASSET || '1080x2160';
 const FALLBACK_ASSET = process.env.FALLBACK_ASSET || '1080x2160';
+const TARGET_LOCALE = process.env.TARGET_LOCALE || 'zh';
 
 module.exports = {
   entry: ['./src/main.ts'],
@@ -33,13 +34,14 @@ module.exports = {
     }
   },
   output: {
-    filename: `${name}-${version}-${TARGET_ASSET}.auto.js`,
+    filename: `${name}-${TARGET_LOCALE}-${version}-${TARGET_ASSET}.auto.js`,
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
     new webpack.DefinePlugin({
       TARGET_ASSET: JSON.stringify(TARGET_ASSET),
-      FALLBACK_ASSET: JSON.stringify(FALLBACK_ASSET)
+      FALLBACK_ASSET: JSON.stringify(FALLBACK_ASSET),
+      TARGET_LOCALE: JSON.stringify(TARGET_LOCALE)
     })
   ],
   mode: 'development',

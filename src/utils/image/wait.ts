@@ -1,6 +1,7 @@
 import { img } from '@/assets/images';
 import { handleRetry, tryFindAnyImage } from '@/utils/image';
 import { wait } from '@/utils/wait';
+import { tr } from '@/i18n';
 
 let waitingCount: number = 0;
 
@@ -49,7 +50,7 @@ async function handleAnyImageWaiting(
   } = options || {};
 
   if (Date.now() > waitingEndTime) {
-    throw new Error('等待超时');
+    throw new Error(tr('wait-timeout'));
   }
 
   const roundStartTime: number = Date.now();
@@ -62,7 +63,9 @@ async function handleAnyImageWaiting(
     return ret;
   }
 
-  console.verbose(`Waiting image ${appear ? 'appear' : 'disappear'}: ${id}`);
+  console.verbose(
+    tr(appear ? 'wait-image-appear' : 'wait-image-disappear', { id })
+  );
   await onDelay();
   await wait(delay - (Date.now() - roundStartTime));
 

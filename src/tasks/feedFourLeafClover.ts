@@ -2,6 +2,7 @@ import { img } from '@/assets/images';
 import { enterPresentPage, handlePresentResponse } from '@/tasks/feedDragon';
 import { findImage, tryClickImage, tryFindImage } from '@/utils/image';
 import { wait } from '@/utils/wait';
+import { tr } from '@/i18n';
 
 export async function feedFourLeafClover(): Promise<void> {
   if (
@@ -10,7 +11,7 @@ export async function feedFourLeafClover(): Promise<void> {
       id: 'lv29-button'
     })
   ) {
-    throw new Error('信赖度已达到29级，若继续，请手动喂食');
+    throw new Error(tr('closeness-reach-lv29'));
   }
 
   await enterPresentPage();
@@ -24,7 +25,7 @@ export async function feedFourLeafClover(): Promise<void> {
     });
     swipe(pos.x, pos.y, pos.x, pos.y - 300, 300);
   } catch {
-    throw new Error('没有四叶草，请去炼草');
+    throw new Error(tr('no-clover'));
   }
 
   await handlePresentResponse();

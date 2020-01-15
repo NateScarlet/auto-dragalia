@@ -13,15 +13,16 @@ import {
   waitLoading
 } from '@/utils/image';
 import { wait } from '@/utils/wait';
+import { tr } from '@/i18n';
 
 export async function farmRareItem(): Promise<void> {
   selectLevel();
   await enterStage1();
-  log('检测到正在进入第一关卡');
+  log(tr('entering-stage-1'));
   await waitLoading({ id: 'stage-1-loading' });
-  toastLog('检测到已进入第一关卡');
+  toastLog(tr('entered-stage-1'));
   await enterStage2();
-  toastLog('检测到正在进入第二关卡');
+  toastLog(tr('entering-stage-2'));
   await enterMenu();
   await checkRareItem();
   await waitImage(true, img.levelSelect, {
@@ -44,7 +45,7 @@ function selectLevel(): void {
     }
   );
   if (!levelSelectPosition) {
-    throw new Error('请至关卡选择页面再开始');
+    throw new Error(tr('require-level-select-page'));
   }
 
   click(levelSelectPosition.x, levelSelectPosition.y);
@@ -108,7 +109,7 @@ async function checkRareItem(): Promise<void> {
 }
 
 function onSuccess(): void {
-  toastLog('成功刷到稀有物品, 继续完成战斗');
+  toastLog(tr('rare-item-dropped'));
   while (
     !tryClickImage(img.continueButtonBlue, {
       id: 'finish-phrase-continue-button'
@@ -125,7 +126,7 @@ function onSuccess(): void {
 }
 
 async function onFail(): Promise<void> {
-  log('没有刷到稀有物品, 直接下一轮');
+  log(tr('no-rare-item-drop'));
   clickImage(img.giveUpButtonBlue, { id: 'give-up-button-1' });
   await wait(500);
   await waitAndClickImage(img.giveUpButtonBlue, {

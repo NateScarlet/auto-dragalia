@@ -1,3 +1,5 @@
+import { tr } from '@/i18n';
+
 images.requestScreenCapture(false);
 
 export function findImage(image: Image, options?: IFindImageOptions): Point {
@@ -8,9 +10,9 @@ export function findImage(image: Image, options?: IFindImageOptions): Point {
     options
   );
   if (ret === null) {
-    throw new Error(`未找到图像: ${id}`);
+    throw new Error(tr('image-not-found', { id }));
   }
-  console.verbose(`Found image: ${id}: ${ret}`);
+  console.verbose(tr('image-found', { id, pos: ret }));
 
   return ret;
 }

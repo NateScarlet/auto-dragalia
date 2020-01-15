@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/NateScarlet/auto-dragalia/master/src/locale/schema.json",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "$id": {
+      "type": "string"
+    },
+    "banner": {
+      "type": "string"
+    },
+    "idle-text": {
+      "type": "string"
+    },
+    "repeat-raid": {
+      "type": "string"
+    },
+    "feed-dragon": {
+      "type": "string"
+    },
+    "feed-four-leaf-clover": {
+      "type": "string"
+    },
+    "farm-rare-item": {
+      "type": "string"
+    },
+    "present-button-not-found": {
+      "type": "string"
+    },
+    "no-present-available": {
+      "type": "string"
+    },
+    "transform-to-dragon": {
+      "type": "string"
+    },
+    "use-dragon-skill": {
+      "type": "string"
+    },
+    "no-support-skill-available": {
+      "type": "string"
+    },
+    "use-support-skill": {
+      "type": "string"
+    },
+    "image-not-found": {
+      "type": "string"
+    },
+    "image-found": {
+      "type": "string"
+    },
+    "wait-timeout": {
+      "type": "string"
+    },
+    "wait-image-appear": {
+      "type": "string"
+    },
+    "wait-image-disappear": {
+      "type": "string"
+    },
+    "run-task": {
+      "type": "string"
+    },
+    "team-too-weak": {
+      "type": "string"
+    },
+    "closeness-reach-lv29": {
+      "type": "string"
+    },
+    "no-clover": {
+      "type": "string"
+    },
+    "entering-stage-1": {
+      "type": "string"
+    },
+    "entered-stage-1": {
+      "type": "string"
+    },
+    "entering-stage-2": {
+      "type": "string"
+    },
+    "require-level-select-page": {
+      "type": "string"
+    },
+    "rare-item-dropped": {
+      "type": "string"
+    },
+    "no-rare-item-drop": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "$schema",
+    "$id",
+    "banner",
+    "idle-text",
+    "repeat-raid",
+    "feed-dragon",
+    "feed-four-leaf-clover",
+    "farm-rare-item",
+    "present-button-not-found",
+    "no-present-available",
+    "transform-to-dragon",
+    "use-dragon-skill",
+    "no-support-skill-available",
+    "use-support-skill",
+    "image-not-found",
+    "image-found",
+    "wait-timeout",
+    "wait-image-appear",
+    "wait-image-disappear",
+    "run-task",
+    "team-too-weak",
+    "closeness-reach-lv29",
+    "no-clover",
+    "entering-stage-1",
+    "entered-stage-1",
+    "entering-stage-2",
+    "require-level-select-page",
+    "rare-item-dropped",
+    "no-rare-item-drop"
+  ]
+}

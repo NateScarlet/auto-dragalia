@@ -6,6 +6,7 @@ import {
   tryFindImage
 } from '@/utils/image';
 import { wait } from '@/utils/wait';
+import { tr } from '@/i18n';
 
 const allPresentPriceImages: Image[] = [
   img.presentPrice0,
@@ -39,7 +40,7 @@ export async function enterPresentPage(): Promise<void> {
     });
     await wait(500);
   } catch {
-    throw new Error('未找到礼物按钮, 请手动前往龙之庭院');
+    throw new Error(tr('present-not-found'));
   }
 }
 
@@ -56,6 +57,6 @@ export async function handlePresentResponse(): Promise<void> {
       }
     }))
   ) {
-    throw new Error('无可用礼物');
+    throw new Error(tr('no-present-available'));
   }
 }

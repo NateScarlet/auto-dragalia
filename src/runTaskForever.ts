@@ -2,6 +2,7 @@ import { store } from '@/store';
 import { taskRegistry } from '@/tasks';
 import { wait } from '@/utils/wait';
 import { version } from 'package.json';
+import { tr } from '@/i18n';
 
 export async function runTaskForever(): Promise<void> {
   if (!store.currentTask) {
@@ -17,7 +18,7 @@ export async function runTaskForever(): Promise<void> {
     throw new Error(`Unknown task: ${store.currentTask}`);
   }
 
-  console.log(`运行任务: ${store.currentTask}`);
+  console.log(tr('run-task', { task: store.currentTask }));
   try {
     await handler();
   } catch (err) {

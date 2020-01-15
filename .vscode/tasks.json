@@ -33,6 +33,11 @@
     },
     {
       "type": "npm",
+      "script": "code-generate:locale",
+      "problemMatcher": []
+    },
+    {
+      "type": "npm",
       "script": "adb:push",
       "problemMatcher": []
     }

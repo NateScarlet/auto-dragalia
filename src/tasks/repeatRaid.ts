@@ -1,6 +1,7 @@
 import { img } from '@/assets/images';
 import { tryCastSupportSkill, tryTransform2dragon } from '@/utils/battle';
 import { clickImage, tryClickImage, waitAndClickImage } from '@/utils/image';
+import { tr } from '@/i18n';
 
 export async function repeatRaid(): Promise<void> {
   tryClickImage(img.startBattleButton);
@@ -13,7 +14,7 @@ export async function repeatRaid(): Promise<void> {
   tryClickImage(img.nextText);
   if (tryClickImage(img.giveUpButtonWhite)) {
     await waitAndClickImage(img.giveUpButtonBlue, { timeout: 60e3 });
-    throw new Error('队伍战力不足, 无法通关');
+    throw new Error(tr('team-too-weak'));
   }
   // tslint:disable-next-line: no-floating-promises
   tryTransform2dragon();

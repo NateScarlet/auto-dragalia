@@ -2,10 +2,18 @@ import { runTaskForever } from '@/runTaskForever';
 import { setupUI } from '@/setupUI';
 import { setupTaskRegistry } from '@/tasks';
 import { name, version } from 'package.json';
+import { tr } from '@/i18n';
 
 // tslint:disable-next-line: no-floating-promises
 (async (): Promise<void> => {
-  console.log(`${name}: version=${version} asset=${TARGET_ASSET}`);
+  console.log(
+    tr('banner', {
+      name,
+      version,
+      asset: TARGET_ASSET,
+      locale: TARGET_LOCALE
+    })
+  );
 
   try {
     launch('com.nintendo.zaga');

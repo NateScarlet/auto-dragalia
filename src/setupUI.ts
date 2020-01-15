@@ -1,6 +1,7 @@
 import layoutTemplateXml from '@/layoutTemplate.xml';
 import { store } from '@/store';
 import { taskRegistry } from '@/tasks';
+import { tr } from '@/i18n';
 
 interface IButton {
   click(callback: () => void): void;
@@ -37,7 +38,7 @@ type IWindow = floaty.FloatyWindow & {
   taskSpinner: ISpinner;
 };
 
-const idleText: string = '停止';
+const idleText: string = tr('idle-text');
 
 export function setupUI(): {
   window: IWindow;
