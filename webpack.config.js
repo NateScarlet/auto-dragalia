@@ -2,8 +2,6 @@ const path = require('path');
 const { name, version } = require('./package.json');
 const webpack = require('webpack');
 
-const versionStr = process.env.NODE_ENV === 'production' ? version : 'dev';
-
 const TARGET_ASSET = process.env.TARGET_ASSET || '1080x2160';
 const FALLBACK_ASSET = process.env.FALLBACK_ASSET || '1080x2160';
 
@@ -35,7 +33,7 @@ module.exports = {
     }
   },
   output: {
-    filename: `${name}-${versionStr}-${TARGET_ASSET}.auto.js`,
+    filename: `${name}-${version}-${TARGET_ASSET}.auto.js`,
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
