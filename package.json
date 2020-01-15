@@ -7,7 +7,7 @@
   "author": "NateScarlet <NateScarlet@Gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack -p",
+    "build": "node ./scripts/build.js",
     "watch": "webpack --watch",
     "capture": "autojs cap",
     "code-generate:images": "node ./scripts/generate-images-code.js",
@@ -21,8 +21,8 @@
     "@commitlint/cli": "8.3.4",
     "@commitlint/config-conventional": "8.3.4",
     "@types/lodash.sortby": "4.7.6",
+    "@types/webpack-env": "^1.15.0",
     "autojs-dev": "0.7.1",
-    "cross-env": "6.0.3",
     "husky": "4.0.9",
     "lint-staged": "9.5.0",
     "prettier": "1.19.1",

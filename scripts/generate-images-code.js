@@ -70,27 +70,6 @@ async function generateImageIndex(folder) {
       ].join('\n')
     )
   );
-  const folderNames = folders.map(i => path.posix.basename(i));
-  fs.writeFileSync(
-    path.posix.join(baseDir, 'index.ts'),
-    await prettier(
-      [
-        ...commonHeader,
-        ...folderNames.map(
-          i => `import { index as img${i} } from '@/assets/images/${i}';`
-        ),
-        `\
-import { ImageAssets } from '@/assets/images/type';
-
-export const assets: Record<string, Partial<ImageAssets>> = {`,
-        ...folderNames.map(i => `  '${i}': img${i},`),
-        `};
-
-export const img: ImageAssets = { ...(<ImageAssets>img1080x2160) };
-`
-      ].join('\n')
-    )
-  );
 })();
 
 async function updateIndex(folder, importLines, exportLines) {

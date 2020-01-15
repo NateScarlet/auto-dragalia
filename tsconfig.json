@@ -13,7 +13,7 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "sourceMap": true,
-    "types": ["autojs-dev"],
+    "types": ["autojs-dev", "webpack-env"],
     "paths": {
       "@/*": ["src/*"]
     }

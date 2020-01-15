@@ -1,7 +1,11 @@
 const path = require('path');
 const { name, version } = require('./package.json');
+const webpack = require('webpack');
 
 const versionStr = process.env.NODE_ENV === 'production' ? version : 'dev';
+
+const TARGET_ASSET = process.env.TARGET_ASSET || '1080x2160';
+const FALLBACK_ASSET = process.env.FALLBACK_ASSET || '1080x2160';
 
 module.exports = {
   entry: ['./src/main.ts'],
@@ -31,10 +35,15 @@ module.exports = {
     }
   },
   output: {
-    filename: `${name}-${versionStr}.auto.js`,
+    filename: `${name}-${versionStr}-${TARGET_ASSET}.auto.js`,
     path: path.resolve(__dirname, 'dist')
   },
-  plugins: [],
+  plugins: [
+    new webpack.DefinePlugin({
+      TARGET_ASSET: JSON.stringify(TARGET_ASSET),
+      FALLBACK_ASSET: JSON.stringify(FALLBACK_ASSET)
+    })
+  ],
   mode: 'development',
   performance: {
     hints: false
