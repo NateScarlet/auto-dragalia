@@ -24,14 +24,14 @@ function buildAllAssets(locale) {
 }
 
 (() => {
-  const validate = new ajv().compile(require('../src/locale/schema.json'));
+  const validate = new ajv().compile(require('../src/locales/schema.json'));
   const locales = [];
-  for (const i of listDir('src/locale').filter(i => i.endsWith('.json'))) {
+  for (const i of listDir('src/locales').filter(i => i.endsWith('.json'))) {
     if (i.endsWith('schema.json')) {
       continue;
     }
     const locale = path.basename(i, '.json');
-    if (!validate(require(`../src/locale/${locale}.json`))) {
+    if (!validate(require(`../src/locales/${locale}.json`))) {
       console.log({
         msg: 'Invalid locale data',
         locale,

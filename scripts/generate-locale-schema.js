@@ -1,11 +1,11 @@
 const fs = require('fs');
 
-const fallbackLocale = require('../src/locale/zh.json');
+const fallbackLocale = require('../src/locales/zh.json');
 
 (() => {
   const keys = Object.keys(fallbackLocale);
   fs.writeFileSync(
-    'src/locale/schema.json',
+    'src/locales/schema.json',
     JSON.stringify(
       {
         $schema: 'http://json-schema.org/draft-07/schema#',

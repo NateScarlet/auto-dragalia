@@ -1,7 +1,7 @@
 const locale: Record<
   string,
   string
-> = require(`@/locale/${TARGET_LOCALE}.json`);
+> = require(`@/locales/${TARGET_LOCALE}.json`);
 
 function getTemplate(key: string): string {
   if (key in locale) {
