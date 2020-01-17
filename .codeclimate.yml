@@ -1,7 +1,9 @@
 version: 2
 plugins:
-  tslint:
+  eslint:
     enabled: true
-    config: tslint.json
+    extensions:
+      - .js
+      - .ts
   markdownlint:
     enabled: true

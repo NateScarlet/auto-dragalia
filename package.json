@@ -10,7 +10,7 @@
     "build": "node ./scripts/build.js",
     "watch": "webpack --watch",
     "capture": "autojs cap",
-    "lint": "eslint --ext .js --ext .ts src",
+    "lint": "eslint --ext .js,.ts src",
     "code-generate:images": "node ./scripts/generate-images-code.js",
     "code-generate:locale": "node ./scripts/generate-locale-schema.js",
     "adb:push": "node ./scripts/push.js",
