@@ -16,9 +16,7 @@ export async function repeatRaid(): Promise<void> {
     await waitAndClickImage(img.giveUpButtonBlue, { timeout: 60e3 });
     throw new Error(tr('team-too-weak'));
   }
-  // tslint:disable-next-line: no-floating-promises
   tryTransform2dragon();
-  // tslint:disable-next-line: no-floating-promises
   tryCastSupportSkill();
   await tryRepeatWithStamina();
 }

@@ -4,7 +4,6 @@ import { setupTaskRegistry } from '@/tasks';
 import { name, version } from 'package.json';
 import { tr } from '@/i18n';
 
-// tslint:disable-next-line: no-floating-promises
 (async (): Promise<void> => {
   console.log(
     tr('banner', {
