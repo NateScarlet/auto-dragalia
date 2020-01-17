@@ -3,16 +3,9 @@ import { store } from '@/store';
 import { taskRegistry } from '@/tasks';
 import { tr } from '@/i18n';
 
-interface IButton {
-  click(callback: () => void): void;
-  setText(text: string): void;
+interface Spinner {
   setOnTouchListener(
-    listener: (view: object, event: ITouchEvent) => boolean
-  ): void;
-}
-interface ISpinner {
-  setOnTouchListener(
-    listener: (view: object, event: ITouchEvent) => boolean
+    listener: (view: object, event: TouchEvent) => boolean
   ): void;
   setOnItemSelectedListener(listener: {
     onItemSelected(
@@ -26,7 +19,7 @@ interface ISpinner {
   getSelectedItem(): string;
   setSelection(pos: number): void;
 }
-interface ITouchEvent {
+interface TouchEvent {
   ACTION_UP: object;
   ACTION_DOWN: object;
   ACTION_MOVE: object;
@@ -34,35 +27,14 @@ interface ITouchEvent {
   getRawX(): number;
   getRawY(): number;
 }
-type IWindow = floaty.FloatyWindow & {
-  taskSpinner: ISpinner;
+
+type Window = floaty.FloatyWindow & {
+  taskSpinner: Spinner;
 };
 
 const idleText: string = tr('idle-text');
 
-export function setupUI(): {
-  window: IWindow;
-  spinnerItems: string[];
-} {
-  const spinnerItems: string[] = [idleText, ...Object.keys(taskRegistry)];
-  const layout: string = layoutTemplateXml.replace(
-    /\${entries}/g,
-    spinnerItems.join('|')
-  );
-  const window: IWindow = <IWindow>floaty.window(layout);
-  window.setAdjustEnabled(true);
-  window.exitOnClose();
-
-  setupSpinner(window, spinnerItems);
-
-  // Empty timer for async syntax
-  // https://hyb1996.github.io/AutoJs-Docs/#/floaty?id=floaty
-  setInterval(() => {}, 1e3);
-
-  return { window, spinnerItems };
-}
-
-function setupSpinner(window: IWindow, spinnerItems: string[]): void {
+function setupSpinner(window: Window, spinnerItems: string[]): void {
   window.taskSpinner.setOnItemSelectedListener({
     onItemSelected(): void {
       const taskName: string = window.taskSpinner.getSelectedItem();
@@ -83,4 +55,27 @@ function setupSpinner(window: IWindow, spinnerItems: string[]): void {
       );
     });
   });
+}
+
+export function setupUI(): {
+  window: Window;
+  spinnerItems: string[];
+} {
+  const spinnerItems: string[] = [idleText, ...Object.keys(taskRegistry)];
+  const layout: string = layoutTemplateXml.replace(
+    /\${entries}/g,
+    spinnerItems.join('|')
+  );
+  const window: Window = floaty.window(layout) as Window;
+  window.setAdjustEnabled(true);
+  window.exitOnClose();
+
+  setupSpinner(window, spinnerItems);
+
+  // Empty timer for async syntax
+  // https://hyb1996.github.io/AutoJs-Docs/#/floaty?id=floaty
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setInterval(() => {}, 1e3);
+
+  return { window, spinnerItems };
 }

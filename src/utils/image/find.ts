@@ -2,7 +2,7 @@ import { tr } from '@/i18n';
 
 images.requestScreenCapture(false);
 
-export function findImage(image: Image, options?: IFindImageOptions): Point {
+export function findImage(image: Image, options?: FindImageOptions): Point {
   const { id = '<id-not-set>' } = options || {};
   const ret: Point | null = images.findImage(
     images.captureScreen(),
@@ -29,7 +29,7 @@ export function tryFindImage(
 
 export function tryFindAnyImage(
   images: Image[],
-  options?: IFindImageOptions
+  options?: FindImageOptions
 ): Point | undefined {
   for (const i of images) {
     const pos: Point | undefined = tryFindImage(i, options);
@@ -39,6 +39,6 @@ export function tryFindAnyImage(
   }
 }
 
-export interface IFindImageOptions extends images.FindImageOptions {
+export interface FindImageOptions extends images.FindImageOptions {
   id?: string;
 }

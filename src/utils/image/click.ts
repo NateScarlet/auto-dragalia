@@ -1,14 +1,14 @@
 import { img } from '@/assets/images';
 import {
   findImage,
-  IFindImageOptions,
-  IWaitImageOptions,
+  FindImageOptions,
+  WaitImageOptions,
   tryFindAnyImage,
   waitImage
 } from '@/utils/image';
 import { wait } from '@/utils/wait';
 
-export function clickImage(image: Image, options?: IFindImageOptions): Point {
+export function clickImage(image: Image, options?: FindImageOptions): Point {
   const pos: Point = findImage(image, options);
   click(pos.x, pos.y);
 
@@ -17,7 +17,7 @@ export function clickImage(image: Image, options?: IFindImageOptions): Point {
 
 export function tryClickImage(
   image: Image,
-  options?: IFindImageOptions
+  options?: FindImageOptions
 ): Point | undefined {
   try {
     return clickImage(image, options);
@@ -28,7 +28,7 @@ export function tryClickImage(
 
 export function tryClickAnyImage(
   images: Image[],
-  options?: IFindImageOptions
+  options?: FindImageOptions
 ): Point | undefined {
   const pos: Point | undefined = tryFindAnyImage(images, options);
   if (!pos) {
@@ -42,7 +42,7 @@ export function tryClickAnyImage(
 
 export async function waitAndClickImage(
   image: Image,
-  options?: IWaitImageOptions
+  options?: WaitImageOptions
 ): Promise<Point> {
   const pos: Point = await waitImage(true, image, options);
   click(pos.x, pos.y);
@@ -54,35 +54,16 @@ export function handleRetry(): void {
   tryClickImage(img.retryButtonRed, { id: 'retry-button-red' });
   tryClickImage(img.retryButtonBlue, { id: 'retry-button-blue' });
 }
-interface IKeepClickAnyImageContext {
+interface KeepClickAnyImageContext {
   waitEndTime: number;
   clickCount: number;
   isFinished: boolean;
   images: Image[];
-  options: IKeepClickImageOptions;
-}
-
-export async function keepClickAnyImage(
-  images: Image[],
-  options?: IKeepClickImageOptions
-): Promise<number> {
-  const { firstTimeout = 20e3 }: IKeepClickImageOptions = options || {};
-  const context: IKeepClickAnyImageContext = {
-    images,
-    waitEndTime: Date.now() + firstTimeout,
-    clickCount: 0,
-    isFinished: false,
-    options: options || {}
-  };
-  while (!context.isFinished) {
-    await handleKeepAnyImageClicking(context);
-  }
-
-  return context.clickCount;
+  options: KeepClickImageOptions;
 }
 
 async function handleKeepAnyImageClicking(
-  context: IKeepClickAnyImageContext
+  context: KeepClickAnyImageContext
 ): Promise<void> {
   if (Date.now() > context.waitEndTime) {
     context.isFinished = true;
@@ -94,7 +75,7 @@ async function handleKeepAnyImageClicking(
     nextTimeout = 5e3,
     findOptions,
     onDelay = (): boolean => true
-  }: IKeepClickImageOptions = context.options;
+  }: KeepClickImageOptions = context.options;
 
   if (tryClickAnyImage(context.images, findOptions)) {
     context.clickCount += 1;
@@ -108,9 +89,28 @@ async function handleKeepAnyImageClicking(
   }
 }
 
+export async function keepClickAnyImage(
+  images: Image[],
+  options?: KeepClickImageOptions
+): Promise<number> {
+  const { firstTimeout = 20e3 }: KeepClickImageOptions = options || {};
+  const context: KeepClickAnyImageContext = {
+    images,
+    waitEndTime: Date.now() + firstTimeout,
+    clickCount: 0,
+    isFinished: false,
+    options: options || {}
+  };
+  while (!context.isFinished) {
+    await handleKeepAnyImageClicking(context);
+  }
+
+  return context.clickCount;
+}
+
 async function chainImageClick(
-  left: IImageClickChainItem,
-  right: IImageClickChainItem
+  left: ImageClickChainItem,
+  right: ImageClickChainItem
 ): Promise<Point> {
   return waitImage(true, right.image, {
     id: right.id,
@@ -137,28 +137,28 @@ async function chainImageClick(
  * @return image positions in order
  */
 export async function chainImageClicks(
-  ...items: IImageClickChainItem[]
+  ...items: ImageClickChainItem[]
 ): Promise<Point[]> {
   if (items.length < 2) {
     throw new Error('Need at least 2 image to chain click');
   }
   const ret: Point[] = [];
-  for (let pos: number = 0; pos + 1 < items.length; pos += 1) {
+  for (let pos = 0; pos + 1 < items.length; pos += 1) {
     ret.push(await chainImageClick(items[pos], items[pos + 1]));
   }
 
   return ret;
 }
 
-export interface IImageClickChainItem
-  extends IWaitImageOptions,
+export interface ImageClickChainItem
+  extends WaitImageOptions,
     images.FindImageOptions {
   image: Image;
 }
 
-export interface IKeepClickImageOptions {
+export interface KeepClickImageOptions {
   firstTimeout?: number;
   nextTimeout?: number;
-  findOptions?: IFindImageOptions;
+  findOptions?: FindImageOptions;
   onDelay?(): boolean | Promise<boolean>;
 }

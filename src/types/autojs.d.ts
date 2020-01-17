@@ -11,40 +11,43 @@ declare namespace images {
       max?: number;
       level?: number;
     } & FindColorOptions
-  ): IMatchingResult;
-  interface IMatch {
+  ): MatchingResult;
+  interface Match {
     point: Point;
     similarity: number;
   }
   /** https://hyb1996.github.io/AutoJs-Docs/#/images?id=matchingresult */
-  interface IMatchingResult {
-    matches: IMatch[];
+  interface MatchingResult {
+    matches: Match[];
     points: Point[];
-    first(): IMatch | null;
-    last(): IMatch | null;
-    leftmost(): IMatch | null;
-    topmost(): IMatch | null;
-    rightmost(): IMatch | null;
-    bottommost(): IMatch | null;
-    best(): IMatch | null;
-    worst(): IMatch | null;
-    sortBy(cmp: (a: IMatch, b: IMatch) => number | string): IMatchingResult;
+    first(): Match | null;
+    last(): Match | null;
+    leftmost(): Match | null;
+    topmost(): Match | null;
+    rightmost(): Match | null;
+    bottommost(): Match | null;
+    best(): Match | null;
+    worst(): Match | null;
+    sortBy(cmp: (a: Match, b: Match) => number | string): MatchingResult;
   }
 }
 /** https://hyb1996.github.io/AutoJs-Docs/#/timers?id=settimeoutcallback-delay-args */
 declare function setTimeout(
-  callback: () => any,
+  callback: () => unknown,
   delay: number,
-  ...args: any[]
+  ...args: unknown[]
 ): number;
 /** https://hyb1996.github.io/AutoJs-Docs/#/timers?id=setintervalcallback-delay-args */
 declare function setInterval(
-  callback: () => any,
+  callback: () => unknown,
   delay: number,
-  ...args: any[]
+  ...args: unknown[]
 ): number;
 /** https://hyb1996.github.io/AutoJs-Docs/#/timers?id=setimmediatecallback-args */
-declare function setImmediate(callback: () => any, ...args: any[]): number;
+declare function setImmediate(
+  callback: () => unknown,
+  ...args: unknown[]
+): number;
 /** https://hyb1996.github.io/AutoJs-Docs/#/timers?id=clearintervalid */
 declare function clearInterval(id: number): void;
 /** https://hyb1996.github.io/AutoJs-Docs/#/timers?id=cleartimeoutid */

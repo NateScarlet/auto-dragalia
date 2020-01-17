@@ -15,23 +15,6 @@ import {
 import { wait } from '@/utils/wait';
 import { tr } from '@/i18n';
 
-export async function farmRareItem(): Promise<void> {
-  selectLevel();
-  await enterStage1();
-  log(tr('entering-stage-1'));
-  await waitLoading({ id: 'stage-1-loading' });
-  toastLog(tr('entered-stage-1'));
-  await enterStage2();
-  toastLog(tr('entering-stage-2'));
-  await enterMenu();
-  await checkRareItem();
-  await waitImage(true, img.levelSelect, {
-    timeout: 60e3,
-    id: 'level-select',
-    onDelay: handleRetry
-  });
-}
-
 function selectLevel(): void {
   const levelSelectPosition: Point | undefined = tryFindAnyImage(
     [
@@ -93,21 +76,6 @@ async function enterMenu(): Promise<void> {
   await wait(500); // Wait menu animation finish;
 }
 
-async function checkRareItem(): Promise<void> {
-  const p: Point = findImage(img.rareItem, { id: 'rare-item' });
-  const region: [number, number, number, number] = [
-    p.x,
-    p.y + img.rareItem.getHeight(),
-    img.rareItem.getWidth(),
-    img.rareItem.getHeight()
-  ];
-  if (tryFindImage(img.x0, { id: 'x0', region })) {
-    await onFail();
-  } else {
-    onSuccess();
-  }
-}
-
 function onSuccess(): void {
   toastLog(tr('rare-item-dropped'));
   while (
@@ -132,5 +100,36 @@ async function onFail(): Promise<void> {
   await waitAndClickImage(img.giveUpButtonBlue, {
     timeout: 5e3,
     id: 'give-up-button-2'
+  });
+}
+
+async function checkRareItem(): Promise<void> {
+  const p: Point = findImage(img.rareItem, { id: 'rare-item' });
+  const region: [number, number, number, number] = [
+    p.x,
+    p.y + img.rareItem.getHeight(),
+    img.rareItem.getWidth(),
+    img.rareItem.getHeight()
+  ];
+  if (tryFindImage(img.x0, { id: 'x0', region })) {
+    await onFail();
+  } else {
+    onSuccess();
+  }
+}
+export async function farmRareItem(): Promise<void> {
+  selectLevel();
+  await enterStage1();
+  log(tr('entering-stage-1'));
+  await waitLoading({ id: 'stage-1-loading' });
+  toastLog(tr('entered-stage-1'));
+  await enterStage2();
+  toastLog(tr('entering-stage-2'));
+  await enterMenu();
+  await checkRareItem();
+  await waitImage(true, img.levelSelect, {
+    timeout: 60e3,
+    id: 'level-select',
+    onDelay: handleRetry
   });
 }
