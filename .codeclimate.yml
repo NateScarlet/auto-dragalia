@@ -1,9 +1,4 @@
 version: 2
 plugins:
-  eslint:
-    enabled: true
-    extensions:
-      - .js
-      - .ts
   markdownlint:
     enabled: true
