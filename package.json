@@ -20,7 +20,7 @@
   "devDependencies": {
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
-    "@types/webpack-env": "1.15.0",
+    "@types/webpack-env": "1.15.1",
     "@typescript-eslint/eslint-plugin": "2.18.0",
     "@typescript-eslint/parser": "2.18.0",
     "ajv": "6.11.0",
