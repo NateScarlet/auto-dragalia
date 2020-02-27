@@ -5,7 +5,7 @@ executors:
       - image: circleci/node:lts
   golang:
     docker:
-      - image: circleci/golang:1.13
+      - image: circleci/golang:1.14
   python:
     docker:
       - image: circleci/python:3.8
