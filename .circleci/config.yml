@@ -8,7 +8,7 @@ executors:
       - image: circleci/golang:1.15
   python:
     docker:
-      - image: circleci/python:3.8
+      - image: circleci/python:3.9
 commands:
   install_hub:
     description: 'Install hub CLI'
