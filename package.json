@@ -18,7 +18,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@commitlint/cli": "8.3.6",
+    "@commitlint/cli": "9.1.2",
     "@commitlint/config-conventional": "8.3.6",
     "@types/webpack-env": "1.16.3",
     "@typescript-eslint/eslint-plugin": "2.34.0",
@@ -30,7 +30,7 @@
     "lint-staged": "9.5.0",
     "prettier": "1.19.1",
     "raw-loader": "4.0.2",
-    "standard-version": "7.1.0",
+    "standard-version": "9.1.1",
     "ts-loader": "6.2.2",
     "typescript": "3.9.10",
     "webpack": "4.46.0",
